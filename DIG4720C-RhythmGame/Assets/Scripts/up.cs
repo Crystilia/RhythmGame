@@ -12,6 +12,7 @@ public class up : MonoBehaviour {
     }
     private void FixedUpdate()
     {
-        RB.AddForce(Vector3.up * 10);
+        RB.AddForce(Vector3.up * 20);
+        Debug.Log(RB.velocity);
     }
 }

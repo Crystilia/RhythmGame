@@ -22,8 +22,8 @@ GameObject:
   - component: {fileID: 33720429735222800}
   - component: {fileID: 65737399423162572}
   - component: {fileID: 23566770142434988}
-  - component: {fileID: 114680108390376070}
   - component: {fileID: 54251955851964658}
+  - component: {fileID: 75313872632472324}
   m_Layer: 0
   m_Name: badNote
   m_TagString: Untagged
@@ -112,14 +112,14 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &114680108390376070
-MonoBehaviour:
+--- !u!75 &75313872632472324
+ConstantForce:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1051057794852264}
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 165be8eb38c82a448be281fd6c8450c3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Force: {x: 0, y: 20, z: 0}
+  m_RelativeForce: {x: 0, y: 0, z: 0}
+  m_Torque: {x: 0, y: 0, z: 0}
+  m_RelativeTorque: {x: 0, y: 0, z: 0}
