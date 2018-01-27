@@ -3,16 +3,34 @@
 public class LeftHitBox : MonoBehaviour
 {
 
-    bool InHitBox = false;
-
+    private bool InHitBox = false;
+    private bool Bomb = false;
+    private bool PowerUp = false;
+    private Manager mngr;
     private GameObject Note = null;
     // Use this for initialization
 
+    private void Start()
+    {
+        mngr = GameObject.Find("Manager").GetComponent<Manager>();
+    }
     private void OnTriggerEnter(Collider note)
     {
         if (note.gameObject.tag == "Note")
         {
             InHitBox = true;
+            Note = note.gameObject;
+        }
+        else if (note.gameObject.tag == "Bomb")
+        {
+            InHitBox = true;
+            Bomb = true;
+            Note = note.gameObject;
+        }
+        else if (note.gameObject.tag == "PowerUp")
+        {
+            InHitBox = true;
+            PowerUp = true;
             Note = note.gameObject;
         }
     }
@@ -23,6 +41,16 @@ public class LeftHitBox : MonoBehaviour
         {
             InHitBox = false;
         }
+        if (note.gameObject.tag == "Bomb")
+        {
+            InHitBox = false;
+            Bomb = false;
+        }
+        if (note.gameObject.tag == "PowerUp")
+        {
+            InHitBox = false;
+            PowerUp = false;
+        }
     }
 
 
@@ -30,8 +58,22 @@ public class LeftHitBox : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.LeftArrow) && Note != null)
+        if (Input.GetKeyDown(KeyCode.LeftArrow) && Note != null && InHitBox && !Bomb && !PowerUp)
+        {
             Destroy(Note);
 
+        }
+        else if (Input.GetKeyDown(KeyCode.LeftArrow) && Note != null && InHitBox && Bomb && !PowerUp)
+        {
+            Destroy(Note);
+            mngr.LowerHP();
+            Bomb = false;
+        }
+        else if (Input.GetKeyDown(KeyCode.LeftArrow) && Note != null && InHitBox && !Bomb && PowerUp)
+        {
+            Destroy(Note);
+            PowerUp = false;
+
+        }
     }
 }

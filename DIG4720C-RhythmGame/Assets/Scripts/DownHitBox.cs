@@ -3,7 +3,9 @@
 public class DownHitBox : MonoBehaviour
 {
 
-    bool InHitBox = false;
+    private bool InHitBox = false;
+    private bool Bomb = false;
+    private bool PowerUp = false;
     private Manager mngr;
     private GameObject Note = null;
     // Use this for initialization
@@ -19,6 +21,18 @@ public class DownHitBox : MonoBehaviour
             InHitBox = true;
             Note = note.gameObject;
         }
+        else if (note.gameObject.tag == "Bomb")
+        {
+            InHitBox = true;
+            Bomb = true;
+            Note = note.gameObject;
+        }
+        else if (note.gameObject.tag == "PowerUp")
+        {
+            InHitBox = true;
+            PowerUp = true;
+            Note = note.gameObject;
+        }
     }
 
     private void OnTriggerExit(Collider note)
@@ -27,6 +41,16 @@ public class DownHitBox : MonoBehaviour
         {
             InHitBox = false;
         }
+        else if (note.gameObject.tag == "Bomb")
+        {
+            InHitBox = false;
+            Bomb = false;
+        }
+        else if (note.gameObject.tag == "PowerUp")
+        {
+            InHitBox = false;
+            PowerUp = false;
+        }
     }
 
 
@@ -34,10 +58,21 @@ public class DownHitBox : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.DownArrow) && Note != null && InHitBox)
+        if (Input.GetKeyDown(KeyCode.DownArrow) && Note != null && InHitBox && !Bomb && !PowerUp)
+        {
+            Destroy(Note);
+
+        }
+        else if (Input.GetKeyDown(KeyCode.DownArrow) && Note != null && InHitBox && Bomb && !PowerUp)
         {
             Destroy(Note);
             mngr.LowerHP();
+            Bomb = false;
+        }
+        else if (Input.GetKeyDown(KeyCode.DownArrow) && Note != null && InHitBox && !Bomb && PowerUp)
+        {
+            Destroy(Note);
+            PowerUp = false;
         }
     }
 }
