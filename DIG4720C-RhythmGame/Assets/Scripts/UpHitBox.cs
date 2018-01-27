@@ -61,7 +61,8 @@ public class UpHitBox : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.UpArrow) && Note != null && InHitBox && !Bomb && !PowerUp)
         {
             Destroy(Note);
-
+            mngr.RaisePU();
+            InHitBox = false;
         }
         else if (Input.GetKeyDown(KeyCode.UpArrow) && Note != null && InHitBox && Bomb && !PowerUp)
         {
@@ -73,6 +74,7 @@ public class UpHitBox : MonoBehaviour
         {
             Destroy(Note);
             PowerUp = false;
+            mngr.MaxPU();
         }
     }
 }

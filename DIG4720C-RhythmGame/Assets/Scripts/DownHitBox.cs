@@ -61,7 +61,8 @@ public class DownHitBox : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.DownArrow) && Note != null && InHitBox && !Bomb && !PowerUp)
         {
             Destroy(Note);
-
+            mngr.RaisePU();
+            InHitBox = false;
         }
         else if (Input.GetKeyDown(KeyCode.DownArrow) && Note != null && InHitBox && Bomb && !PowerUp)
         {
@@ -73,6 +74,7 @@ public class DownHitBox : MonoBehaviour
         {
             Destroy(Note);
             PowerUp = false;
+            mngr.MaxPU();
         }
     }
 }

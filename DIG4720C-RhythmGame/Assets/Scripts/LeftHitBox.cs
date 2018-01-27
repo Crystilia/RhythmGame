@@ -61,7 +61,8 @@ public class LeftHitBox : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.LeftArrow) && Note != null && InHitBox && !Bomb && !PowerUp)
         {
             Destroy(Note);
-
+            mngr.RaisePU();
+            InHitBox = false;
         }
         else if (Input.GetKeyDown(KeyCode.LeftArrow) && Note != null && InHitBox && Bomb && !PowerUp)
         {
@@ -73,7 +74,7 @@ public class LeftHitBox : MonoBehaviour
         {
             Destroy(Note);
             PowerUp = false;
-
+            mngr.MaxPU();
         }
     }
 }
