@@ -9,47 +9,46 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1078513642919848}
+  m_RootGameObject: {fileID: 1498551900136346}
   m_IsPrefabParent: 1
---- !u!1 &1078513642919848
+--- !u!1 &1498551900136346
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4539118291907206}
-  - component: {fileID: 33432970092561656}
-  - component: {fileID: 135558009134006644}
-  - component: {fileID: 23856596331407076}
-  - component: {fileID: 54214851281276568}
-  - component: {fileID: 75927713973431388}
+  - component: {fileID: 4058706831430542}
+  - component: {fileID: 33676292779919412}
+  - component: {fileID: 135391591332212042}
+  - component: {fileID: 23882041603935402}
+  - component: {fileID: 114383650506871658}
   m_Layer: 0
-  m_Name: Note
-  m_TagString: Note
+  m_Name: Left Hit Sphere
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4539118291907206
+--- !u!4 &4058706831430542
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1078513642919848}
+  m_GameObject: {fileID: 1498551900136346}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 112.044754, y: 251.82823, z: 111.19583}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 213.06206, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!23 &23856596331407076
+--- !u!23 &23882041603935402
 MeshRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1078513642919848}
+  m_GameObject: {fileID: 1498551900136346}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -58,7 +57,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 973e6d725172486478d9ede092a0a13f, type: 2}
+  - {fileID: 2100000, guid: c9e6294c9d11cb8d11006bf944295342, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -78,48 +77,33 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!33 &33432970092561656
+--- !u!33 &33676292779919412
 MeshFilter:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1078513642919848}
+  m_GameObject: {fileID: 1498551900136346}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!54 &54214851281276568
-Rigidbody:
+--- !u!114 &114383650506871658
+MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1078513642919848}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
---- !u!75 &75927713973431388
-ConstantForce:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1078513642919848}
+  m_GameObject: {fileID: 1498551900136346}
   m_Enabled: 1
-  m_Force: {x: 0, y: 11, z: 0}
-  m_RelativeForce: {x: 0, y: 0, z: 0}
-  m_Torque: {x: 0, y: 0, z: 0}
-  m_RelativeTorque: {x: 0, y: 0, z: 0}
---- !u!135 &135558009134006644
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee9d9497b63cc134cbce19ac3604b61e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!135 &135391591332212042
 SphereCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1078513642919848}
+  m_GameObject: {fileID: 1498551900136346}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.5383442
   m_Center: {x: 0, y: 0, z: 0}
