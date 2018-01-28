@@ -14,11 +14,15 @@ public class Manager : MonoBehaviour {
     void Start () {
         P1HP = GameObject.Find("P1HP").GetComponent<Image>();
         P1PU = GameObject.Find("P1PU").GetComponent<Image>();
+        P1HP.fillAmount = P1CurrentHP;
+        P1PU.fillAmount = P1CurrentPU;
+
     }
-	
+
     public void LowerHP()
     {
         P1CurrentHP = P1CurrentHP - 0.1f;
+        P1HP.fillAmount = P1CurrentHP;
     }
 
     public void RaisePU()
@@ -41,12 +45,9 @@ public class Manager : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-        P1HP.fillAmount = P1CurrentHP;
-        P1PU.fillAmount = P1CurrentPU;
 
         if (Input.GetKeyDown(KeyCode.Space) && canUseSpecial)
         {
-
             P1CurrentPU = 0;
             P1PU.fillAmount = P1CurrentPU;
             canUseSpecial = false;

@@ -18,13 +18,14 @@ public class Song_Generator : MonoBehaviour {
     public ColorToPrefab[] Note_Colors;
     public GameObject BadNote;
     public GameObject GoodNote;
-
+    private Transform spawner;
 
 
     // Use this for initialization
     void Start () {
+        spawner = GameObject.Find("NoteSpawn").GetComponent<Transform>();
         GenerateSong();
-	}
+    }
 
     void GenerateSong()
     {
@@ -54,16 +55,15 @@ public class Song_Generator : MonoBehaviour {
             if (Note.color.Equals(pixelC))
             {
                 // multiply x to create space between notes, add to x to shift all notes left or right.
-                Vector2 ArrNotePos = new Vector2(x*2, y);
-                Instantiate(Note.BasicNote, ArrNotePos, Quaternion.identity);
-
+             
+                Vector2 ArrNotePos = new Vector2(x*2,y);
+                Instantiate(Note.BasicNote, ArrNotePos, Quaternion.identity, spawner);
             }
         }
-
-
     }
 
-    void Rand(GameObject other)
+
+    public void Rand(GameObject other)
     {
         if (MakeBadNote == true)
         {
@@ -87,12 +87,5 @@ public class Song_Generator : MonoBehaviour {
                 Destroy(other);
             }
         }
-    }
-    void OnTriggerEnter(Collider other)
-    {
-        //Destroy(other.gameObject);
-        Rand(other.gameObject);
-       // Debug.Log(MakeBadNote);
- 
     }
 }
