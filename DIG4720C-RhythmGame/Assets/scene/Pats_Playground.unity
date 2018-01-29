@@ -397,7 +397,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 029df2bafc1d94a47b893b6c4ba834bc, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 029df2bafc1d94a47b893b6c4ba834bc, type: 3}
       propertyPath: m_LocalRotation.z
@@ -405,7 +405,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 029df2bafc1d94a47b893b6c4ba834bc, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 029df2bafc1d94a47b893b6c4ba834bc, type: 3}
       propertyPath: m_RootOrder
@@ -415,6 +415,22 @@ Prefab:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: f62ed479a7153de4e8eb6d8996b9858f, type: 2}
+    - target: {fileID: 400000, guid: 029df2bafc1d94a47b893b6c4ba834bc, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 029df2bafc1d94a47b893b6c4ba834bc, type: 3}
+      propertyPath: m_LightProbeUsage
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 029df2bafc1d94a47b893b6c4ba834bc, type: 3}
+      propertyPath: m_CastShadows
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 029df2bafc1d94a47b893b6c4ba834bc, type: 3}
+      propertyPath: m_ReceiveShadows
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 029df2bafc1d94a47b893b6c4ba834bc, type: 3}
   m_IsPrefabParent: 0
