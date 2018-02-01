@@ -25,7 +25,7 @@ GameObject:
   - component: {fileID: 54044832325901758}
   - component: {fileID: 114812861893126590}
   - component: {fileID: 75843052028874594}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: GoodNote
   m_TagString: PowerUp
   m_Icon: {fileID: 0}

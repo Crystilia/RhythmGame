@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 65076957855405986}
   - component: {fileID: 222593305514758196}
   - component: {fileID: 114206160132559378}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Up Hit Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -78,7 +78,7 @@ GameObject:
   - component: {fileID: 65056266118988694}
   - component: {fileID: 222029603889367658}
   - component: {fileID: 114970909787530476}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Right Hit Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -113,7 +113,7 @@ GameObject:
   - component: {fileID: 224125156657270856}
   - component: {fileID: 65460160866523872}
   - component: {fileID: 114251958058638714}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: NoteKillBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -165,7 +165,7 @@ GameObject:
   - component: {fileID: 224424785899434468}
   - component: {fileID: 65212830155406468}
   - component: {fileID: 114435473651958942}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: NoteChangeBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -222,7 +222,7 @@ GameObject:
   - component: {fileID: 65649509972945604}
   - component: {fileID: 222049755640622296}
   - component: {fileID: 114942411519658302}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Left Hit Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -274,7 +274,7 @@ GameObject:
   - component: {fileID: 65711180659048540}
   - component: {fileID: 222083679404292598}
   - component: {fileID: 114047127134239410}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Down Hit Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
