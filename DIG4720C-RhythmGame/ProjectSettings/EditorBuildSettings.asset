@@ -9,5 +9,8 @@ EditorBuildSettings:
     path: Assets/scene/MainMenu.unity
     guid: 3c1c9b4ab2d304349bffd8f798b57a09
   - enabled: 1
+    path: Assets/scene/CharSelect.unity
+    guid: c145b7ab568ea1243a64f4b9803158f1
+  - enabled: 1
     path: Assets/scene/Pats_Playground.unity
     guid: ea4d0cb904e354241930b1795739c767
