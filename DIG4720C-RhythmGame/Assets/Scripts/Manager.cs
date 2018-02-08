@@ -30,11 +30,13 @@ public class Manager : MonoBehaviour {
         if (P1PU.fillAmount < 1f)
         {
             P1CurrentPU = P1CurrentPU + 0.1f;
+            P1PU.fillAmount = P1CurrentPU;
         }
         else if (P1PU.fillAmount >= 1f)
         {
             P1CurrentPU = 1f;
             canUseSpecial = true;
+            P1PU.fillAmount = P1CurrentPU;
         }
     }
 

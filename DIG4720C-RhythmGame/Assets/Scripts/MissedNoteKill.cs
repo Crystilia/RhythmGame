@@ -18,7 +18,6 @@ public class MissedNoteKill : MonoBehaviour {
         }
         if (note.tag == "Bomb")
         {
-            mngr.LowerHP();
             Destroy(note.gameObject);
         }
     }
