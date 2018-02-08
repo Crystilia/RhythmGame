@@ -9,11 +9,7 @@ public class up : MonoBehaviour {
     // Use this for initialization
     void Start () {
         rb = this.GetComponent<Rigidbody>();
-	}
+        rb.velocity = Vector3.up * constantSpeed;
+    }
 	
-	// Update is called once per frame
-	void Update () {
-        rb.velocity = constantSpeed * (rb.velocity.normalized);
-       // Debug.Log(this.GetComponent<Rigidbody>().velocity);
-	}
 }

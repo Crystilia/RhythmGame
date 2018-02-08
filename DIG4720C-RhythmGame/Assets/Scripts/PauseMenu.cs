@@ -8,7 +8,8 @@ public class PauseMenu : MonoBehaviour {
     public GameObject MenuHUD;
 	// Use this for initialization
 	void Start () {
-	}
+        MenuHUD = transform.GetChild(0).gameObject;
+    }
 
     public void Resume()
     {
@@ -32,8 +33,8 @@ public class PauseMenu : MonoBehaviour {
     void Pause()
     {
         MenuHUD.SetActive(true);
-        Time.timeScale = 0f;
         Paused = true;
+        Time.timeScale = 0f;
     }
     // Update is called once per frame
     void Update () {

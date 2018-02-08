@@ -8,8 +8,11 @@ public class CharMenu : MonoBehaviour {
     public static GameObject Player;
     private void Start()
     {
-        Players[0] = GameObject.Find("PatsCharTest").gameObject;
-        Players[1] = GameObject.Find("player2").gameObject;
+        if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("CharSelect"))
+        {
+            Players[0] = GameObject.Find("PatsCharTest").gameObject;
+            Players[1] = GameObject.Find("player2").gameObject;
+        }
     }
     public void Char1()
     {

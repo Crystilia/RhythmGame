@@ -21,8 +21,18 @@ public class Manager : MonoBehaviour {
 
     public void LowerHP()
     {
-        P1CurrentHP = P1CurrentHP - 0.1f;
-        P1HP.fillAmount = P1CurrentHP;
+        if (P1CurrentHP > 0)
+        {
+            P1CurrentHP = P1CurrentHP - 0.1f;
+            P1HP.fillAmount = P1CurrentHP;
+        }
+        else
+        {
+            P1CurrentHP = 0;
+            P1HP.fillAmount = P1CurrentHP;
+            //put u lose stuff here;
+            Time.timeScale = 0.0f;
+        }
     }
 
     public void RaisePU()
@@ -37,22 +47,25 @@ public class Manager : MonoBehaviour {
             P1CurrentPU = 1f;
             canUseSpecial = true;
             P1PU.fillAmount = P1CurrentPU;
+            P1PU.color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
         }
     }
 
     public void MaxPU()
     {
         P1CurrentPU = 1f;
+        RaisePU();
     }
 
     // Update is called once per frame
     void Update () {
 
-        if (Input.GetKeyDown(KeyCode.Space) && canUseSpecial)
+        if (canUseSpecial && Input.GetKeyDown(KeyCode.Space))
         {
             P1CurrentPU = 0;
             P1PU.fillAmount = P1CurrentPU;
             canUseSpecial = false;
+            P1PU.color = new Color(1.0f, 1.0f, 0.0f, 1.0f);
         }
 
 
