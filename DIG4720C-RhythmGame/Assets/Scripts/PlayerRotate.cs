@@ -6,6 +6,7 @@ public class PlayerRotate : MonoBehaviour {
     public float speed = 15f;
     // Use this for initialization
     void Start () {
+        
 		if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("CharSelect"))
         {
             this.enabled = true;

@@ -6,12 +6,21 @@ using UnityEngine.SceneManagement;
 public class CharMenu : MonoBehaviour {
     public GameObject[] Players;
     public static GameObject Player;
+    public Transform PlayerParent;
     private void Start()
     {
-        if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("CharSelect"))
+      
+        //if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("CharSelect"))
+       // {
+            Players[0] = GameObject.Find("player1");
+            Players[1] = GameObject.Find("player2");
+            Players[2] = GameObject.Find("player3");
+            Players[3] = GameObject.Find("player4");
+           // PlayerParent = GameObject.Find("Player").transform;
+        //}
+        if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Pats_Playground"))
         {
-            Players[0] = GameObject.Find("PatsCharTest").gameObject;
-            Players[1] = GameObject.Find("player2").gameObject;
+            PlayerButton(PlayerPrefs.GetInt("P"));
         }
     }
     public void Char1()
@@ -30,9 +39,12 @@ public class CharMenu : MonoBehaviour {
             Players[k].SetActive(false);
         }
         Player.SetActive(true);
-    }
-    public void p2button(int i)
-    {
-        Player = Players[i];
+        //  PlayerParent.DetachChildren();
+        // Player.transform.SetParent(PlayerParent);
+        if (PlayerPrefs.GetInt("P") != i)
+        {
+            PlayerPrefs.SetInt("P", i);
+            Debug.Log(PlayerPrefs.GetInt("P"));
+        }
     }
 }
