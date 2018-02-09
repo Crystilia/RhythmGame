@@ -7,6 +7,7 @@ public class CharMenu : MonoBehaviour {
     public GameObject[] Players;
     public static GameObject Player;
     public Transform PlayerParent;
+    Quaternion rot = new Quaternion(0,180,0,0);
     private void Start()
     {
       
@@ -33,18 +34,24 @@ public class CharMenu : MonoBehaviour {
     }
     public void PlayerButton(int i)
     {
+        if (Player != null)
+        {
+            rot = Player.transform.rotation;
+        }
         Player = Players[i];
+
         for (int k = 0; k < Players.Length; k++)
         {
+           // rot = Players[k].transform.rotation;
             Players[k].SetActive(false);
         }
         Player.SetActive(true);
+        Player.transform.rotation = rot;
         //  PlayerParent.DetachChildren();
         // Player.transform.SetParent(PlayerParent);
         if (PlayerPrefs.GetInt("P") != i)
         {
             PlayerPrefs.SetInt("P", i);
-            Debug.Log(PlayerPrefs.GetInt("P"));
         }
     }
 }
