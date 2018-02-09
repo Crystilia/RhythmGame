@@ -9,65 +9,123 @@ public class Manager : MonoBehaviour {
     private Image P1PU;
     float P1CurrentHP = 1;
     float P1CurrentPU = 0;
-    bool canUseSpecial = false;
+    private Image P2HP;
+    private Image P2PU;
+    float P2CurrentHP = 1;
+    float P2CurrentPU = 0;
+    bool p1canUseSpecial = false;
+    bool p2canUseSpecial = false;
     // Use this for initialization
     void Start () {
         P1HP = GameObject.Find("P1HP").GetComponent<Image>();
         P1PU = GameObject.Find("P1PU").GetComponent<Image>();
         P1HP.fillAmount = P1CurrentHP;
         P1PU.fillAmount = P1CurrentPU;
+        P2HP = GameObject.Find("P2HP").GetComponent<Image>();
+        P2PU = GameObject.Find("P2PU").GetComponent<Image>();
+        P2HP.fillAmount = P2CurrentHP;
+        P2PU.fillAmount = P2CurrentPU;
 
     }
 
-    public void LowerHP()
-    {
-        if (P1CurrentHP > 0)
+    public void LowerHP(bool P)
+    {   if (P)
         {
-            P1CurrentHP = P1CurrentHP - 0.1f;
-            P1HP.fillAmount = P1CurrentHP;
+            if (P1CurrentHP > 0)
+            {
+                P1CurrentHP = P1CurrentHP - 0.1f;
+                P1HP.fillAmount = P1CurrentHP;
+            }
+            else
+            {
+                P1CurrentHP = 0;
+                P1HP.fillAmount = P1CurrentHP;
+                //put u lose stuff here;
+                Time.timeScale = 0.0f;
+            }
         }
-        else
+        if (!P)
         {
-            P1CurrentHP = 0;
-            P1HP.fillAmount = P1CurrentHP;
-            //put u lose stuff here;
-            Time.timeScale = 0.0f;
+            if (P2CurrentHP > 0)
+            {
+                P2CurrentHP = P2CurrentHP - 0.1f;
+                P2HP.fillAmount = P2CurrentHP;
+            }
+            else
+            {
+                P2CurrentHP = 0;
+                P2HP.fillAmount = P2CurrentHP;
+                //put u lose stuff here;
+                Time.timeScale = 0.0f;
+            }
         }
     }
 
-    public void RaisePU()
+    public void RaisePU(bool P)
     {
-        if (P1PU.fillAmount < 1f)
+        if (P)
         {
-            P1CurrentPU = P1CurrentPU + 0.1f;
-            P1PU.fillAmount = P1CurrentPU;
+            if (P1PU.fillAmount < 1f)
+            {
+                P1CurrentPU = P1CurrentPU + 0.1f;
+                P1PU.fillAmount = P1CurrentPU;
+            }
+            else if (P1PU.fillAmount >= 1f)
+            {
+                P1CurrentPU = 1f;
+                p1canUseSpecial = true;
+                P1PU.fillAmount = P1CurrentPU;
+                P1PU.color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+            }
         }
-        else if (P1PU.fillAmount >= 1f)
+        if (!P)
+        {
+            if (P2PU.fillAmount < 1f)
+            {
+                P2CurrentPU = P2CurrentPU + 0.1f;
+                P2PU.fillAmount = P2CurrentPU;
+            }
+            else if (P2PU.fillAmount >= 1f)
+            {
+                P2CurrentPU = 1f;
+                p2canUseSpecial = true;
+                P2PU.fillAmount = P2CurrentPU;
+                P2PU.color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+            }
+        }
+    }
+
+    public void MaxPU(bool P)
+    {
+        if (P)
         {
             P1CurrentPU = 1f;
-            canUseSpecial = true;
-            P1PU.fillAmount = P1CurrentPU;
-            P1PU.color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+            RaisePU(true);
         }
-    }
-
-    public void MaxPU()
-    {
-        P1CurrentPU = 1f;
-        RaisePU();
+        if (!P)
+        {
+            P2CurrentPU = 1f;
+            RaisePU(false);
+        }
     }
 
     // Update is called once per frame
     void Update () {
 
-        if (canUseSpecial && Input.GetKeyDown(KeyCode.Space))
+        if (p1canUseSpecial && Input.GetKeyDown(KeyCode.Space))
         {
             P1CurrentPU = 0;
             P1PU.fillAmount = P1CurrentPU;
-            canUseSpecial = false;
+            p1canUseSpecial = false;
             P1PU.color = new Color(1.0f, 1.0f, 0.0f, 1.0f);
         }
-
+        if (p2canUseSpecial && Input.GetKeyDown(KeyCode.Space))
+        {
+            P1CurrentPU = 0;
+            P1PU.fillAmount = P1CurrentPU;
+            p2canUseSpecial = false;
+            P1PU.color = new Color(1.0f, 1.0f, 0.0f, 1.0f);
+        }
 
     }
 }

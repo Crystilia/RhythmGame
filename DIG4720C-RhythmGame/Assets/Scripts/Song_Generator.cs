@@ -52,11 +52,20 @@ public class Song_Generator : MonoBehaviour {
 
         foreach (ColorToPrefab Note in Note_Colors)
         {
+            //player 1
             if (Note.color.Equals(pixelC))
             {
                 // multiply x to create space between notes, add to x to shift all notes left or right.
              
                 Vector2 ArrNotePos = new Vector2(x*2,y);
+                Instantiate(Note.BasicNote, ArrNotePos, Quaternion.identity, spawner);
+            }
+            //player 2
+            if (Note.color.Equals(pixelC))
+            {
+                // multiply x to create space between notes, add to x to shift all notes left or right.
+
+                Vector2 ArrNotePos = new Vector2((x* 2)+12, y);
                 Instantiate(Note.BasicNote, ArrNotePos, Quaternion.identity, spawner);
             }
         }

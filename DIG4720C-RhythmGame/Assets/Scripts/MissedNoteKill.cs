@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MissedNoteKill : MonoBehaviour {
     private Manager mngr;
-
+    public bool Player;
     // Use this for initialization
     void Start () {
         mngr = GameObject.Find("Manager").GetComponent<Manager>();
@@ -13,7 +13,7 @@ public class MissedNoteKill : MonoBehaviour {
     {
         if(note.tag == "Note")
         {
-            mngr.LowerHP();
+            mngr.LowerHP(Player);
             Destroy(note.gameObject);
         }
         if (note.tag == "Bomb")
