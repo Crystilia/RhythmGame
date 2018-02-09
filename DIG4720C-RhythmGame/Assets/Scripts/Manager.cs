@@ -114,6 +114,9 @@ public class Manager : MonoBehaviour {
 
         if (p1canUseSpecial && Input.GetKeyDown(KeyCode.Space))
         {
+            LowerHP(false);
+            LowerHP(false);
+            LowerHP(false);
             P1CurrentPU = 0;
             P1PU.fillAmount = P1CurrentPU;
             p1canUseSpecial = false;
@@ -121,6 +124,9 @@ public class Manager : MonoBehaviour {
         }
         if (p2canUseSpecial && Input.GetKeyDown(KeyCode.Space))
         {
+            LowerHP(true);
+            LowerHP(true);
+            LowerHP(true);
             P1CurrentPU = 0;
             P1PU.fillAmount = P1CurrentPU;
             p2canUseSpecial = false;
