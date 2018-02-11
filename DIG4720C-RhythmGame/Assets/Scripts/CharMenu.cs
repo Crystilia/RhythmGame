@@ -13,10 +13,10 @@ public class CharMenu : MonoBehaviour {
       
         //if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("CharSelect"))
        // {
-            Players[0] = GameObject.Find("player1");
-            Players[1] = GameObject.Find("player2");
-            Players[2] = GameObject.Find("player3");
-            Players[3] = GameObject.Find("player4");
+            Players[0] = GameObject.Find("Player1");
+            Players[1] = GameObject.Find("Player2");
+            Players[2] = GameObject.Find("Player3");
+            Players[3] = GameObject.Find("Player4");
            // PlayerParent = GameObject.Find("Player").transform;
         //}
         if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Pats_Playground"))

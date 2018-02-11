@@ -6,12 +6,32 @@ ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
     100000: //RootNode
+    100002: Leye
+    100004: mouth
+    100006: Reye
+    100008: Box006
     400000: //RootNode
+    400002: Leye
+    400004: mouth
+    400006: Reye
+    400008: Box006
     2100000: phong1
     2300000: //RootNode
+    2300002: Leye
+    2300004: mouth
+    2300006: Reye
+    2300008: Box006
     3300000: //RootNode
+    3300002: Leye
+    3300004: mouth
+    3300006: Reye
+    3300008: Box006
     4300000: Box004
     4300002: Box005
+    4300004: Box006
+    4300006: Reye
+    4300008: Leye
+    4300010: mouth
     9500000: //RootNode
   externalObjects: {}
   materials:
@@ -56,7 +76,7 @@ ModelImporter:
     optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
-    preserveHierarchy: 0
+    preserveHierarchy: 1
     indexFormat: 0
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
