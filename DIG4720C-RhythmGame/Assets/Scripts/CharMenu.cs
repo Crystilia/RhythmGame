@@ -7,7 +7,7 @@ public class CharMenu : MonoBehaviour {
     public GameObject[] Players;
     public static GameObject Player;
     public Transform PlayerParent;
-    Quaternion rot = new Quaternion(0,180,0,0);
+    Quaternion rot = new Quaternion(0, 165, 0,0);
     private void Start()
     {
       

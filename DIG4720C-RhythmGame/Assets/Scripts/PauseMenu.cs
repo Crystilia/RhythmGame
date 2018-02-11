@@ -6,6 +6,7 @@ public class PauseMenu : MonoBehaviour {
 
     public static bool Paused = false;
     public GameObject MenuHUD;
+   
 	// Use this for initialization
 	void Start () {
         MenuHUD = transform.GetChild(0).gameObject;

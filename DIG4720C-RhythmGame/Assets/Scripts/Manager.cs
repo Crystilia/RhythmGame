@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+using UnityEngine.SceneManagement;
+using TMPro;
 public class Manager : MonoBehaviour {
 
     private Image P1HP;
@@ -15,6 +16,8 @@ public class Manager : MonoBehaviour {
     float P2CurrentPU = 0;
     bool p1canUseSpecial = false;
     bool p2canUseSpecial = false;
+    public GameObject gameover;
+    public GameObject gameoverMenu;
     // Use this for initialization
     void Start () {
         P1HP = GameObject.Find("P1HP").GetComponent<Image>();
@@ -25,7 +28,11 @@ public class Manager : MonoBehaviour {
         P2PU = GameObject.Find("P2PU").GetComponent<Image>();
         P2HP.fillAmount = P2CurrentHP;
         P2PU.fillAmount = P2CurrentPU;
-
+        if (gameover != null)
+        {
+            gameover.SetActive(false);
+            gameoverMenu.SetActive(false);
+        }
     }
 
     public void LowerHP(bool P)
@@ -42,6 +49,9 @@ public class Manager : MonoBehaviour {
                 P1HP.fillAmount = P1CurrentHP;
                 //put u lose stuff here;
                 Time.timeScale = 0.0f;
+                gameover.SetActive(true);
+                gameoverMenu.SetActive(true);
+                gameover.GetComponent<TextMeshProUGUI>().text = "You Lose!";
             }
         }
         if (!P)
@@ -57,6 +67,9 @@ public class Manager : MonoBehaviour {
                 P2HP.fillAmount = P2CurrentHP;
                 //put u lose stuff here;
                 Time.timeScale = 0.0f;
+                gameover.SetActive(true);
+                gameoverMenu.SetActive(true);
+                gameover.GetComponent<TextMeshProUGUI>().text = "You Win!";
             }
         }
     }
@@ -108,7 +121,10 @@ public class Manager : MonoBehaviour {
             RaisePU(false);
         }
     }
-
+    public void ExitGame()
+    {
+        Application.Quit();
+    }
     // Update is called once per frame
     void Update () {
 
