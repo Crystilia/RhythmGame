@@ -16,7 +16,9 @@ public class Face_anim : MonoBehaviour {
     void Start ()
     { 
     myoffset = new Vector2(_offset, 0);
-    Player[0].SetTextureOffset("_MainTex", myoffset);
+        if (Player[0] != null) {
+            Player[0].SetTextureOffset("_MainTex", myoffset);
+        }
     }
     
 	// Update is called once per frame
