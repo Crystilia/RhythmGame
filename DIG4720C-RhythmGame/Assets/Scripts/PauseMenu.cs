@@ -6,10 +6,12 @@ public class PauseMenu : MonoBehaviour {
 
     public static bool Paused = false;
     public GameObject MenuHUD;
+    private Manager mngr;
    
 	// Use this for initialization
 	void Start () {
         MenuHUD = transform.GetChild(0).gameObject;
+        mngr = GetComponent<Manager>();
     }
 
     public void Resume()
@@ -19,10 +21,7 @@ public class PauseMenu : MonoBehaviour {
         Paused = false;
     }
 
-    public void LoadMenu()
-    {
 
-    }
 
     public void QuitGame()
     {
@@ -39,7 +38,7 @@ public class PauseMenu : MonoBehaviour {
     }
     // Update is called once per frame
     void Update () {
-		if(Input.GetKeyDown(KeyCode.P))
+        if (Input.GetKeyDown(KeyCode.P) && mngr.canB == true)
         {
            // Paused == true ? Resume() : Pause();
            if(Paused)

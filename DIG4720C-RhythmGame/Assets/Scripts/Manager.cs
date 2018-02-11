@@ -18,6 +18,7 @@ public class Manager : MonoBehaviour {
     bool p2canUseSpecial = false;
     public GameObject gameover;
     public GameObject gameoverMenu;
+    public bool canB = true;
     // Use this for initialization
     void Start () {
         P1HP = GameObject.Find("P1HP").GetComponent<Image>();
@@ -52,6 +53,7 @@ public class Manager : MonoBehaviour {
                 gameover.SetActive(true);
                 gameoverMenu.SetActive(true);
                 gameover.GetComponent<TextMeshProUGUI>().text = "You Lose!";
+                canB = false;
             }
         }
         if (!P)
@@ -70,6 +72,7 @@ public class Manager : MonoBehaviour {
                 gameover.SetActive(true);
                 gameoverMenu.SetActive(true);
                 gameover.GetComponent<TextMeshProUGUI>().text = "You Win!";
+                canB = false;
             }
         }
     }
