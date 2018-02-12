@@ -14,25 +14,17 @@ public class MapChosen : MonoBehaviour {
 			if (transform.position.x == -31.1f && transform.position.y == 21.3f)
 				SceneManager.LoadScene(1);
 
-			//load map 2 DONT WORK
-			//if (transform.position.x == -4.1f && transform.position.y == 21.3f)
-			//	SceneManager.LoadScene(2);
+			//load map 2
+			if (transform.position.x == 22.9f && transform.position.y == 21.3f)
+				SceneManager.LoadScene(2);
 
 			//load map 3
-			if (transform.position.x == 22.9f && transform.position.y == 21.3f)
+			if (transform.position.x == -31.1f && transform.position.y == 7.299999f)
 				SceneManager.LoadScene(3);
 
 			//load map 4
-			if (transform.position.x == -31.1f && transform.position.y == 7.299999f)
-				SceneManager.LoadScene(4);
-
-			//load map 5 DONT WORK
-			//if (transform.position.x == -4.1f && transform.position.y == 7.299999f)
-			//	SceneManager.LoadScene(5);
-
-			//load map 6
 			if (transform.position.x == 22.9f && transform.position.y == 7.299999f)
-				SceneManager.LoadScene(6);
+				SceneManager.LoadScene(4);
 		}
 	}
 }

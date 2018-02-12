@@ -59,13 +59,6 @@ public class SelectMap : MonoBehaviour {
 		if(transform.position.y == -6.700001f && transform.position.x == -31.1f)
 			transform.position = new Vector3 (-31.1f,21.3f,0.3695488f);
 
-		//hitting top edge 2nd column DONT WORK
-		//if(transform.position.y == 35.3f && transform.position.x == -4.1f)
-		//	transform.position = new Vector3 (-4.1f,7.299999f,0.3695488f);
-		//hitting bottom edge 2nd column DONT WORK
-		//if(transform.position.y == -6.700001f && transform.position.x == -4.1f)
-		//	transform.position = new Vector3 (-4.1f,21.3f,0.3695488f);
-
 		//hitting top edge 3rd column
 		if(transform.position.y == 35.3f && transform.position.x == 22.9f)
 			transform.position = new Vector3 (22.9f,7.299999f,0.3695488f);
