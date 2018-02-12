@@ -57,7 +57,7 @@ LightmapSettings:
     serializedVersion: 9
     m_Resolution: 2
     m_BakeResolution: 40
-    m_TextureWidth: 1024
+    m_TextureWidth: 128
     m_TextureHeight: 1024
     m_AO: 0
     m_AOMaxDistance: 1
@@ -901,7 +901,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 35.2
-  field of view: 59.466946
+  field of view: 60
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -913,7 +913,7 @@ Camera:
   m_TargetDisplay: 0
   m_TargetEye: 3
   m_HDR: 1
-  m_AllowMSAA: 1
+  m_AllowMSAA: 0
   m_AllowDynamicResolution: 1
   m_ForceIntoRT: 0
   m_OcclusionCulling: 1
