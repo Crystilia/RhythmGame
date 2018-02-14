@@ -95,19 +95,19 @@ public class HitBox : MonoBehaviour
         {
             hit(true);
         }
-        if (i == 4 && Input.GetKeyDown(KeyCode.W))
+        if (i == 4 && Input.GetKeyDown(KeyCode.A))
         {
             hit(false);
         }
-        if (i == 5 && Input.GetKeyDown(KeyCode.A))
+        if (i == 5 && Input.GetKeyDown(KeyCode.D))
         {
             hit(false);
         }
-        if (i == 6 && Input.GetKeyDown(KeyCode.S))
+        if (i == 6 && Input.GetKeyDown(KeyCode.W))
         {
             hit(false);
         }
-        if (i == 7 && Input.GetKeyDown(KeyCode.D))
+        if (i == 7 && Input.GetKeyDown(KeyCode.S))
         {
             hit(false);
         }
