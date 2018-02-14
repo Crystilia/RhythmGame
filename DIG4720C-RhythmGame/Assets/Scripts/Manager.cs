@@ -52,7 +52,7 @@ public class Manager : MonoBehaviour {
                 Time.timeScale = 0.0f;
                 gameover.SetActive(true);
                 gameoverMenu.SetActive(true);
-                gameover.GetComponent<TextMeshProUGUI>().text = "You Lose!";
+                gameover.GetComponent<TextMeshProUGUI>().text = "P2 Wins!";
                 canB = false;
             }
         }
@@ -71,7 +71,7 @@ public class Manager : MonoBehaviour {
                 Time.timeScale = 0.0f;
                 gameover.SetActive(true);
                 gameoverMenu.SetActive(true);
-                gameover.GetComponent<TextMeshProUGUI>().text = "You Win!";
+                gameover.GetComponent<TextMeshProUGUI>().text = "P1 Wins!";
                 canB = false;
             }
         }

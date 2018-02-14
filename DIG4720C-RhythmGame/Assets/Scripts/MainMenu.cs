@@ -8,6 +8,14 @@ public void PlayGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
+    public void kim()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 3);
+    }
+    public void kim2()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 8);
+    }
     public void QuitGame()
     {
         Application.Quit();
