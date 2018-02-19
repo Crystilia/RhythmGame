@@ -316,7 +316,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 27.3
+  m_fontSize: 72
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -486,7 +486,6 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  PlayerParent: {fileID: 447141022}
 --- !u!1 &296697438
 GameObject:
   m_ObjectHideFlags: 0
@@ -1671,7 +1670,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 270169337}
-        m_MethodName: Char1
+        m_MethodName: SinglePlayerStart
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
