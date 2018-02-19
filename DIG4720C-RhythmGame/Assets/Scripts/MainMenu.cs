@@ -6,15 +6,19 @@ public class MainMenu : MonoBehaviour {
 
 public void PlayGame()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        SceneManager.LoadScene(1);
+    }
+    public void MultiGame()
+    {
+        SceneManager.LoadScene(2);
     }
     public void kim()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 3);
+        SceneManager.LoadScene(9);
     }
     public void kim2()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 8);
+        SceneManager.LoadScene(10);
     }
     public void QuitGame()
     {

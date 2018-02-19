@@ -6,20 +6,20 @@ using UnityEngine.SceneManagement;
 public class CharMenu : MonoBehaviour {
     public GameObject[] Players;
     public static GameObject Player;
-    public Transform PlayerParent;
     Quaternion rot = new Quaternion(0, 165, 0,0);
     private void Start()
     {
-      
-        //if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("CharSelect"))
-       // {
             Players[0] = GameObject.Find("Player1");
             Players[1] = GameObject.Find("Player2");
             Players[2] = GameObject.Find("Player3");
             Players[3] = GameObject.Find("Player4");
-           // PlayerParent = GameObject.Find("Player").transform;
-        //}
-        if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Pats_Playground"))
+
+        if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("CharSelect") || SceneManager.GetActiveScene() == SceneManager.GetSceneByName("MultiplayerCharSelect"))
+        {
+            PlayerButton(0);
+        }
+
+        if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("SinglePlayer"))
         {
             PlayerButton(PlayerPrefs.GetInt("P"));
         }
@@ -42,13 +42,12 @@ public class CharMenu : MonoBehaviour {
 
         for (int k = 0; k < Players.Length; k++)
         {
-           // rot = Players[k].transform.rotation;
+
             Players[k].SetActive(false);
         }
         Player.SetActive(true);
         Player.transform.rotation = rot;
-        //  PlayerParent.DetachChildren();
-        // Player.transform.SetParent(PlayerParent);
+
         if (PlayerPrefs.GetInt("P") != i)
         {
             PlayerPrefs.SetInt("P", i);

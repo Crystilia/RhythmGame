@@ -9,12 +9,14 @@ public class HitBox : MonoBehaviour
     private Manager mngr;
     private GameObject Note = null;
     public int box;
+    public ParticleSystem hitImg;
     // Use this for initialization
 
     private void Start()
     {
         mngr = GameObject.Find("Manager").GetComponent<Manager>();
-    }
+        hitImg = this.transform.GetComponentInChildren<ParticleSystem>();
+            }
     private void OnTriggerEnter(Collider note)
     {
         if (note.gameObject.tag == "Note")
@@ -56,21 +58,23 @@ public class HitBox : MonoBehaviour
 
     void hit(bool P)
     {
-       
-                if (Note != null && InHitBox && !Bomb && !PowerUp)
+        if (Note != null && InHitBox && !Bomb && !PowerUp)
                 {
+                    hitImg.Play();
                     Destroy(Note);
                     mngr.RaisePU(P);
                     InHitBox = false;
                 }
                 else if (Note != null && InHitBox && Bomb && !PowerUp)
                 {
+                    hitImg.Play();
                     Destroy(Note);
                     mngr.LowerHP(P);
                     Bomb = false;
                 }
                 else if (Note != null && InHitBox && !Bomb && PowerUp)
                 {
+                    hitImg.Play();
                     Destroy(Note);
                     PowerUp = false;
                     mngr.MaxPU(P);
