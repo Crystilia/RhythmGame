@@ -43,7 +43,7 @@ public class Manager : MonoBehaviour {
         {
             if (P1CurrentHP > 0)
             {
-                P1CurrentHP = P1CurrentHP - 0.1f;
+                P1CurrentHP = P1CurrentHP - 0.02f;
                 P1HP.fillAmount = P1CurrentHP;
             }
             else
@@ -62,7 +62,7 @@ public class Manager : MonoBehaviour {
         {
             if (P2CurrentHP > 0)
             {
-                P2CurrentHP = P2CurrentHP - 0.1f;
+                P2CurrentHP = P2CurrentHP - 0.02f;
                 P2HP.fillAmount = P2CurrentHP;
             }
             else
@@ -139,6 +139,9 @@ public class Manager : MonoBehaviour {
             LowerHP(false);
             LowerHP(false);
             LowerHP(false);
+            LowerHP(false);
+            LowerHP(false);
+            LowerHP(false);
             P1CurrentPU = 0;
             P1PU.fillAmount = P1CurrentPU;
             p1canUseSpecial = false;
@@ -146,6 +149,9 @@ public class Manager : MonoBehaviour {
         }
         if (p2canUseSpecial && Input.GetKeyDown(KeyCode.Space))
         {
+            LowerHP(true);
+            LowerHP(true);
+            LowerHP(true);
             LowerHP(true);
             LowerHP(true);
             LowerHP(true);
