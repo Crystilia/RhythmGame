@@ -17,8 +17,12 @@ public class Manager : MonoBehaviour {
     public GameObject gameover;
     public GameObject gameoverMenu;
     public bool canB = true;
+    public Animator player1;
+    public Animator player2;
+
     // Use this for initialization
     void Start () {
+        player1 = GameObject.Find("P1").GetComponentInChildren<Animator>();
         P1HP = GameObject.Find("P1HP").GetComponent<Image>();
         P1PU = GameObject.Find("P1PU").GetComponent<Image>();
         P1HP.fillAmount = P1CurrentHP;
@@ -131,6 +135,7 @@ public class Manager : MonoBehaviour {
 
         if (p1canUseSpecial && Input.GetKeyDown(KeyCode.Space))
         {
+            player1.SetInteger("AnimState", 1);
             LowerHP(false);
             LowerHP(false);
             LowerHP(false);

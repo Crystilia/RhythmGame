@@ -6,6 +6,8 @@ public class CharMenu : MonoBehaviour {
     public GameObject[] Players;
     public static GameObject Player;
     Quaternion rot = new Quaternion(0, 165, 0,0);
+    public Transform P1;
+    public Transform P2;
 
     private void Start()
     {
@@ -13,8 +15,10 @@ public class CharMenu : MonoBehaviour {
             Players[1] = GameObject.Find("Player2");
             Players[2] = GameObject.Find("Player3");
             Players[3] = GameObject.Find("Player4");
-        
-    
+            P1 = GameObject.Find("P1").transform;
+            P2 = GameObject.Find("P2").transform;
+
+
         if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("CharSelect") || SceneManager.GetActiveScene() == SceneManager.GetSceneByName("MultiplayerCharSelect"))
         {
             PlayerButton(0);
@@ -23,11 +27,13 @@ public class CharMenu : MonoBehaviour {
         if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("SinglePlayer"))
         {
             PlayerButton(PlayerPrefs.GetInt("P"));
+
         }
         if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("MultiPlayer"))
         {
             PlayerButton(PlayerPrefs.GetInt("P"));
             Player2Button(PlayerPrefs.GetInt("P2"));
+            Player.transform.SetParent(P1);
         }
     }
     public void SinglePlayerStart()

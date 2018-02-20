@@ -300,6 +300,8 @@ MonoBehaviour:
   gameover: {fileID: 929071436}
   gameoverMenu: {fileID: 761254947}
   canB: 1
+  player1: {fileID: 0}
+  player2: {fileID: 0}
 --- !u!114 &80304177
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1021,7 +1023,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  PlayerParent: {fileID: 390852782}
+  P1: {fileID: 0}
+  P2: {fileID: 0}
 --- !u!1 &338571433
 GameObject:
   m_ObjectHideFlags: 0
@@ -1104,7 +1107,7 @@ GameObject:
   m_Component:
   - component: {fileID: 390852782}
   m_Layer: 0
-  m_Name: Player
+  m_Name: P1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2950,6 +2953,34 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1037909080}
+--- !u!1 &1100148382
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1100148383}
+  m_Layer: 0
+  m_Name: P2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 4294967295
+  m_IsActive: 1
+--- !u!4 &1100148383
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1100148382}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -10.237998, y: 235.51, z: 12.148559}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 19
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1210235690
 Prefab:
   m_ObjectHideFlags: 0
