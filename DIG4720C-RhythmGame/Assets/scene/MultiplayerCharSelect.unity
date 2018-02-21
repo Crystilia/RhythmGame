@@ -465,7 +465,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 270169337}
-        m_MethodName: PlayerButton
+        m_MethodName: Player2Button
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -761,6 +761,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  P1: {fileID: 0}
+  P2: {fileID: 0}
 --- !u!1 &296697438
 GameObject:
   m_ObjectHideFlags: 0
@@ -993,7 +995,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 270169337}
-        m_MethodName: PlayerButton
+        m_MethodName: Player2Button
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2681,7 +2683,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 270169337}
-        m_MethodName: PlayerButton
+        m_MethodName: Player2Button
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3628,7 +3630,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 270169337}
-        m_MethodName: PlayerButton
+        m_MethodName: Player2Button
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

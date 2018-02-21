@@ -921,7 +921,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 30.95
+  m_fontSize: 56.2
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1074,7 +1074,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 30.95
+  m_fontSize: 56.2
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1227,7 +1227,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 30.95
+  m_fontSize: 56.2
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -2536,7 +2536,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 400000, guid: cc700e14ccc1133408b5490b9be26d7b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 21.4
+      value: 22.22
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: cc700e14ccc1133408b5490b9be26d7b, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2544,23 +2544,23 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: cc700e14ccc1133408b5490b9be26d7b, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 2.1
+      value: 3.56
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: cc700e14ccc1133408b5490b9be26d7b, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: cc700e14ccc1133408b5490b9be26d7b, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 1
+      value: 0.87005997
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: cc700e14ccc1133408b5490b9be26d7b, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: cc700e14ccc1133408b5490b9be26d7b, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0
+      value: -0.4929459
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: cc700e14ccc1133408b5490b9be26d7b, type: 3}
       propertyPath: m_RootOrder
@@ -2568,7 +2568,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: cc700e14ccc1133408b5490b9be26d7b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 180
+      value: 239.069
       objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: cc700e14ccc1133408b5490b9be26d7b, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -3055,7 +3055,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 30.95
+  m_fontSize: 56.2
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -3861,7 +3861,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 30.95
+  m_fontSize: 56.2
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1

@@ -4,7 +4,8 @@ using UnityEngine.SceneManagement;
 
 public class CharMenu : MonoBehaviour {
     public GameObject[] Players;
-    public static GameObject Player;
+    public static GameObject Player1;
+    public static GameObject Player2;
     Quaternion rot = new Quaternion(0, 165, 0,0);
     public Transform P1;
     public Transform P2;
@@ -15,9 +16,6 @@ public class CharMenu : MonoBehaviour {
             Players[1] = GameObject.Find("Player2");
             Players[2] = GameObject.Find("Player3");
             Players[3] = GameObject.Find("Player4");
-            P1 = GameObject.Find("P1").transform;
-            P2 = GameObject.Find("P2").transform;
-
 
         if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("CharSelect") || SceneManager.GetActiveScene() == SceneManager.GetSceneByName("MultiplayerCharSelect"))
         {
@@ -26,14 +24,19 @@ public class CharMenu : MonoBehaviour {
 
         if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("SinglePlayer"))
         {
-            PlayerButton(PlayerPrefs.GetInt("P"));
-
+            PlayerButton(PlayerPrefs.GetInt("Player1Pref"));
+            P1 = GameObject.Find("P1").transform;
+            Player1.transform.SetParent(P1);
         }
         if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("MultiPlayer"))
         {
-            PlayerButton(PlayerPrefs.GetInt("P"));
-            Player2Button(PlayerPrefs.GetInt("P2"));
-            Player.transform.SetParent(P1);
+            P1 = GameObject.Find("P1").transform;
+            P2 = GameObject.Find("P2").transform;
+            PlayerButton(PlayerPrefs.GetInt("Player1Pref"));
+            Player2Button(PlayerPrefs.GetInt("Player2Pref"));
+            Player1.transform.SetParent(P1);
+            Player2.transform.SetParent(P2);
+
         }
     }
     public void SinglePlayerStart()
@@ -50,44 +53,44 @@ public class CharMenu : MonoBehaviour {
     }
     public void PlayerButton(int i)
     {
-        if (Player != null)
+        if (Player1 != null)
         {
-            rot = Player.transform.rotation;
+            rot = Player1.transform.rotation;
         }
-        Player = Players[i];
+        Player1 = Players[i];
 
         for (int k = 0; k < Players.Length; k++)
         {
 
             Players[k].SetActive(false);
         }
-        Player.SetActive(true);
-        Player.transform.rotation = rot;
+        Player1.SetActive(true);
+        Player1.transform.rotation = rot;
 
-        if (PlayerPrefs.GetInt("P") != i)
+        if (PlayerPrefs.GetInt("Player1Pref") != i)
         {
-            PlayerPrefs.SetInt("P", i);
+            PlayerPrefs.SetInt("Player1Pref", i);
         }
     }
     public void Player2Button(int i)
     {
-        if (Player != null)
+        if (Player2 != null)
         {
-            rot = Player.transform.rotation;
+            rot = Player2.transform.rotation;
         }
-        Player = Players[i];
+        Player2 = Players[i];
 
         for (int k = 0; k < Players.Length; k++)
         {
 
             Players[k].SetActive(false);
         }
-        Player.SetActive(true);
-        Player.transform.rotation = rot;
+        Player2.SetActive(true);
+        Player2.transform.rotation = rot;
 
-        if (PlayerPrefs.GetInt("P2") != i)
+        if (PlayerPrefs.GetInt("Player2Pref") != i)
         {
-            PlayerPrefs.SetInt("P2", i);
+            PlayerPrefs.SetInt("Player2Pref", i);
         }
     }
 }
