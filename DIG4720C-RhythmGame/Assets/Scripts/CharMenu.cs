@@ -61,8 +61,10 @@ public class CharMenu : MonoBehaviour {
 
         for (int k = 0; k < Players.Length; k++)
         {
-
-            Players[k].SetActive(false);
+            if (Players[k].activeInHierarchy)
+            {
+                Players[k].SetActive(false);
+            }
         }
         Player1.SetActive(true);
         Player1.transform.rotation = rot;

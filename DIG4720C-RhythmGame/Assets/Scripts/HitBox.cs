@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-
+using System.Collections;
 public class HitBox : MonoBehaviour
 {
 
@@ -10,6 +10,12 @@ public class HitBox : MonoBehaviour
     private GameObject Note = null;
     public int box;
     public ParticleSystem hitImg;
+    public Material DisolveNote;
+    public Material DisolveBomb;
+
+
+    [Range(1.7f, 3)]
+    public float Disolver;
     // Use this for initialization
 
     private void Start()
@@ -23,6 +29,8 @@ public class HitBox : MonoBehaviour
         {
             InHitBox = true;
             Note = note.gameObject;
+
+
         }
         else if (note.gameObject.tag == "Bomb")
         {
@@ -61,7 +69,9 @@ public class HitBox : MonoBehaviour
         if (Note != null && InHitBox && !Bomb && !PowerUp)
                 {
                     hitImg.Play();
-                    Destroy(Note);
+            DisolveNote = Note.GetComponent<Material>();
+            StartCoroutine(MyCorutine(2.3f, Note));
+                    
                     mngr.RaisePU(P);
                     InHitBox = false;
                 }
@@ -120,5 +130,19 @@ public class HitBox : MonoBehaviour
     void Update()
     {
         pressbutton(box);
+    }
+
+    IEnumerator MyCorutine (float range, GameObject Note)
+    {
+        while(range > 1.8f)
+        {
+            range -= 1f * Time.smoothDeltaTime;
+            Note.GetComponent<MeshRenderer>().material.SetFloat("_DisolveStart", range);
+            float size = Note.GetComponent<MeshRenderer>().material.GetFloat("_ExtrudeAmt");
+            Note.GetComponent<MeshRenderer>().material.SetFloat("_ExtrudeAmt", size - .02f);
+            yield return null;
+
+        }
+        Destroy(Note);
     }
 }
