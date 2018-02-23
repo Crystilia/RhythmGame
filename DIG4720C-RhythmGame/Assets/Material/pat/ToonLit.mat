@@ -26,6 +26,10 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _DisplaceTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _MainTex:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -47,6 +51,7 @@ Material:
     - _DisolveSize: 2
     - _DisolveStart: 8
     - _FADE: 0
+    - _Mag: 0
     - _Offset: 3.2
     - _Outline: 0.008075472
     - _RIM: 0
