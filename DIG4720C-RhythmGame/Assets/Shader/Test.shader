@@ -1,4 +1,4 @@
-﻿Shader "Lit/Diffuse With Shadows"
+﻿Shader "Pat/Toon"
 {
     Properties
     {

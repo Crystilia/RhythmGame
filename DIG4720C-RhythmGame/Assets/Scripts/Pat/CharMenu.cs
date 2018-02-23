@@ -9,6 +9,9 @@ public class CharMenu : MonoBehaviour {
     Quaternion rot = new Quaternion(0, 165, 0,0);
     public Transform P1;
     public Transform P2;
+    public Vector3 P2Spot = new Vector3(16.92f, 226.41f, 5.08f);
+    public Vector3 P1Spot = new Vector3(1.85f, 226.41f, 5.08f);
+
 
     private void Start()
     {
@@ -36,6 +39,12 @@ public class CharMenu : MonoBehaviour {
             Player2Button(PlayerPrefs.GetInt("Player2Pref"));
             Player1.transform.SetParent(P1);
             Player2.transform.SetParent(P2);
+            Player1.SetActive(true);
+            Player2.SetActive(true);
+            P1Spot = new Vector3(1.85f, 226.41f, 5.08f);
+            P2Spot = new Vector3(32f, 226.41f, 5.08f);
+            P1.position = P1Spot;
+            P2.position = P2Spot;
 
         }
     }

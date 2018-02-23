@@ -88,7 +88,7 @@ public class Manager : MonoBehaviour {
                 P1CurrentPU = P1CurrentPU + 0.1f;
                 P1PU.fillAmount = P1CurrentPU;
             }
-            else if (P1PU.fillAmount >= 1f)
+            else if (P1PU.fillAmount >= 0.8f)
             {
                 P1CurrentPU = 1f;
                 p1canUseSpecial = true;
@@ -103,7 +103,7 @@ public class Manager : MonoBehaviour {
                 P2CurrentPU = P2CurrentPU + 0.1f;
                 P2PU.fillAmount = P2CurrentPU;
             }
-            else if (P2PU.fillAmount >= 1f)
+            else if (P2PU.fillAmount >= 0.8f)
             {
                 P2CurrentPU = 1f;
                 p2canUseSpecial = true;
