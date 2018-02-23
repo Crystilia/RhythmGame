@@ -10,6 +10,7 @@
 		_DisolveStart("Start Height of Effect", Float) = 3
 
 		_ExtrudeAmt("ExtA", float) = 1
+		_ShadowI("Shadow Intensity", float) = 10
     }
     SubShader
     {
@@ -44,7 +45,7 @@
 			float _DisolveSize;
 			float _DisolveStart;
 			float _ExtrudeAmt;
-
+			float _ShadowI;
 
             v2f vert (appdata_base v)
             {
@@ -58,7 +59,7 @@
                 o.uv = TRANSFORM_TEX(v.texcoord, _MainTex);
                 half3 worldNormal = UnityObjectToWorldNormal(v.normal);
                 half nl = max(0, dot(worldNormal, _WorldSpaceLightPos0.xyz));
-                o.diff = nl* 90 * _LightColor0.rgb;
+                o.diff = nl* _ShadowI * _LightColor0.rgb;
                 o.ambient = ShadeSH9(half4(worldNormal,1));
 				o.worldPos = .01 * mul(unity_ObjectToWorld, v.vertex).xyz;
                 TRANSFER_SHADOW(o)
