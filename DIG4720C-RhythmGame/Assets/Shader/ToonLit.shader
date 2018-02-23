@@ -9,6 +9,10 @@ Shader "Toon/Lit" {
 		_DisolveHeight("Height of Effect", Float) = 0
 		_DisolveSize("size of effect", Float) = 2
 		_DisolveStart("Start Height of Effect", Float) = 8
+
+		_DisplaceTex("displacment tex",2d) = "white" {}
+		_Mag("Magnitude", range(0,0.005)) = 0
+
 	}
 
 	SubShader {
@@ -82,7 +86,8 @@ ENDCG
 			float _DisolveHeight;
 			float _DisolveSize;
 			float _DisolveStart;
-			
+			sampler2D _DisplaceTex;
+			float _Mag;
 			
 	//half d = dot (s.Normal, lightDir)*0.5 + 0.5;
 	//half3 ramp = tex2D (_Ramp, float2(d,d)).rgb;
@@ -100,9 +105,14 @@ ENDCG
 			float transition = _DisolveHeight - i.worldPos.y;
 				clip(_DisolveStart + (transition + (tex2D(_DisolveTex, i.uv)) * _DisolveSize));
 				// sample the texture
-				fixed4 col = tex2D(_MainTex, i.uv)* _Color; 
-			//fixed4 col = s.Albedo * _LightColor0.rgb * ramp * (atten * 2);
 
+				float2 disp = tex2D(_DisplaceTex, i.uv).xy;
+				disp = ((disp*2)-1)*(_Mag*sin(_Time.y));
+
+				fixed4 col = tex2D(_MainTex, i.uv + disp)* _Color; 
+			//fixed4 col = s.Albedo * _LightColor0.rgb * ramp * (atten * 2);
+			//col *= float4(i.uv.x,i.uv.y,0,1);
+			//col *= tex2D(_MainTex, i.uv);
 				return col;
 			}
 			ENDCG

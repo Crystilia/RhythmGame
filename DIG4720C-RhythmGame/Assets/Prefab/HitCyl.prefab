@@ -140,7 +140,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   box: 0
   hitImg: {fileID: 0}
-  DisolveNote: {fileID: 0}
+  DisolveNote: {fileID: 2100000, guid: 973e6d725172486478d9ede092a0a13f, type: 2}
   DisolveBomb: {fileID: 0}
   Disolver: 3
 --- !u!198 &198537543988100684

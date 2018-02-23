@@ -967,6 +967,7 @@ GameObject:
   - component: {fileID: 270169334}
   - component: {fileID: 270169333}
   - component: {fileID: 270169337}
+  - component: {fileID: 270169338}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1055,6 +1056,18 @@ MonoBehaviour:
   - {fileID: 0}
   P1: {fileID: 0}
   P2: {fileID: 0}
+--- !u!114 &270169338
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 270169332}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b0853c80e893bb4989ae7b58e37ff8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EffectMat: {fileID: 2100000, guid: fb1c6b1f34996fe4a8bd1bc648d5e661, type: 2}
 --- !u!1 &288496044
 GameObject:
   m_ObjectHideFlags: 0
@@ -3324,16 +3337,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 9
       objectReference: {fileID: 0}
-    - target: {fileID: 114988964013372446, guid: 062e2afbdc22d0c42bcc0c1945f2b05e,
-        type: 2}
-      propertyPath: Disolver
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 114988964013372446, guid: 062e2afbdc22d0c42bcc0c1945f2b05e,
-        type: 2}
-      propertyPath: DisolveNote
-      value: 
-      objectReference: {fileID: 2100000, guid: 973e6d725172486478d9ede092a0a13f, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 062e2afbdc22d0c42bcc0c1945f2b05e, type: 2}
   m_IsPrefabParent: 0
