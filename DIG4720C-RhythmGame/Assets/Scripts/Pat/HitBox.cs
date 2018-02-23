@@ -140,26 +140,27 @@ public class HitBox : MonoBehaviour
         while(range > 1.8f)
         {
             range -= 1f * Time.smoothDeltaTime;
-
-            if (Note.tag == "PowerUp")
+            if (Note != null)
             {
-                Note.GetComponent<MeshRenderer>().material.SetFloat("_DisolveStart", range);
-                float size = Note.GetComponent<MeshRenderer>().material.GetFloat("_ExtrudeAmt");
-                Note.GetComponent<MeshRenderer>().material.SetFloat("_ExtrudeAmt", size - .02f);
+                if (Note.tag == "PowerUp")
+                {
+                    Note.GetComponent<MeshRenderer>().material.SetFloat("_DisolveStart", range);
+                    float size = Note.GetComponent<MeshRenderer>().material.GetFloat("_ExtrudeAmt");
+                    Note.GetComponent<MeshRenderer>().material.SetFloat("_ExtrudeAmt", size - .02f);
+                }
+                else if (Note.tag == "Bomb")
+                {
+                    Note.GetComponent<MeshRenderer>().material.SetFloat("_DisolveStart", range);
+                    float size = Note.GetComponent<MeshRenderer>().material.GetFloat("_ExtrudeAmt");
+                    Note.GetComponent<MeshRenderer>().material.SetFloat("_ExtrudeAmt", size + 1f);
+                }
+                else
+                {
+                    Note.GetComponent<MeshRenderer>().material.SetFloat("_DisolveStart", range);
+                    float size = Note.GetComponent<MeshRenderer>().material.GetFloat("_ExtrudeAmt");
+                    Note.GetComponent<MeshRenderer>().material.SetFloat("_ExtrudeAmt", size + .06f);
+                }
             }
-            else if (Note.tag == "Bomb")
-            {
-                Note.GetComponent<MeshRenderer>().material.SetFloat("_DisolveStart", range);
-                float size = Note.GetComponent<MeshRenderer>().material.GetFloat("_ExtrudeAmt");
-                Note.GetComponent<MeshRenderer>().material.SetFloat("_ExtrudeAmt", size + 1.2f);
-            }
-            else
-            {
-                Note.GetComponent<MeshRenderer>().material.SetFloat("_DisolveStart", range);
-                float size = Note.GetComponent<MeshRenderer>().material.GetFloat("_ExtrudeAmt");
-                Note.GetComponent<MeshRenderer>().material.SetFloat("_ExtrudeAmt", size + .06f);
-            }
-
             yield return null;
 
         }

@@ -1700,6 +1700,12 @@ Prefab:
       propertyPath: m_LocalPosition.y
       value: 1.31
       objectReference: {fileID: 0}
+    - target: {fileID: 114155216935533454, guid: 9204fe99245a8de42862b3796fa2bc22,
+        type: 2}
+      propertyPath: BadNote
+      value: 
+      objectReference: {fileID: 1900942275302864, guid: 17a10099af0cbd348b50b15680a939d5,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9204fe99245a8de42862b3796fa2bc22, type: 2}
   m_IsPrefabParent: 0
@@ -4976,7 +4982,6 @@ MonoBehaviour:
   hitImg: {fileID: 0}
   DisolveNote: {fileID: 0}
   DisolveBomb: {fileID: 0}
-  Disolver: 0
 --- !u!1 &1930032848
 GameObject:
   m_ObjectHideFlags: 0
