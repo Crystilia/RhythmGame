@@ -11,6 +11,8 @@
 
 		_ExtrudeAmt("ExtA", float) = 1
 		_ShadowI("Shadow Intensity", float) = 10
+		_TimeSize("SizeOverTime", float) = 0
+		 _SizeSpeed("Pulse Rate", float) = 0.1
     }
     SubShader
     {
@@ -46,14 +48,20 @@
 			float _DisolveStart;
 			float _ExtrudeAmt;
 			float _ShadowI;
-
+			float _TimeSize;
+			float _SizeSpeed;
             v2f vert (appdata_base v)
             {
                 v2f o;
 
-
+				if( _TimeSize == 0)
+				{
 				v.vertex.xyz += v.normal.xyz * _ExtrudeAmt; //* sin(_Time.y);
-
+				}
+				else
+				{
+				v.vertex.xyz += v.normal.xyz * _ExtrudeAmt * sin(_Time.y/_SizeSpeed);
+				}
 
                 o.pos = UnityObjectToClipPos(v.vertex);
                 o.uv = TRANSFORM_TEX(v.texcoord, _MainTex);
