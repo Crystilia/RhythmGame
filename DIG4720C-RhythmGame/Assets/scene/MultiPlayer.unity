@@ -306,14 +306,6 @@ MonoBehaviour:
   gameover: {fileID: 929071436}
   gameoverMenu: {fileID: 761254947}
   canB: 1
-  player1: {fileID: 0}
-  player2: {fileID: 0}
-  P1Drain: 0
-  P2Drain: 0
-  CurrentP1DMG: 0
-  CurrentP2DMG: 0
-  P1Uses: 1
-  P2Uses: 1
 --- !u!114 &80304177
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -151,6 +151,7 @@ public class HitBox : MonoBehaviour
                     Note.GetComponent<MeshRenderer>().material.SetFloat("_DisolveStart", range);
                     float size = Note.GetComponent<MeshRenderer>().material.GetFloat("_ExtrudeAmt");
                     Note.GetComponent<MeshRenderer>().material.SetFloat("_ExtrudeAmt", size + 1f);
+                    Note.GetComponent<MeshRenderer>().material.SetFloat("_TimeSize", 0f);
                 }
                 else
                 {

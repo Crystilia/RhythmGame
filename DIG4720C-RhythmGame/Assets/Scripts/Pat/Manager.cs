@@ -17,14 +17,16 @@ public class Manager : MonoBehaviour {
     public GameObject gameover;
     public GameObject gameoverMenu;
     public bool canB = true;
-    public Animator player1;
-    public Animator player2;
-    public bool P1Drain;
-    public bool P2Drain;
-    public float CurrentP1DMG = 1;
-    public float CurrentP2DMG = 1;
-    public float P1Uses = 0;
-    public float P2Uses = 0;
+    Animator player1;
+    Animator player2;
+    bool P1Drain;
+    bool P2Drain;
+    float CurrentP1DMG = 200;
+    int P1DMG = 200;
+    int P2DMG = 200;
+    float CurrentP2DMG = 200;
+    int P1Uses = 1;
+    int P2Uses = 1;
     // Use this for initialization
     void Start ()
     {
@@ -139,27 +141,30 @@ public class Manager : MonoBehaviour {
 
     public void StartATK()
     {
-        
+        //player1
         if (p1canUseSpecial && Input.GetKeyDown(KeyCode.Space))
         {
             P1PU.color = new Color(0.0f, 1.0f, 1.0f, 1.0f);
             P1Drain = true;
-            CurrentP1DMG = 1;
+            P1DMG = (200 / P1Uses);
             P1Uses ++;
 }
         if (P1Drain)
         {
-            P1PU.fillAmount = (P1CurrentPU - (0.1f * Time.deltaTime));
+            // P1PU.fillAmount = (P1CurrentPU - (0.1f * Time.deltaTime));
+            P1DMG -= 1;
+            CurrentP1DMG = Mathf.Clamp01((P1DMG / 200f));
+            P1PU.fillAmount = CurrentP1DMG;
             P1CurrentPU = P1PU.fillAmount;
-            CurrentP1DMG = (CurrentP1DMG - 0.001f)/P1Uses;
             Debug.Log(CurrentP1DMG);
+
         }
         if (p1canUseSpecial && Input.GetKeyUp(KeyCode.Space))
         {
             P1Drain = false;
             player1.SetInteger("AnimState", 1);
             LowerHP(false, CurrentP1DMG);
-            P1CurrentHP = P1CurrentHP + CurrentP1DMG / (0.7f * P1Uses);
+            P1CurrentHP = P1CurrentHP + CurrentP1DMG;
             P1HP.fillAmount = P1CurrentHP;
             P1CurrentPU = 0;
             CurrentP1DMG = 0;
@@ -167,31 +172,39 @@ public class Manager : MonoBehaviour {
             p1canUseSpecial = false;
             P1PU.color = new Color(1.0f, 0.0f, 1.0f, 1.0f);
         }
-
+        //player2
         if (p2canUseSpecial && Input.GetKeyDown(KeyCode.Space))
         {
             P2PU.color = new Color(0.0f, 1.0f, 1.0f, 1.0f);
             P2Drain = true;
+            P2DMG = (200 / P2Uses);
+            P2Uses++;
         }
         if (P2Drain)
         {
-            P2PU.fillAmount = (P2CurrentPU - (0.1f * Time.deltaTime));
+            P2DMG -= 1;
+            CurrentP2DMG = Mathf.Clamp01((P2DMG / 200f));
+            P2PU.fillAmount = CurrentP2DMG;
             P2CurrentPU = P2PU.fillAmount;
         }
         if (p2canUseSpecial && Input.GetKeyUp(KeyCode.Space))
         {
             P2Drain = false;
             player2.SetInteger("AnimState", 1);
-            LowerHP(true,CurrentP2DMG);
+            LowerHP(false, CurrentP1DMG);
+            P2CurrentHP = P2CurrentHP + CurrentP2DMG;
+            P2HP.fillAmount = P2CurrentHP;
             P2CurrentPU = 0;
+            CurrentP2DMG = 0;
             P2PU.fillAmount = P2CurrentPU;
             p2canUseSpecial = false;
-            P2PU.color = new Color(1.0f, 1.0f, 0.0f, 1.0f);
+            P2PU.color = new Color(1.0f, 0.0f, 1.0f, 1.0f);
         }
     }
     // Update is called once per frame
     void Update ()
     {
         StartATK();
+
     }
 }
