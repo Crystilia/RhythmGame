@@ -79,9 +79,7 @@ public class HitBox : MonoBehaviour
                    // DisolveNote = Note.GetComponent<Material>();
                     StartCoroutine(MyCorutine(2.3f, Note));
                     hitImg.Play();
-                    mngr.LowerHP(P);
-                    mngr.LowerHP(P);
-                    mngr.LowerHP(P);
+                    mngr.LowerHP(P,0.05f);
                     Bomb = false;
                 }
                 else if (Note != null && InHitBox && !Bomb && PowerUp)
