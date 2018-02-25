@@ -30,7 +30,9 @@ public class Manager : MonoBehaviour {
     // Use this for initialization
     void Start ()
     {
+ 
         player1 = GameObject.Find("P1").GetComponentInChildren<Animator>();
+        player2 = GameObject.Find("P2").GetComponentInChildren<Animator>();
         P1HP = GameObject.Find("P1HP").GetComponent<Image>();
         P1PU = GameObject.Find("P1PU").GetComponent<Image>();
         P1HP.fillAmount = P1CurrentHP;
@@ -39,6 +41,8 @@ public class Manager : MonoBehaviour {
         P2PU = GameObject.Find("P2PU").GetComponent<Image>();
         P2HP.fillAmount = P2CurrentHP;
         P2PU.fillAmount = P2CurrentPU;
+        player1.SetInteger("AnimState", 1);
+        player2.SetInteger("AnimState", 1);
         if (gameover != null)
         {
             gameover.SetActive(false);
@@ -162,7 +166,7 @@ public class Manager : MonoBehaviour {
         if (p1canUseSpecial && Input.GetKeyUp(KeyCode.Space))
         {
             P1Drain = false;
-            player1.SetInteger("AnimState", 1);
+            player1.SetInteger("AnimState", 2);
             LowerHP(false, CurrentP1DMG);
             P1CurrentHP = P1CurrentHP + CurrentP1DMG;
             P1HP.fillAmount = P1CurrentHP;
@@ -190,7 +194,7 @@ public class Manager : MonoBehaviour {
         if (p2canUseSpecial && Input.GetKeyUp(KeyCode.Space))
         {
             P2Drain = false;
-            player2.SetInteger("AnimState", 1);
+            player2.SetInteger("AnimState", 2);
             LowerHP(false, CurrentP1DMG);
             P2CurrentHP = P2CurrentHP + CurrentP2DMG;
             P2HP.fillAmount = P2CurrentHP;

@@ -15,10 +15,10 @@ public class CharMenu : MonoBehaviour {
 
     private void Start()
     {
-            Players[0] = GameObject.Find("Player1");
-            Players[1] = GameObject.Find("Player2");
-            Players[2] = GameObject.Find("Player3");
-            Players[3] = GameObject.Find("Player4");
+            Players[0] = GameObject.Find("PatsPlayer");
+            Players[1] = GameObject.Find("PatsPlayer (1)");
+            Players[2] = GameObject.Find("PatsPlayer (2)");
+            Players[3] = GameObject.Find("PatsPlayer (3)");
 
         if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("CharSelect") || SceneManager.GetActiveScene() == SceneManager.GetSceneByName("MultiplayerCharSelect"))
         {

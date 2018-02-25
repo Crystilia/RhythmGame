@@ -11,7 +11,7 @@ public class PlayerRotate : MonoBehaviour {
         {
             this.enabled = true;
         }
-        else if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("CharSelect2P"))
+        else if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("MultiplayerCharSelect"))
         {
             this.enabled = true;
         }
