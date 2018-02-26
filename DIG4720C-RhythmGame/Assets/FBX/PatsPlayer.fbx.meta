@@ -137,11 +137,7 @@ ModelImporter:
     rigImportErrors: 
     rigImportWarnings: 
     animationImportErrors: 
-    animationImportWarnings: "\nClip 'Take 001' has import animation warnings that
-      might lower retargeting quality:\nNote: Activate translation DOF on avatar to
-      improve retargeting quality.\n\t'QuickRigCharacter1_LeftLeg' has translation
-      animation that will be discarded.\n\t'QuickRigCharacter1_RightLeg' has translation
-      animation that will be discarded.\n"
+    animationImportWarnings: 
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
@@ -150,7 +146,9 @@ ModelImporter:
     animationPositionError: 0.5
     animationScaleError: 0.5
     animationWrapMode: 0
-    extraExposedTransformPaths: []
+    extraExposedTransformPaths:
+    - QuickRigCharacter1_Ctrl_Reference/QuickRigCharacter1_Ctrl_Hips/QuickRigCharacter1_Ctrl_Spine/QuickRigCharacter1_Ctrl_Spine1/QuickRigCharacter1_Ctrl_Spine2/QuickRigCharacter1_Ctrl_RightShoulder/QuickRigCharacter1_Ctrl_RightArm/QuickRigCharacter1_Ctrl_RightForeArm/QuickRigCharacter1_Ctrl_RightHand
+    - QuickRigCharacter1_Ctrl_Reference/QuickRigCharacter1_Ctrl_Hips/QuickRigCharacter1_Ctrl_Spine/QuickRigCharacter1_Ctrl_Spine1/QuickRigCharacter1_Ctrl_Spine2/QuickRigCharacter1_Ctrl_LeftShoulder/QuickRigCharacter1_Ctrl_LeftArm/QuickRigCharacter1_Ctrl_LeftForeArm/QuickRigCharacter1_Ctrl_LeftHand
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16

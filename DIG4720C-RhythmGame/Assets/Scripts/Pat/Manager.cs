@@ -2,7 +2,9 @@
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
-public class Manager : MonoBehaviour {
+using System.Collections;
+public class Manager : MonoBehaviour
+{
 
     private Image P1HP;
     private Image P1PU;
@@ -19,6 +21,8 @@ public class Manager : MonoBehaviour {
     public bool canB = true;
     Animator player1;
     Animator player2;
+    float P1atkTime;
+    float P2atkTime;
     bool P1Drain;
     bool P2Drain;
     float CurrentP1DMG = 200;
@@ -27,12 +31,17 @@ public class Manager : MonoBehaviour {
     float CurrentP2DMG = 200;
     int P1Uses = 1;
     int P2Uses = 1;
+    public GameObject P1ATK;
+    public GameObject P1LH;
+    public GameObject P1;
+    public GameObject P2;
+    int P1AtkSpeed = 11;
     // Use this for initialization
-    void Start ()
+    void Start()
     {
- 
         player1 = GameObject.Find("P1").GetComponentInChildren<Animator>();
         player2 = GameObject.Find("P2").GetComponentInChildren<Animator>();
+        UpdateAnimClipTimes();
         P1HP = GameObject.Find("P1HP").GetComponent<Image>();
         P1PU = GameObject.Find("P1PU").GetComponent<Image>();
         P1HP.fillAmount = P1CurrentHP;
@@ -51,7 +60,8 @@ public class Manager : MonoBehaviour {
     }
 
     public void LowerHP(bool P, float Dmg)
-    {   if (P)
+    {
+        if (P)
         {
             if (P1CurrentHP > 0)
             {
@@ -151,8 +161,8 @@ public class Manager : MonoBehaviour {
             P1PU.color = new Color(0.0f, 1.0f, 1.0f, 1.0f);
             P1Drain = true;
             P1DMG = (200 / P1Uses);
-            P1Uses ++;
-}
+            P1Uses++;
+        }
         if (P1Drain)
         {
             // P1PU.fillAmount = (P1CurrentPU - (0.1f * Time.deltaTime));
@@ -166,7 +176,7 @@ public class Manager : MonoBehaviour {
         if (p1canUseSpecial && Input.GetKeyUp(KeyCode.Space))
         {
             P1Drain = false;
-            player1.SetInteger("AnimState", 2);
+            AttackAnim(true);
             LowerHP(false, CurrentP1DMG);
             P1CurrentHP = P1CurrentHP + CurrentP1DMG;
             P1HP.fillAmount = P1CurrentHP;
@@ -194,7 +204,7 @@ public class Manager : MonoBehaviour {
         if (p2canUseSpecial && Input.GetKeyUp(KeyCode.Space))
         {
             P2Drain = false;
-            player2.SetInteger("AnimState", 2);
+            AttackAnim(false);
             LowerHP(false, CurrentP1DMG);
             P2CurrentHP = P2CurrentHP + CurrentP2DMG;
             P2HP.fillAmount = P2CurrentHP;
@@ -205,10 +215,62 @@ public class Manager : MonoBehaviour {
             P2PU.color = new Color(1.0f, 0.0f, 1.0f, 1.0f);
         }
     }
+
+    void AttackAnim(bool P)
+    {
+        if (P)
+        {
+            player1.SetInteger("AnimState", 2);
+            P1ATK.SetActive(true);
+            P1ATK.transform.SetParent(P1LH.transform);
+            P1ATK.transform.SetPositionAndRotation(P1LH.transform.position, P1LH.transform.rotation);
+            StartCoroutine(WaitThenDoThings(P1atkTime, 0.3f));
+        }
+        else
+        {
+            player2.SetInteger("AnimState", 2);
+        }
+    }
+
+
+    IEnumerator WaitThenDoThings(float anim, float time)
+    {
+        yield return new WaitForSeconds(anim - time);
+        P1ATK.transform.parent.DetachChildren();
+        int i = 0;
+        //while (P1ATK.transform.position.x < P2.transform.position.x)
+        while ( i < 1000)
+        {
+
+            if (P1ATK.transform.localPosition.x < P2.transform.localPosition.x)
+            {
+                Debug.Log(P1ATK.transform.localPosition);
+                Debug.Log(P2.transform.localPosition);
+                P1ATK.transform.position = Vector3.Lerp(P1ATK.transform.localPosition, P2.transform.localPosition, Time.fixedDeltaTime * 0.0094f );
+                i++;
+            }
+        }
+        //P1ATK.transform.
+    }
+
     // Update is called once per frame
-    void Update ()
+    void Update()
     {
         StartATK();
-
+    }
+    public void UpdateAnimClipTimes()
+    {
+        AnimationClip[] p1clips = player1.runtimeAnimatorController.animationClips;
+        foreach (AnimationClip clip in p1clips)
+        {
+            switch (clip.name)
+            {
+                case "ATK":
+                    P1atkTime = clip.length;
+                    break;
+                default:
+                    return;                  
+            }
+        }
     }
 }
