@@ -763,6 +763,8 @@ MonoBehaviour:
   - {fileID: 0}
   P1: {fileID: 0}
   P2: {fileID: 0}
+  P2Spot: {x: 16.92, y: 226.41, z: 5.08}
+  P1Spot: {x: 1.85, y: 226.41, z: 5.08}
 --- !u!1 &296697438
 GameObject:
   m_ObjectHideFlags: 0
@@ -1098,6 +1100,18 @@ Prefab:
         type: 2}
       propertyPath: _offset
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4139403342973758, guid: c0c9c2b02c5a3e849a737abdb2d3ef8c, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 10.93
+      objectReference: {fileID: 0}
+    - target: {fileID: 4139403342973758, guid: c0c9c2b02c5a3e849a737abdb2d3ef8c, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 231.41
+      objectReference: {fileID: 0}
+    - target: {fileID: 4011701640811874, guid: c0c9c2b02c5a3e849a737abdb2d3ef8c, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 11.53
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c0c9c2b02c5a3e849a737abdb2d3ef8c, type: 2}
