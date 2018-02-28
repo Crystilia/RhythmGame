@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 public class HitBox : MonoBehaviour
 {
 
@@ -12,7 +13,8 @@ public class HitBox : MonoBehaviour
     public ParticleSystem hitImg;
     public Material DisolveNote;
     public Material DisolveBomb;
-
+    public bool IsAI = false;
+    public int AIlvl;
 
     //[Range(1.7f, 3)]
     //public float Disolver;
@@ -22,15 +24,36 @@ public class HitBox : MonoBehaviour
     {
         mngr = GameObject.Find("Manager").GetComponent<Manager>();
         hitImg = this.transform.GetComponentInChildren<ParticleSystem>();
-            }
-    private void OnTriggerEnter(Collider note)
+    }
+        private void OnTriggerEnter(Collider note)
     {
+        if (IsAI)
+        {
+            if (note.gameObject.tag == "Note")
+            {
+                InHitBox = true;
+                Note = note.gameObject;
+                pressbutton(box);
+            }
+            else if (note.gameObject.tag == "Bomb")
+            {
+                InHitBox = true;
+                Bomb = true;
+                Note = note.gameObject;
+                pressbutton(box);
+            }
+            else if (note.gameObject.tag == "PowerUp")
+            {
+                InHitBox = true;
+                PowerUp = true;
+                Note = note.gameObject;
+                pressbutton(box);
+            }
+        }
         if (note.gameObject.tag == "Note")
         {
             InHitBox = true;
             Note = note.gameObject;
-
-
         }
         else if (note.gameObject.tag == "Bomb")
         {
@@ -94,6 +117,10 @@ public class HitBox : MonoBehaviour
 
     void pressbutton(int i)
     {
+        if (IsAI)
+        {
+            hit(false);
+        }
         if (i == 0 && Input.GetKeyDown(KeyCode.LeftArrow))
         {
             hit(true);

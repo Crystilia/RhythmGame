@@ -25,13 +25,13 @@ public class CharMenu : MonoBehaviour {
             PlayerButton(0);
         }
 
-        if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("SinglePlayer"))
-        {
-            PlayerButton(PlayerPrefs.GetInt("Player1Pref"));
-            P1 = GameObject.Find("P1").transform;
-            Player1.transform.SetParent(P1);
-        }
-        if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("MultiPlayer"))
+ //       if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("SinglePlayer"))
+  //      {
+ //           PlayerButton(PlayerPrefs.GetInt("Player1Pref"));
+ //           P1 = GameObject.Find("P1").transform;
+ //           Player1.transform.SetParent(P1);
+ //       }
+        if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("MultiPlayer") || SceneManager.GetActiveScene() == SceneManager.GetSceneByName("SinglePlayer"))
         {
             P1 = GameObject.Find("P1").transform;
             P2 = GameObject.Find("P2").transform;
@@ -103,5 +103,14 @@ public class CharMenu : MonoBehaviour {
         {
             PlayerPrefs.SetInt("Player2Pref", i);
         }
+    }
+    public void AI(int i)
+    {
+        Player2 = Players[i];
+        if (PlayerPrefs.GetInt("Player2Pref") != i)
+        {
+            PlayerPrefs.SetInt("Player2Pref", i);
+        }
+        SinglePlayerStart();
     }
 }

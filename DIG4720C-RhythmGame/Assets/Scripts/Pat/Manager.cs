@@ -36,9 +36,11 @@ public class Manager : MonoBehaviour
     public GameObject P1;
     public GameObject P2;
     int P1AtkSpeed = 11;
+    public AM AudioManager;
     // Use this for initialization
     void Start()
     {
+        AudioManager = GameObject.Find("AM").GetComponent<AM>();
         player1 = GameObject.Find("P1").GetComponentInChildren<Animator>();
         player2 = GameObject.Find("P2").GetComponentInChildren<Animator>();
         UpdateAnimClipTimes();
@@ -67,6 +69,7 @@ public class Manager : MonoBehaviour
             {
                 P1CurrentHP = P1CurrentHP - Dmg;
                 P1HP.fillAmount = P1CurrentHP;
+                AudioManager.soundSrc[3].PlayOneShot(AudioManager.sfx[2]);
             }
             else
             {
@@ -78,6 +81,7 @@ public class Manager : MonoBehaviour
                 gameoverMenu.SetActive(true);
                 gameover.GetComponent<TextMeshProUGUI>().text = "P2 Wins!";
                 canB = false;
+                
             }
         }
         if (!P)
@@ -141,11 +145,13 @@ public class Manager : MonoBehaviour
         {
             P1CurrentPU = 1f;
             RaisePU(true);
+            AudioManager.soundSrc[1].PlayOneShot(AudioManager.sfx[3]);
         }
         if (!P)
         {
             P2CurrentPU = 1f;
             RaisePU(false);
+            AudioManager.soundSrc[2].PlayOneShot(AudioManager.sfx[3]);
         }
     }
     public void ExitGame()
@@ -185,6 +191,7 @@ public class Manager : MonoBehaviour
             P1PU.fillAmount = P1CurrentPU;
             p1canUseSpecial = false;
             P1PU.color = new Color(1.0f, 0.0f, 1.0f, 1.0f);
+            AudioManager.soundSrc[1].PlayOneShot(AudioManager.sfx[0]);
         }
         //player2
         if (p2canUseSpecial && Input.GetKeyDown(KeyCode.Space))
@@ -213,6 +220,7 @@ public class Manager : MonoBehaviour
             P2PU.fillAmount = P2CurrentPU;
             p2canUseSpecial = false;
             P2PU.color = new Color(1.0f, 0.0f, 1.0f, 1.0f);
+            AudioManager.soundSrc[2].PlayOneShot(AudioManager.sfx[1]);
         }
     }
 
@@ -244,8 +252,8 @@ public class Manager : MonoBehaviour
 
             if (P1ATK.transform.localPosition.x < P2.transform.localPosition.x)
             {
-                Debug.Log(P1ATK.transform.localPosition);
-                Debug.Log(P2.transform.localPosition);
+               // Debug.Log(P1ATK.transform.localPosition);
+               // Debug.Log(P2.transform.localPosition);
                 P1ATK.transform.position = Vector3.Lerp(P1ATK.transform.localPosition, P2.transform.localPosition, Time.fixedDeltaTime * 0.0094f );
                 i++;
             }
