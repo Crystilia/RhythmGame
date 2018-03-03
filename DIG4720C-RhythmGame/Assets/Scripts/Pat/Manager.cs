@@ -245,20 +245,11 @@ public class Manager : MonoBehaviour
     {
         yield return new WaitForSeconds(anim - time);
         P1ATK.transform.parent.DetachChildren();
-        int i = 0;
-        //while (P1ATK.transform.position.x < P2.transform.position.x)
-        while ( i < 1000)
-        {
-
-            if (P1ATK.transform.localPosition.x < P2.transform.localPosition.x)
-            {
-               // Debug.Log(P1ATK.transform.localPosition);
-               // Debug.Log(P2.transform.localPosition);
-                P1ATK.transform.position = Vector3.Lerp(P1ATK.transform.localPosition, P2.transform.localPosition, Time.fixedDeltaTime * 0.0094f );
-                i++;
-            }
+        while (P1ATK.transform.position != P2.transform.position)
+        { 
+                P1ATK.transform.position = Vector3.Lerp(P1ATK.transform.position, P2.transform.position, Time.fixedDeltaTime * 15f );          
+                yield return null;
         }
-        //P1ATK.transform.
     }
 
     // Update is called once per frame

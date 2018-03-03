@@ -44,7 +44,7 @@ public class CharMenu : MonoBehaviour {
             P1Spot = new Vector3(1.85f, 226.41f, 5.08f);
             P2Spot = new Vector3(32f, 226.41f, 5.08f);
             P1.position = P1Spot;
-            P2.position = P2Spot;
+            P2.position = P2Spot;// Vector3(P2.transform.position.x,P2.transform.position.y,P2.transform.position.z);
 
         }
     }
