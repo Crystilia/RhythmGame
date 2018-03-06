@@ -213,6 +213,10 @@ public class Manager : MonoBehaviour
             P1Drain = false;
             AttackAnim(true, CurrentP1DMG);
             P1CurrentHP = P1CurrentHP + CurrentP1DMG;
+            if (P1CurrentHP > 1)
+            {
+                P1CurrentHP = 1;
+            }
             P1HP.fillAmount = P1CurrentHP;
             P1CurrentPU = 0;
             P1PU.fillAmount = P1CurrentPU;
@@ -242,6 +246,10 @@ public class Manager : MonoBehaviour
             AttackAnim(false, CurrentP2DMG);
             LowerHP(false, CurrentP1DMG);
             P2CurrentHP = P2CurrentHP + CurrentP2DMG;
+            if (P2CurrentHP > 1)
+            {
+                P2CurrentHP = 1;
+            }
             P2HP.fillAmount = P2CurrentHP;
             P2CurrentPU = 0;
             CurrentP2DMG = 0;
