@@ -30,6 +30,26 @@ public class PauseMenu : MonoBehaviour {
         SceneManager.LoadScene(0);
     }
 
+    public void Progress()
+    {
+        Paused = false;
+        Time.timeScale = 1f;
+        PlayerPrefs.SetInt("Player2Pref", (PlayerPrefs.GetInt("Player2Pref") + 1));
+
+        if (PlayerPrefs.GetInt("Player2Pref") == PlayerPrefs.GetInt("Player1Pref"))
+        {
+            PlayerPrefs.SetInt("Player2Pref", (PlayerPrefs.GetInt("Player2Pref") + 1));
+        }
+        if (PlayerPrefs.GetInt("Player2Pref") == 4)
+        {
+            PlayerPrefs.SetInt("Player2Pref", 0);
+        }
+        if (PlayerPrefs.GetInt("Player2Pref") == PlayerPrefs.GetInt("Player1Pref"))
+        {
+            PlayerPrefs.SetInt("Player2Pref", (PlayerPrefs.GetInt("Player2Pref") + 1));
+        }
+        SceneManager.LoadScene(3);
+    }
     void Pause()
     {
         MenuHUD.SetActive(true);

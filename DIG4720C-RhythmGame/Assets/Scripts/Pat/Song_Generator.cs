@@ -19,8 +19,8 @@ public class Song_Generator : MonoBehaviour {
     public GameObject BadNote;
     public GameObject GoodNote;
     private Transform spawner;
-
-
+    public int MaxNotes = 1;
+    bool count = true;
     // Use this for initialization
     void Start () {
         spawner = GameObject.Find("NoteSpawn").GetComponent<Transform>();
@@ -34,7 +34,6 @@ public class Song_Generator : MonoBehaviour {
             for (int y = 0; y < song.height; y++)
             {
                 GenerateNote(x, y);
-
             }
         }
     }
@@ -59,6 +58,7 @@ public class Song_Generator : MonoBehaviour {
              
                 Vector2 ArrNotePos = new Vector2(x*2,y);
                 Instantiate(Note.BasicNote, ArrNotePos, Quaternion.identity, spawner);
+                MaxNotes++;
             }
             //player 2
             if (Note.color.Equals(pixelC))
@@ -68,6 +68,11 @@ public class Song_Generator : MonoBehaviour {
                 Vector2 ArrNotePos = new Vector2((x* 2)+12, y);
                 Instantiate(Note.BasicNote, ArrNotePos, Quaternion.identity, spawner);
             }
+        }
+        if(count)
+        {
+            MaxNotes--;
+            count = !count;
         }
     }
 

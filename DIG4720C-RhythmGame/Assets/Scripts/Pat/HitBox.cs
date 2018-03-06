@@ -15,7 +15,7 @@ public class HitBox : MonoBehaviour
     public Material DisolveBomb;
     public bool IsAI = false;
     public int AIlvl;
-
+    public bool SongDurCounter = false;
     //[Range(1.7f, 3)]
     //public float Disolver;
     // Use this for initialization
@@ -50,6 +50,7 @@ public class HitBox : MonoBehaviour
                 pressbutton(box);
             }
         }
+
         if (note.gameObject.tag == "Note")
         {
             InHitBox = true;
@@ -96,23 +97,35 @@ public class HitBox : MonoBehaviour
                     StartCoroutine(MyCorutine(2.3f, Note));
                     mngr.RaisePU(P);
                     InHitBox = false;
+                    if (SongDurCounter)
+                     {
+                        mngr.SongDur();
+                     }
                 }
-                else if (Note != null && InHitBox && Bomb && !PowerUp)
+         else if (Note != null && InHitBox && Bomb && !PowerUp)
                 {
                    // DisolveNote = Note.GetComponent<Material>();
                     StartCoroutine(MyCorutine(2.3f, Note));
                     hitImg.Play();
-                    mngr.LowerHP(P,0.05f);
+                   // mngr.LowerHP(P,0.05f);
                     Bomb = false;
-                }
-                else if (Note != null && InHitBox && !Bomb && PowerUp)
+                    if (SongDurCounter)
+                    {
+                      mngr.SongDur();
+                    }
+        }
+         else if (Note != null && InHitBox && !Bomb && PowerUp)
                 {
                    // DisolveNote = Note.GetComponent<Material>();
                     StartCoroutine(MyCorutine(2.3f, Note));
                     hitImg.Play();
                     PowerUp = false;
                     mngr.MaxPU(P);
-                }
+                    if (SongDurCounter)
+                    {
+                      mngr.SongDur();
+                    }
+        }
     }
 
     void pressbutton(int i)

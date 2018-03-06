@@ -5,7 +5,7 @@ using TMPro;
 using System.Collections;
 public class Manager : MonoBehaviour
 {
-
+    private Song_Generator SG;
     private Image P1HP;
     private Image P1PU;
     float P1CurrentHP = 1;
@@ -35,11 +35,12 @@ public class Manager : MonoBehaviour
     public GameObject P1LH;
     public GameObject P1;
     public GameObject P2;
-    int P1AtkSpeed = 11;
+    float P1AtkSpeed = 15;
     public AM AudioManager;
     // Use this for initialization
     void Start()
     {
+        SG = GameObject.Find("SongManager").GetComponent<Song_Generator>();
         AudioManager = GameObject.Find("AM").GetComponent<AM>();
         player1 = GameObject.Find("P1").GetComponentInChildren<Animator>();
         player2 = GameObject.Find("P2").GetComponentInChildren<Animator>();
@@ -159,8 +160,37 @@ public class Manager : MonoBehaviour
         Application.Quit();
     }
 
+    public void SongDur()
+    {
+        SG.MaxNotes--;
+    }
+
     public void StartATK()
     {
+        if (SG.MaxNotes == 0 && P1CurrentHP > P2CurrentHP)
+        {
+            Time.timeScale = 0.0f;
+            gameover.SetActive(true);
+            gameoverMenu.SetActive(true);
+            gameover.GetComponent<TextMeshProUGUI>().text = "P1 Wins!";
+            canB = false;
+        }
+        else if (SG.MaxNotes == 0 && P1CurrentHP < P2CurrentHP)
+        {
+            Time.timeScale = 0.0f;
+            gameover.SetActive(true);
+            gameoverMenu.SetActive(true);
+            gameover.GetComponent<TextMeshProUGUI>().text = "P2 Wins!";
+            canB = false;
+        }
+        else if (SG.MaxNotes == 0)
+        {
+            Time.timeScale = 0.0f;
+            gameover.SetActive(true);
+            gameoverMenu.SetActive(true);
+            gameover.GetComponent<TextMeshProUGUI>().text = "Tie!";
+            canB = false;
+        }
         //player1
         if (p1canUseSpecial && Input.GetKeyDown(KeyCode.Space))
         {
@@ -176,25 +206,23 @@ public class Manager : MonoBehaviour
             CurrentP1DMG = Mathf.Clamp01((P1DMG / 200f));
             P1PU.fillAmount = CurrentP1DMG;
             P1CurrentPU = P1PU.fillAmount;
-            Debug.Log(CurrentP1DMG);
 
         }
         if (p1canUseSpecial && Input.GetKeyUp(KeyCode.Space))
         {
             P1Drain = false;
-            AttackAnim(true);
-            LowerHP(false, CurrentP1DMG);
+            AttackAnim(true, CurrentP1DMG);
             P1CurrentHP = P1CurrentHP + CurrentP1DMG;
             P1HP.fillAmount = P1CurrentHP;
             P1CurrentPU = 0;
-            CurrentP1DMG = 0;
             P1PU.fillAmount = P1CurrentPU;
             p1canUseSpecial = false;
             P1PU.color = new Color(1.0f, 0.0f, 1.0f, 1.0f);
+            CurrentP1DMG = 0;
             AudioManager.soundSrc[1].PlayOneShot(AudioManager.sfx[0]);
         }
         //player2
-        if (p2canUseSpecial && Input.GetKeyDown(KeyCode.Space))
+        if (p2canUseSpecial && Input.GetKeyDown(KeyCode.B))
         {
             P2PU.color = new Color(0.0f, 1.0f, 1.0f, 1.0f);
             P2Drain = true;
@@ -208,10 +236,10 @@ public class Manager : MonoBehaviour
             P2PU.fillAmount = CurrentP2DMG;
             P2CurrentPU = P2PU.fillAmount;
         }
-        if (p2canUseSpecial && Input.GetKeyUp(KeyCode.Space))
+        if (p2canUseSpecial && Input.GetKeyUp(KeyCode.B))
         {
             P2Drain = false;
-            AttackAnim(false);
+            AttackAnim(false, CurrentP2DMG);
             LowerHP(false, CurrentP1DMG);
             P2CurrentHP = P2CurrentHP + CurrentP2DMG;
             P2HP.fillAmount = P2CurrentHP;
@@ -224,7 +252,7 @@ public class Manager : MonoBehaviour
         }
     }
 
-    void AttackAnim(bool P)
+    void AttackAnim(bool P, float DMG)
     {
         if (P)
         {
@@ -232,7 +260,7 @@ public class Manager : MonoBehaviour
             P1ATK.SetActive(true);
             P1ATK.transform.SetParent(P1LH.transform);
             P1ATK.transform.SetPositionAndRotation(P1LH.transform.position, P1LH.transform.rotation);
-            StartCoroutine(WaitThenDoThings(P1atkTime, 0.3f));
+            StartCoroutine(Attacker(P1atkTime, 0.3f, player1, DMG, !P));
         }
         else
         {
@@ -241,15 +269,19 @@ public class Manager : MonoBehaviour
     }
 
 
-    IEnumerator WaitThenDoThings(float anim, float time)
+    IEnumerator Attacker(float clip, float time, Animator anim, float DMG, bool player)
     {
-        yield return new WaitForSeconds(anim - time);
+        yield return new WaitForSeconds(clip - time);
+        anim.SetInteger("AnimState", 1);
         P1ATK.transform.parent.DetachChildren();
-        while (P1ATK.transform.position != P2.transform.position)
+        while (Vector3.Distance(P1ATK.transform.position, P2.transform.position) > 0.05f)
         { 
-                P1ATK.transform.position = Vector3.Lerp(P1ATK.transform.position, P2.transform.position, Time.fixedDeltaTime * 15f );          
+                P1ATK.transform.position = Vector3.Lerp(P1ATK.transform.position, P2.transform.position, Time.fixedDeltaTime * P1AtkSpeed );    
                 yield return null;
         }
+            LowerHP(player, DMG);
+            AudioManager.soundSrc[1].PlayOneShot(AudioManager.sfx[0]);
+        P1ATK.SetActive(false);
     }
 
     // Update is called once per frame
@@ -257,6 +289,8 @@ public class Manager : MonoBehaviour
     {
         StartATK();
     }
+
+
     public void UpdateAnimClipTimes()
     {
         AnimationClip[] p1clips = player1.runtimeAnimatorController.animationClips;
@@ -272,4 +306,6 @@ public class Manager : MonoBehaviour
             }
         }
     }
+
+
 }

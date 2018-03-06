@@ -1,7 +1,7 @@
 ﻿
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
+using UnityEngine.UI;
 public class CharMenu : MonoBehaviour {
     public GameObject[] Players;
     public static GameObject Player1;
@@ -11,10 +11,13 @@ public class CharMenu : MonoBehaviour {
     public Transform P2;
     public Vector3 P2Spot = new Vector3(16.92f, 226.41f, 5.08f);
     public Vector3 P1Spot = new Vector3(1.85f, 226.41f, 5.08f);
-
+    public static bool first = true;
 
     private void Start()
     {
+        Time.timeScale = 1f;
+           // PlayerPrefs.SetInt("P1Flag", 0);
+          //  PlayerPrefs.SetInt("FightFlag", 1);
             Players[0] = GameObject.Find("PatsPlayer");
             Players[1] = GameObject.Find("PatsPlayer (1)");
             Players[2] = GameObject.Find("PatsPlayer (2)");
@@ -22,6 +25,13 @@ public class CharMenu : MonoBehaviour {
 
         if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("CharSelect") || SceneManager.GetActiveScene() == SceneManager.GetSceneByName("MultiplayerCharSelect"))
         {
+            P1 = GameObject.Find("P1").transform;
+            if (GameObject.Find("P2") != null)
+            {
+                P2 = GameObject.Find("P2").transform;
+
+                P2.gameObject.SetActive(false);
+            }
             PlayerButton(0);
         }
 
@@ -31,12 +41,43 @@ public class CharMenu : MonoBehaviour {
  //           P1 = GameObject.Find("P1").transform;
  //           Player1.transform.SetParent(P1);
  //       }
-        if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("MultiPlayer") || SceneManager.GetActiveScene() == SceneManager.GetSceneByName("SinglePlayer"))
+        if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("MultiPlayer"))
         {
             P1 = GameObject.Find("P1").transform;
             P2 = GameObject.Find("P2").transform;
             PlayerButton(PlayerPrefs.GetInt("Player1Pref"));
             Player2Button(PlayerPrefs.GetInt("Player2Pref"));
+            Player1.transform.SetParent(P1);
+            Player2.transform.SetParent(P2);
+            Player1.SetActive(true);
+            Player2.SetActive(true);
+            P1Spot = new Vector3(1.85f, 226.41f, 5.08f);
+            P2Spot = new Vector3(32f, 226.41f, 5.08f);
+            P1.position = P1Spot;
+            P2.position = P2Spot;// Vector3(P2.transform.position.x,P2.transform.position.y,P2.transform.position.z);
+
+        }
+        if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("SinglePlayer"))
+        {
+            P1 = GameObject.Find("P1").transform;
+            P2 = GameObject.Find("P2").transform;
+            PlayerButton(PlayerPrefs.GetInt("Player1Pref"));
+            //Player2Button(PlayerPrefs.GetInt("Player1Pref") + PlayerPrefs.GetInt("FightFlag"));
+            if (first)
+            {
+                PlayerPrefs.SetInt("Player2Pref", PlayerPrefs.GetInt("Player1Pref") + 1);
+
+                if (PlayerPrefs.GetInt("Player2Pref") == 4)
+                {
+                    PlayerPrefs.SetInt("Player2Pref", 0);
+                }
+                Player2Button(PlayerPrefs.GetInt("Player2Pref"));
+                first = false;
+            }
+            else
+            {
+                Player2Button(PlayerPrefs.GetInt("Player2Pref"));
+            }
             Player1.transform.SetParent(P1);
             Player2.transform.SetParent(P2);
             Player1.SetActive(true);
@@ -59,6 +100,10 @@ public class CharMenu : MonoBehaviour {
     public void Backbutton()
     {
         SceneManager.LoadScene("MainMenu");
+    }
+    public void togglefirst()
+    {
+        first = true;
     }
     public void PlayerButton(int i)
     {
@@ -93,7 +138,6 @@ public class CharMenu : MonoBehaviour {
 
         for (int k = 0; k < Players.Length; k++)
         {
-
             Players[k].SetActive(false);
         }
         Player2.SetActive(true);
@@ -113,4 +157,9 @@ public class CharMenu : MonoBehaviour {
         }
         SinglePlayerStart();
     }
+    public void disableBut()
+    {
+        P2.GetChild(PlayerPrefs.GetInt("Player1Pref")).gameObject.GetComponent<Button>().enabled = false;     
+    }
+
 }
