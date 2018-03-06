@@ -12,10 +12,12 @@ public class CharMenu : MonoBehaviour {
     public Vector3 P2Spot = new Vector3(16.92f, 226.41f, 5.08f);
     public Vector3 P1Spot = new Vector3(1.85f, 226.41f, 5.08f);
     public static bool first = true;
-
+    public PauseMenu Pause;
     private void Start()
     {
+
         Time.timeScale = 1f;
+        
            // PlayerPrefs.SetInt("P1Flag", 0);
           //  PlayerPrefs.SetInt("FightFlag", 1);
             Players[0] = GameObject.Find("PatsPlayer");
@@ -59,6 +61,7 @@ public class CharMenu : MonoBehaviour {
         }
         if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("SinglePlayer"))
         {
+            Pause = GameObject.Find("PauseMenu").GetComponent<PauseMenu>();
             P1 = GameObject.Find("P1").transform;
             P2 = GameObject.Find("P2").transform;
             PlayerButton(PlayerPrefs.GetInt("Player1Pref"));
@@ -104,6 +107,8 @@ public class CharMenu : MonoBehaviour {
     public void togglefirst()
     {
         first = true;
+        PlayerPrefs.SetInt("AI", 75);
+        Pause.Reset();
     }
     public void PlayerButton(int i)
     {

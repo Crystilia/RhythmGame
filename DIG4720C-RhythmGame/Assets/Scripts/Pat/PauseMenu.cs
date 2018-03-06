@@ -7,13 +7,17 @@ public class PauseMenu : MonoBehaviour {
     public static bool Paused = false;
     public GameObject MenuHUD;
     private Manager mngr;
-   
-	// Use this for initialization
-	void Start () {
+    public int stage = 1;
+    // Use this for initialization
+    void Start () {
         MenuHUD = transform.GetChild(0).gameObject;
         mngr = GetComponent<Manager>();
     }
 
+    public void Reset()
+    {
+        stage = 1;
+    }
     public void Resume()
     {
         MenuHUD.SetActive(false);
@@ -32,23 +36,29 @@ public class PauseMenu : MonoBehaviour {
 
     public void Progress()
     {
-        Paused = false;
-        Time.timeScale = 1f;
-        PlayerPrefs.SetInt("Player2Pref", (PlayerPrefs.GetInt("Player2Pref") + 1));
+        if (stage != 3)
+        {
+            stage++;
+            Paused = false;
+            Time.timeScale = 1f;
+            PlayerPrefs.SetInt("AI", (PlayerPrefs.GetInt("AI") + 10));
 
-        if (PlayerPrefs.GetInt("Player2Pref") == PlayerPrefs.GetInt("Player1Pref"))
-        {
             PlayerPrefs.SetInt("Player2Pref", (PlayerPrefs.GetInt("Player2Pref") + 1));
+
+            if (PlayerPrefs.GetInt("Player2Pref") == PlayerPrefs.GetInt("Player1Pref"))
+            {
+                PlayerPrefs.SetInt("Player2Pref", (PlayerPrefs.GetInt("Player2Pref") + 1));
+            }
+            if (PlayerPrefs.GetInt("Player2Pref") == 4)
+            {
+                PlayerPrefs.SetInt("Player2Pref", 0);
+            }
+            if (PlayerPrefs.GetInt("Player2Pref") == PlayerPrefs.GetInt("Player1Pref"))
+            {
+                PlayerPrefs.SetInt("Player2Pref", (PlayerPrefs.GetInt("Player2Pref") + 1));
+            }
+            SceneManager.LoadScene(3);
         }
-        if (PlayerPrefs.GetInt("Player2Pref") == 4)
-        {
-            PlayerPrefs.SetInt("Player2Pref", 0);
-        }
-        if (PlayerPrefs.GetInt("Player2Pref") == PlayerPrefs.GetInt("Player1Pref"))
-        {
-            PlayerPrefs.SetInt("Player2Pref", (PlayerPrefs.GetInt("Player2Pref") + 1));
-        }
-        SceneManager.LoadScene(3);
     }
     void Pause()
     {

@@ -16,12 +16,15 @@ public class HitBox : MonoBehaviour
     public bool IsAI = false;
     public int AIlvl;
     public bool SongDurCounter = false;
+    private int Rand;
+    private int AIHitPercent;
     //[Range(1.7f, 3)]
     //public float Disolver;
     // Use this for initialization
 
     private void Start()
     {
+        AIHitPercent = PlayerPrefs.GetInt("AI");
         mngr = GameObject.Find("Manager").GetComponent<Manager>();
         hitImg = this.transform.GetComponentInChildren<ParticleSystem>();
     }
@@ -29,26 +32,27 @@ public class HitBox : MonoBehaviour
     {
         if (IsAI)
         {
+            Rand = Random.Range(0, 101);
             if (note.gameObject.tag == "Note")
-            {
-                InHitBox = true;
-                Note = note.gameObject;
-                pressbutton(box);
-            }
-            else if (note.gameObject.tag == "Bomb")
-            {
-                InHitBox = true;
-                Bomb = true;
-                Note = note.gameObject;
-                pressbutton(box);
-            }
-            else if (note.gameObject.tag == "PowerUp")
-            {
-                InHitBox = true;
-                PowerUp = true;
-                Note = note.gameObject;
-                pressbutton(box);
-            }
+                {
+                    InHitBox = true;
+                    Note = note.gameObject;
+                    pressbutton(box);
+                }
+                else if (note.gameObject.tag == "PowerUp")
+                {
+                    InHitBox = true;
+                    PowerUp = true;
+                    Note = note.gameObject;
+                    pressbutton(box);
+                }
+                else if (note.gameObject.tag == "Bomb")
+                {
+                    InHitBox = true;
+                    Bomb = true;
+                    Note = note.gameObject;
+                    pressbutton(box);
+                }
         }
 
         if (note.gameObject.tag == "Note")
@@ -132,7 +136,10 @@ public class HitBox : MonoBehaviour
     {
         if (IsAI)
         {
-            hit(false);
+            if (Rand <= AIHitPercent)
+            {
+                hit(false);
+            }
         }
         if (i == 0 && Input.GetKeyDown(KeyCode.LeftArrow))
         {
