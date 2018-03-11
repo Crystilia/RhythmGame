@@ -1,16 +1,28 @@
 fileFormatVersion: 2
-guid: 2b02a6cf56cbf134888cf671b4e06c54
-timeCreated: 1520008287
+guid: 29481a999f817fd449ed39ab6721bbb2
+timeCreated: 1520389349
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
     100000: //RootNode
+    100002: pCube3
+    100004: pTorus2
+    100006: pTorus3
     400000: //RootNode
+    400002: pCube3
+    400004: pTorus2
+    400006: pTorus3
     2100000: lambert1
-    2300000: //RootNode
-    3300000: //RootNode
-    4300000: pCylinder7
+    2300000: pCube3
+    2300002: pTorus2
+    2300004: pTorus3
+    3300000: pCube3
+    3300002: pTorus2
+    3300004: pTorus3
+    4300000: pCube3
+    4300002: pTorus2
+    4300004: pTorus3
     9500000: //RootNode
   externalObjects: {}
   materials:
@@ -83,7 +95,7 @@ ModelImporter:
     rootMotionBoneName: 
     rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
     hasTranslationDoF: 0
-    hasExtraRoot: 0
+    hasExtraRoot: 1
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
   animationType: 0

@@ -38,9 +38,10 @@ public class PauseMenu : MonoBehaviour {
     {
         if (stage != 3)
         {
-            stage++;
             Paused = false;
             Time.timeScale = 1f;
+            stage++;
+
             PlayerPrefs.SetInt("AI", (PlayerPrefs.GetInt("AI") + 10));
 
             PlayerPrefs.SetInt("Player2Pref", (PlayerPrefs.GetInt("Player2Pref") + 1));

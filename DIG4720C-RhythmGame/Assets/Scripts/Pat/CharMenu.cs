@@ -61,7 +61,7 @@ public class CharMenu : MonoBehaviour {
         }
         if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("SinglePlayer"))
         {
-            Pause = GameObject.Find("PauseMenu").GetComponent<PauseMenu>();
+           // Pause = GameObject.Find("PauseMenu").GetComponent<PauseMenu>();
             P1 = GameObject.Find("P1").transform;
             P2 = GameObject.Find("P2").transform;
             PlayerButton(PlayerPrefs.GetInt("Player1Pref"));
@@ -108,6 +108,7 @@ public class CharMenu : MonoBehaviour {
     {
         first = true;
         PlayerPrefs.SetInt("AI", 75);
+        if(Pause != null)
         Pause.Reset();
     }
     public void PlayerButton(int i)

@@ -1,16 +1,26 @@
 fileFormatVersion: 2
-guid: 2b02a6cf56cbf134888cf671b4e06c54
-timeCreated: 1520008287
+guid: 92983b7ae39c80649ac119889410c129
+timeCreated: 1520389349
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
     100000: //RootNode
+    100002: pCylinder6
+    100004: pCylinder7
+    100006: pCylinder8
+    100008: transform1
+    100010: transform2
     400000: //RootNode
+    400002: pCylinder6
+    400004: pCylinder7
+    400006: pCylinder8
+    400008: transform1
+    400010: transform2
     2100000: lambert1
-    2300000: //RootNode
-    3300000: //RootNode
-    4300000: pCylinder7
+    2300000: pCylinder8
+    3300000: pCylinder8
+    4300000: pCylinder8
     9500000: //RootNode
   externalObjects: {}
   materials:
@@ -83,7 +93,7 @@ ModelImporter:
     rootMotionBoneName: 
     rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
     hasTranslationDoF: 0
-    hasExtraRoot: 0
+    hasExtraRoot: 1
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
   animationType: 0

@@ -963,7 +963,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 39.2
+  m_fontSize: 39
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1116,7 +1116,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 39.2
+  m_fontSize: 39
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1269,7 +1269,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 39.2
+  m_fontSize: 39
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1741,6 +1741,56 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1004889617
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 400000, guid: 92983b7ae39c80649ac119889410c129, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 20.177267
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 92983b7ae39c80649ac119889410c129, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 200.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 92983b7ae39c80649ac119889410c129, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1.7314258
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 92983b7ae39c80649ac119889410c129, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 92983b7ae39c80649ac119889410c129, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.98720753
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 92983b7ae39c80649ac119889410c129, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 92983b7ae39c80649ac119889410c129, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.15944053
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 92983b7ae39c80649ac119889410c129, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 92983b7ae39c80649ac119889410c129, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -161.651
+      objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 92983b7ae39c80649ac119889410c129, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: ff841e9d4784c2d4ea18e99c9add40de, type: 2}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 92983b7ae39c80649ac119889410c129, type: 3}
+  m_IsPrefabParent: 0
 --- !u!1 &1013297413
 GameObject:
   m_ObjectHideFlags: 0
@@ -2569,56 +2619,6 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.Toggle+ToggleEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
   m_IsOn: 1
---- !u!1001 &1427400625
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 400000, guid: cc700e14ccc1133408b5490b9be26d7b, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 22.22
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: cc700e14ccc1133408b5490b9be26d7b, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 206.25
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: cc700e14ccc1133408b5490b9be26d7b, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 3.56
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: cc700e14ccc1133408b5490b9be26d7b, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: cc700e14ccc1133408b5490b9be26d7b, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0.87005997
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: cc700e14ccc1133408b5490b9be26d7b, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: cc700e14ccc1133408b5490b9be26d7b, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: -0.4929459
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: cc700e14ccc1133408b5490b9be26d7b, type: 3}
-      propertyPath: m_RootOrder
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: cc700e14ccc1133408b5490b9be26d7b, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 239.069
-      objectReference: {fileID: 0}
-    - target: {fileID: 2300000, guid: cc700e14ccc1133408b5490b9be26d7b, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: ff841e9d4784c2d4ea18e99c9add40de, type: 2}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: cc700e14ccc1133408b5490b9be26d7b, type: 3}
-  m_IsPrefabParent: 0
 --- !u!1 &1542033521
 GameObject:
   m_ObjectHideFlags: 0
@@ -3097,7 +3097,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 39.2
+  m_fontSize: 39
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -3451,7 +3451,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400026, guid: d89437bf6a508be408faad6213ba2290, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 400026, guid: d89437bf6a508be408faad6213ba2290, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
@@ -3957,7 +3957,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 39.2
+  m_fontSize: 39
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
