@@ -98,7 +98,7 @@ public class HitBox : MonoBehaviour
                 {
                     hitImg.Play();
                   //  DisolveNote = Note.GetComponent<Material>();
-                    StartCoroutine(MyCorutine(2.3f, Note));
+                    StartCoroutine(MyCorutine(6.87f, Note));
                     mngr.RaisePU(P);
                     InHitBox = false;
                     if (SongDurCounter)
@@ -109,7 +109,7 @@ public class HitBox : MonoBehaviour
          else if (Note != null && InHitBox && Bomb && !PowerUp)
                 {
                    // DisolveNote = Note.GetComponent<Material>();
-                    StartCoroutine(MyCorutine(2.3f, Note));
+                    StartCoroutine(MyCorutine(6.87f, Note));
                     hitImg.Play();
                    // mngr.LowerHP(P,0.05f);
                     Bomb = false;
@@ -121,7 +121,7 @@ public class HitBox : MonoBehaviour
          else if (Note != null && InHitBox && !Bomb && PowerUp)
                 {
                    // DisolveNote = Note.GetComponent<Material>();
-                    StartCoroutine(MyCorutine(2.3f, Note));
+                    StartCoroutine(MyCorutine(6.87f, Note));
                     hitImg.Play();
                     PowerUp = false;
                     mngr.MaxPU(P);
@@ -182,7 +182,7 @@ public class HitBox : MonoBehaviour
 
     IEnumerator MyCorutine (float range, GameObject Note)
     {
-        while(range > 1.8f)
+        while(range > 6.2f)
         {
             range -= 1f * Time.smoothDeltaTime;
             if (Note != null)
@@ -191,20 +191,20 @@ public class HitBox : MonoBehaviour
                 {
                     Note.GetComponent<MeshRenderer>().material.SetFloat("_DisolveStart", range);
                     float size = Note.GetComponent<MeshRenderer>().material.GetFloat("_ExtrudeAmt");
-                    Note.GetComponent<MeshRenderer>().material.SetFloat("_ExtrudeAmt", size - .02f);
+                    Note.GetComponent<MeshRenderer>().material.SetFloat("_ExtrudeAmt", size - .006f);
                 }
                 else if (Note.tag == "Bomb")
                 {
                     Note.GetComponent<MeshRenderer>().material.SetFloat("_DisolveStart", range);
                     float size = Note.GetComponent<MeshRenderer>().material.GetFloat("_ExtrudeAmt");
-                    Note.GetComponent<MeshRenderer>().material.SetFloat("_ExtrudeAmt", size + 1f);
+                    Note.GetComponent<MeshRenderer>().material.SetFloat("_ExtrudeAmt", size + .07f);
                     Note.GetComponent<MeshRenderer>().material.SetFloat("_TimeSize", 0f);
                 }
                 else
                 {
                     Note.GetComponent<MeshRenderer>().material.SetFloat("_DisolveStart", range);
                     float size = Note.GetComponent<MeshRenderer>().material.GetFloat("_ExtrudeAmt");
-                    Note.GetComponent<MeshRenderer>().material.SetFloat("_ExtrudeAmt", size + .06f);
+                    Note.GetComponent<MeshRenderer>().material.SetFloat("_ExtrudeAmt", size + .009f);
                 }
             }
             yield return null;

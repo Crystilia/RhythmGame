@@ -13,7 +13,7 @@ public class Song_Generator : MonoBehaviour {
     private Color pixelC;
     private int ChangeNote;
     private GameObject CurrentNote;
-
+    Manager manager;
     public Texture2D song;
     public ColorToPrefab[] Note_Colors;
     public GameObject BadNote;
@@ -21,9 +21,16 @@ public class Song_Generator : MonoBehaviour {
     private Transform spawner;
     public int MaxNotes = 1;
     bool count = true;
+    float spawnx;
+    float spawny;
+    float spready;
     // Use this for initialization
     void Start () {
         spawner = GameObject.Find("NoteSpawn").GetComponent<Transform>();
+        manager = GameObject.Find("Manager").GetComponent<Manager>();
+        spawnx = manager.NoteSpawnX;
+        spawny = manager.NoteSpawnY;
+        spready = manager.NoteSpreadY;
         GenerateSong();
     }
 
@@ -56,7 +63,7 @@ public class Song_Generator : MonoBehaviour {
             {
                 // multiply x to create space between notes, add to x to shift all notes left or right.
              
-                Vector2 ArrNotePos = new Vector2(x*2,y);
+                Vector2 ArrNotePos = new Vector2(x* spawnx, (y* spready) + spawny);
                 Instantiate(Note.BasicNote, ArrNotePos, Quaternion.identity, spawner);
                 MaxNotes++;
             }
@@ -65,7 +72,7 @@ public class Song_Generator : MonoBehaviour {
             {
                 // multiply x to create space between notes, add to x to shift all notes left or right.
 
-                Vector2 ArrNotePos = new Vector2((x* 2)+12, y);
+                Vector2 ArrNotePos = new Vector2((x* spawnx) +12, (y * spready) + spawny);
                 Instantiate(Note.BasicNote, ArrNotePos, Quaternion.identity, spawner);
             }
         }

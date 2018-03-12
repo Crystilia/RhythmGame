@@ -5,6 +5,10 @@ using TMPro;
 using System.Collections;
 public class Manager : MonoBehaviour
 {
+    public float NoteSpeed;
+    public float NoteSpawnX;
+    public float NoteSpawnY;
+    public float NoteSpreadY;
     private Song_Generator SG;
     private Image P1HP;
     private Image P1PU;
