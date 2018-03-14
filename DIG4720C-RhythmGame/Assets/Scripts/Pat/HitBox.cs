@@ -196,9 +196,10 @@ public class HitBox : MonoBehaviour
 
     IEnumerator MyCorutine (float range, GameObject Note)
     {
-        /* 
+         
         float size;
         Material NoteMat = Note.GetComponent<MeshRenderer>().material;
+        /*
         int tag;
         if (Note.tag == "PowerUp")
         {

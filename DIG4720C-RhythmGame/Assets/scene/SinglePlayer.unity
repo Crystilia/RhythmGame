@@ -311,10 +311,13 @@ MonoBehaviour:
   gameoverMenu: {fileID: 761254947}
   canB: 1
   P1ATK: {fileID: 2072917742}
+  P2ATK: {fileID: 0}
   P1LH: {fileID: 1489748579}
+  P2LH: {fileID: 0}
   P1: {fileID: 390852781}
   P2: {fileID: 1362878264}
   AudioManager: {fileID: 0}
+  button: {fileID: 636876161}
 --- !u!114 &80304177
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1057,7 +1060,7 @@ Prefab:
     - target: {fileID: 114936766680989134, guid: 75208815ec0ec524a83c7fed461abd18,
         type: 2}
       propertyPath: IsAI
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114936766680989134, guid: 75208815ec0ec524a83c7fed461abd18,
         type: 2}
@@ -1422,7 +1425,7 @@ Prefab:
     - target: {fileID: 114936766680989134, guid: 75208815ec0ec524a83c7fed461abd18,
         type: 2}
       propertyPath: IsAI
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114936766680989134, guid: 75208815ec0ec524a83c7fed461abd18,
         type: 2}
@@ -1826,7 +1829,7 @@ Prefab:
     - target: {fileID: 114936766680989134, guid: 75208815ec0ec524a83c7fed461abd18,
         type: 2}
       propertyPath: IsAI
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114936766680989134, guid: 75208815ec0ec524a83c7fed461abd18,
         type: 2}
@@ -4351,7 +4354,7 @@ Prefab:
     - target: {fileID: 114936766680989134, guid: 75208815ec0ec524a83c7fed461abd18,
         type: 2}
       propertyPath: IsAI
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114936766680989134, guid: 75208815ec0ec524a83c7fed461abd18,
         type: 2}
