@@ -31,14 +31,14 @@ MonoBehaviour:
   antialiasing:
     m_Enabled: 0
     m_Settings:
-      method: 1
+      method: 0
       fxaaSettings:
-        preset: 2
+        preset: 4
       taaSettings:
         jitterSpread: 1
-        sharpen: 3
-        stationaryBlending: 0.95
-        motionBlending: 0.85
+        sharpen: 2.25
+        stationaryBlending: 0
+        motionBlending: 0.99
   ambientOcclusion:
     m_Enabled: 1
     m_Settings:
@@ -279,7 +279,7 @@ MonoBehaviour:
     m_Enabled: 0
     m_Settings:
       lut: {fileID: 0}
-      contribution: 1
+      contribution: 0
   chromaticAberration:
     m_Enabled: 0
     m_Settings:
@@ -289,9 +289,9 @@ MonoBehaviour:
     m_Enabled: 0
     m_Settings:
       colored: 1
-      intensity: 0.5
-      size: 1
-      luminanceContribution: 0.8
+      intensity: 0
+      size: 1.24
+      luminanceContribution: 1
   vignette:
     m_Enabled: 1
     m_Settings:

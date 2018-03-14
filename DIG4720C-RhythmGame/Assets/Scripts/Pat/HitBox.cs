@@ -108,7 +108,7 @@ public class HitBox : MonoBehaviour
             Note.GetComponent<BoxCollider2D>().enabled = false;
            // Note.SetActive(false);
             mngr.RaisePU(P);
-                    InHitBox = false;
+            InHitBox = false;
                     if (SongDurCounter)
                      {
                         mngr.SongDur();
@@ -123,7 +123,8 @@ public class HitBox : MonoBehaviour
             hitImg.Play();
                     mngr.LowerHP(P,0.05f);
                     Bomb = false;
-                    if (SongDurCounter)
+            InHitBox = false;
+            if (SongDurCounter)
                     {
                       mngr.SongDur();
                     }
@@ -136,7 +137,8 @@ public class HitBox : MonoBehaviour
             //Note.SetActive(false);
                     hitImg.Play();
                     PowerUp = false;
-                    mngr.MaxPU(P);
+            InHitBox = false;
+            mngr.MaxPU(P);
                     if (SongDurCounter)
                     {
                       mngr.SongDur();
