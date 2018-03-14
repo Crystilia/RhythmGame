@@ -60,7 +60,7 @@
 				}
 				else
 				{
-				v.vertex.xyz += v.normal.xyz * _ExtrudeAmt * sin(_Time.y/_SizeSpeed);
+				v.vertex.xyz += v.normal.xyz * _ExtrudeAmt * (1 + (sin(_Time.y/_SizeSpeed)));
 				//_Color += Color(1,0,0,1) * sin(_Time.y/_SizeSpeed);
 				}
 

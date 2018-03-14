@@ -93,7 +93,7 @@ public class Song_Generator : MonoBehaviour {
             {
                 NotePos = other.transform.position;
                 CurrentNote = Instantiate(BadNote, NotePos, Quaternion.identity);
-                CurrentNote.GetComponent<Rigidbody>().velocity = other.GetComponent<Rigidbody>().velocity;
+                CurrentNote.GetComponent<Rigidbody2D>().velocity = other.GetComponent<Rigidbody2D>().velocity;
                 Destroy(other);
             }
         }
@@ -104,7 +104,7 @@ public class Song_Generator : MonoBehaviour {
             {
                 NotePos = other.transform.position;
                 CurrentNote = Instantiate(GoodNote, NotePos, Quaternion.identity);
-                CurrentNote.GetComponent<Rigidbody>().velocity = other.GetComponent<Rigidbody>().velocity;
+                CurrentNote.GetComponent<Rigidbody2D>().velocity = other.GetComponent<Rigidbody2D>().velocity;
                 Destroy(other);
             }
         }

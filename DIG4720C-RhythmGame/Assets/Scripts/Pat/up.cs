@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class up : MonoBehaviour {
     Manager manager;
-    public Rigidbody rb;
+    public Rigidbody2D rb;
 
     // Use this for initialization
     void Start () {
         manager = GameObject.Find("Manager").GetComponent<Manager>();
-        rb = this.GetComponent<Rigidbody>();
-        rb.velocity = Vector3.up * manager.NoteSpeed;
+        rb = this.GetComponent<Rigidbody2D>();
+        rb.velocity = Vector2.up * manager.NoteSpeed;
     }
 	
 }

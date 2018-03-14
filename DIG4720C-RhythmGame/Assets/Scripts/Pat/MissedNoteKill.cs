@@ -10,7 +10,7 @@ public class MissedNoteKill : MonoBehaviour {
     void Start () {
         mngr = GameObject.Find("Manager").GetComponent<Manager>();
 	}
-    private void OnTriggerEnter(Collider note)
+    private void OnTriggerEnter2D(Collider2D note)
     {
         if(note.tag == "Note")
         {
@@ -19,19 +19,22 @@ public class MissedNoteKill : MonoBehaviour {
             {
                 mngr.SongDur();
             }
-            Destroy(note.gameObject);
+            note.gameObject.SetActive(false);
+            // Destroy(note.gameObject);
         }
-        if (note.tag == "Bomb")
+        else if (note.tag == "Bomb")
         {
-            Destroy(note.gameObject);
+            //  Destroy(note.gameObject);
+            note.gameObject.SetActive(false);
             if (SongDurCounter)
             {
                 mngr.SongDur();
             }
         }
-        if (note.tag == "PowerUp")
+        else if (note.tag == "PowerUp")
         {
-            Destroy(note.gameObject);
+            //  Destroy(note.gameObject);
+            note.gameObject.SetActive(false);
             if (SongDurCounter)
             {
                 mngr.SongDur();

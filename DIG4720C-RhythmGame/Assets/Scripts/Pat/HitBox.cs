@@ -28,8 +28,9 @@ public class HitBox : MonoBehaviour
         mngr = GameObject.Find("Manager").GetComponent<Manager>();
         hitImg = this.transform.GetComponentInChildren<ParticleSystem>();
     }
-        private void OnTriggerEnter(Collider note)
+        private void OnTriggerEnter2D(Collider2D note)
     {
+        note.GetComponent<MeshRenderer>().material.color = new Color(255, 0, 0);
         if (IsAI)
         {
             Rand = Random.Range(0, 101);
@@ -55,7 +56,7 @@ public class HitBox : MonoBehaviour
                 }
         }
 
-        if (note.gameObject.tag == "Note")
+        else if (note.gameObject.tag == "Note")
         {
             InHitBox = true;
             Note = note.gameObject;
@@ -74,18 +75,19 @@ public class HitBox : MonoBehaviour
         }
     }
 
-    private void OnTriggerExit(Collider note)
+    private void OnTriggerExit2D(Collider2D note)
     {
+        note.GetComponent<MeshRenderer>().material.color = new Color(0, 0, 0);
         if (note.gameObject.tag == "Note")
         {
             InHitBox = false;
         }
-        if (note.gameObject.tag == "Bomb")
+        else if (note.gameObject.tag == "Bomb")
         {
             InHitBox = false;
             Bomb = false;
         }
-        if (note.gameObject.tag == "PowerUp")
+        else if (note.gameObject.tag == "PowerUp")
         {
             InHitBox = false;
             PowerUp = false;
@@ -97,9 +99,11 @@ public class HitBox : MonoBehaviour
         if (Note != null && InHitBox && !Bomb && !PowerUp)
                 {
                     hitImg.Play();
-                  //  DisolveNote = Note.GetComponent<Material>();
-                    StartCoroutine(MyCorutine(6.87f, Note));
-                    mngr.RaisePU(P);
+            //  DisolveNote = Note.GetComponent<Material>();
+              StartCoroutine(MyCorutine(6.87f, Note));
+            Note.GetComponent<BoxCollider2D>().enabled = false;
+           // Note.SetActive(false);
+            mngr.RaisePU(P);
                     InHitBox = false;
                     if (SongDurCounter)
                      {
@@ -108,10 +112,12 @@ public class HitBox : MonoBehaviour
                 }
          else if (Note != null && InHitBox && Bomb && !PowerUp)
                 {
-                   // DisolveNote = Note.GetComponent<Material>();
-                    StartCoroutine(MyCorutine(6.87f, Note));
-                    hitImg.Play();
-                   // mngr.LowerHP(P,0.05f);
+            // DisolveNote = Note.GetComponent<Material>();
+                StartCoroutine(MyCorutine(6.87f, Note));
+            Note.GetComponent<BoxCollider2D>().enabled = false;
+           // Note.SetActive(false);
+            hitImg.Play();
+                    mngr.LowerHP(P,0.05f);
                     Bomb = false;
                     if (SongDurCounter)
                     {
@@ -120,8 +126,10 @@ public class HitBox : MonoBehaviour
         }
          else if (Note != null && InHitBox && !Bomb && PowerUp)
                 {
-                   // DisolveNote = Note.GetComponent<Material>();
-                    StartCoroutine(MyCorutine(6.87f, Note));
+            // DisolveNote = Note.GetComponent<Material>();
+               StartCoroutine(MyCorutine(6.87f, Note));
+            Note.GetComponent<BoxCollider2D>().enabled = false;
+            //Note.SetActive(false);
                     hitImg.Play();
                     PowerUp = false;
                     mngr.MaxPU(P);
@@ -141,40 +149,40 @@ public class HitBox : MonoBehaviour
                 hit(false);
             }
         }
-        if (i == 0 && Input.GetKeyDown(KeyCode.LeftArrow))
+        else if (i == 0 && Input.GetKeyDown(KeyCode.LeftArrow))
         {
             hit(true);
         }
-        if (i == 1 && Input.GetKeyDown(KeyCode.RightArrow))
+        else if (i == 1 && Input.GetKeyDown(KeyCode.RightArrow))
         {
             hit(true);
         }
-        if (i == 2 && Input.GetKeyDown(KeyCode.UpArrow))
+        else if (i == 2 && Input.GetKeyDown(KeyCode.UpArrow))
         {
             hit(true);
         }
-        if (i == 3 && Input.GetKeyDown(KeyCode.DownArrow))
+        else if (i == 3 && Input.GetKeyDown(KeyCode.DownArrow))
         {
             hit(true);
         }
-        if (i == 4 && Input.GetKeyDown(KeyCode.A))
+        else if (i == 4 && Input.GetKeyDown(KeyCode.A))
         {
             hit(false);
         }
-        if (i == 5 && Input.GetKeyDown(KeyCode.D))
+        else if (i == 5 && Input.GetKeyDown(KeyCode.D))
         {
             hit(false);
         }
-        if (i == 6 && Input.GetKeyDown(KeyCode.W))
+        else if (i == 6 && Input.GetKeyDown(KeyCode.W))
         {
             hit(false);
         }
-        if (i == 7 && Input.GetKeyDown(KeyCode.S))
+        else if (i == 7 && Input.GetKeyDown(KeyCode.S))
         {
             hit(false);
         }
     }
-    // Update is called once per frame
+
     void Update()
     {
         pressbutton(box);
@@ -182,34 +190,52 @@ public class HitBox : MonoBehaviour
 
     IEnumerator MyCorutine (float range, GameObject Note)
     {
-        while(range > 6.2f)
+        /* 
+        float size;
+        Material NoteMat = Note.GetComponent<MeshRenderer>().material;
+        int tag;
+        if (Note.tag == "PowerUp")
         {
-            range -= 1f * Time.smoothDeltaTime;
-            if (Note != null)
-            {
-                if (Note.tag == "PowerUp")
+            tag = 0;
+        }
+        else if (Note.tag == "Bomb")
+        {
+            tag = 1;
+        }
+        else
+        {
+            tag = 2;
+        }
+
+       while (range > 6.2f)
+        {
+            range -= 2f * Time.smoothDeltaTime;
+           // Debug.Log(range);
+                if (tag == 0)
                 {
-                    Note.GetComponent<MeshRenderer>().material.SetFloat("_DisolveStart", range);
-                    float size = Note.GetComponent<MeshRenderer>().material.GetFloat("_ExtrudeAmt");
-                    Note.GetComponent<MeshRenderer>().material.SetFloat("_ExtrudeAmt", size - .006f);
+                    NoteMat.SetFloat("_DisolveStart", range);
+                    size = NoteMat.GetFloat("_ExtrudeAmt");
+                    NoteMat.SetFloat("_ExtrudeAmt", size - .006f);
                 }
-                else if (Note.tag == "Bomb")
+                else if (tag == 1)
                 {
-                    Note.GetComponent<MeshRenderer>().material.SetFloat("_DisolveStart", range);
-                    float size = Note.GetComponent<MeshRenderer>().material.GetFloat("_ExtrudeAmt");
-                    Note.GetComponent<MeshRenderer>().material.SetFloat("_ExtrudeAmt", size + .07f);
-                    Note.GetComponent<MeshRenderer>().material.SetFloat("_TimeSize", 0f);
+                    NoteMat.SetFloat("_DisolveStart", range);
+                    size = NoteMat.GetFloat("_ExtrudeAmt");
+                    NoteMat.SetFloat("_ExtrudeAmt", size + .07f);
+                    NoteMat.SetFloat("_TimeSize", 0f);
                 }
                 else
                 {
-                    Note.GetComponent<MeshRenderer>().material.SetFloat("_DisolveStart", range);
-                    float size = Note.GetComponent<MeshRenderer>().material.GetFloat("_ExtrudeAmt");
-                    Note.GetComponent<MeshRenderer>().material.SetFloat("_ExtrudeAmt", size + .009f);
+                    NoteMat.SetFloat("_DisolveStart", range);
+                    size = NoteMat.GetFloat("_ExtrudeAmt");
+                    NoteMat.SetFloat("_ExtrudeAmt", size + .009f);
                 }
-            }
             yield return null;
 
         }
-        Destroy(Note);
+        */
+        float  DeletethisF = range;
+        Note.SetActive(false);
+        yield return null;
     }
 }

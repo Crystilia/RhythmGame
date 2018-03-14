@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 33388178918388906}
   - component: {fileID: 23989476542680776}
   - component: {fileID: 114936766680989134}
-  - component: {fileID: 65438477040535394}
+  - component: {fileID: 61956732883606684}
   m_Layer: 8
   m_Name: HitBox
   m_TagString: Untagged
@@ -45,7 +45,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &4048247224887448
 Transform:
@@ -88,7 +88,7 @@ MeshRenderer:
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
   m_Materials:
-  - {fileID: 2100000, guid: c9e6294c9d11cb8d11006bf944295342, type: 2}
+  - {fileID: 2100000, guid: 0d56050af59dc0b49b6d877085d64172, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -114,19 +114,32 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1118088432036542}
-  m_Mesh: {fileID: 4300006, guid: 672e8b316e6b21349ac31f00b977b8f1, type: 3}
---- !u!65 &65438477040535394
-BoxCollider:
+  m_Mesh: {fileID: 4300000, guid: c45f9544da9feb440b8cc08f60654911, type: 3}
+--- !u!61 &61956732883606684
+BoxCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1118088432036542}
+  m_Enabled: 1
+  m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.5786128, y: 1.705246, z: 3.082255}
-  m_Center: {x: -0.015381217, y: -0.031669617, z: -1.0411272}
+  m_Size: {x: 1.6, y: 1.6}
+  m_EdgeRadius: 0
 --- !u!114 &114936766680989134
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -142,6 +155,9 @@ MonoBehaviour:
   hitImg: {fileID: 0}
   DisolveNote: {fileID: 2100000, guid: 973e6d725172486478d9ede092a0a13f, type: 2}
   DisolveBomb: {fileID: 0}
+  IsAI: 0
+  AIlvl: 0
+  SongDurCounter: 1
 --- !u!198 &198247026219273642
 ParticleSystem:
   m_ObjectHideFlags: 1

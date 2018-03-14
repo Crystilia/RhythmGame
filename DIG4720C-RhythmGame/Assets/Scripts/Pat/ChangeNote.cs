@@ -9,7 +9,7 @@ public class ChangeNote : MonoBehaviour {
         sg = GameObject.Find("SongManager").GetComponent<Song_Generator>();
 	}
 
-    void OnTriggerEnter(Collider other)
+    void OnTriggerEnter2D(Collider2D other)
     {
         sg.Rand(other.gameObject);
     }

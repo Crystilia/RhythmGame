@@ -72,7 +72,7 @@ Material:
     - _DetailNormalMapScale: 1
     - _DisolveHeight: 0
     - _DisolveSize: 0.5
-    - _DisolveStart: 2.4
+    - _DisolveStart: 8
     - _DstBlend: 0
     - _ExtrudeAmt: 0.02
     - _GlossMapScale: 1
@@ -83,9 +83,12 @@ Material:
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
+    - _ShadowI: 10
+    - _SizeSpeed: 0.1
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
+    - _TimeSize: 0
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
