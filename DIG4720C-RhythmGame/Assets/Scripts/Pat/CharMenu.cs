@@ -17,13 +17,17 @@ public class CharMenu : MonoBehaviour {
     {
 
         Time.timeScale = 1f;
-        
-           // PlayerPrefs.SetInt("P1Flag", 0);
-          //  PlayerPrefs.SetInt("FightFlag", 1);
-            Players[0] = GameObject.Find("PatsPlayer");
-            Players[1] = GameObject.Find("PatsPlayer (1)");
-            Players[2] = GameObject.Find("PatsPlayer (2)");
-            Players[3] = GameObject.Find("PatsPlayer (3)");
+
+        // PlayerPrefs.SetInt("P1Flag", 0);
+        //  PlayerPrefs.SetInt("FightFlag", 1);
+        for (int i = 0; i < 4; i++)
+        {
+            Players[i] = GameObject.Find("Players").transform.GetChild(i).gameObject;
+        }
+        //  Players[0] = GameObject.Find("PatsPlayer");
+        //  Players[1] = GameObject.Find("PatsPlayer (1)");
+        //  Players[2] = GameObject.Find("PatsPlayer (2)");
+        //  Players[3] = GameObject.Find("PatsPlayer (3)");
 
         if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("CharSelect") || SceneManager.GetActiveScene() == SceneManager.GetSceneByName("MultiplayerCharSelect"))
         {

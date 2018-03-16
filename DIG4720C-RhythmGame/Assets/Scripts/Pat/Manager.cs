@@ -25,8 +25,8 @@ public class Manager : MonoBehaviour
     public bool canB = true;
     Animator player1;
     Animator player2;
-    float P1atkTime;
-    float P2atkTime;
+    public float P1atkTime;
+    public float P2atkTime;
     bool P1Drain;
     bool P2Drain;
     float CurrentP1DMG = 200;
@@ -41,14 +41,16 @@ public class Manager : MonoBehaviour
     public GameObject P2LH;
     public GameObject P1;
     public GameObject P2;
-    float P1AtkSpeed = 15;
-    float P2AtkSpeed = 15;
+    float P1AtkSpeed = 2f;
+    float P2AtkSpeed = 2f;
     public AM AudioManager;
     public GameObject button;
+    Quaternion rot;
+    Vector3 pos;
     // Use this for initialization
     void Start()
     {
-       
+
         SG = GameObject.Find("SongManager").GetComponent<Song_Generator>();
         AudioManager = GameObject.Find("AM").GetComponent<AM>();
         player1 = GameObject.Find("P1").GetComponentInChildren<Animator>();
@@ -62,12 +64,15 @@ public class Manager : MonoBehaviour
         P2PU = GameObject.Find("P2PU").GetComponent<Image>();
         P2HP.fillAmount = P2CurrentHP;
         P2PU.fillAmount = P2CurrentPU;
-        player1.SetInteger("AnimState", 1);
-        player2.SetInteger("AnimState", 1);
+        player1.SetInteger("AnimState", 6);
+        player2.SetInteger("AnimState", 6);
 
         // edit these
-        P1LH = GameObject.Find("QuickRigCharacter1_Ctrl_LeftHand");
-        P2LH = GameObject.Find("QuickRigCharacter1_Ctrl_RightHand");
+        P1LH = player1.GetComponentInParent<Transform>().GetChild(3).gameObject;
+        P2LH = player2.GetComponentInParent<Transform>().GetChild(4).gameObject;
+
+        //    P1LH = GameObject.Find("QuickRigCharacter1_Ctrl_LeftHand");
+        //    P2LH = GameObject.Find("QuickRigCharacter1_Ctrl_RightHand");
         //button = GameObject.Find("Next Button");
         if (gameover != null)
         {
@@ -96,7 +101,7 @@ public class Manager : MonoBehaviour
                 gameoverMenu.SetActive(true);
                 gameover.GetComponent<TextMeshProUGUI>().text = "P2 Wins!";
                 canB = false;
-                
+
             }
         }
         if (!P)
@@ -200,7 +205,7 @@ public class Manager : MonoBehaviour
             if (button != null)
             {
                 button.SetActive(false);
-        }
+            }
         }
         else if (SG.MaxNotes == 0)
         {
@@ -267,7 +272,6 @@ public class Manager : MonoBehaviour
         {
             P2Drain = false;
             AttackAnim(false, CurrentP2DMG);
-            LowerHP(false, CurrentP1DMG);
             P2CurrentHP = P2CurrentHP + CurrentP2DMG;
             if (P2CurrentHP > 1)
             {
@@ -275,10 +279,10 @@ public class Manager : MonoBehaviour
             }
             P2HP.fillAmount = P2CurrentHP;
             P2CurrentPU = 0;
-            CurrentP2DMG = 0;
             P2PU.fillAmount = P2CurrentPU;
             p2canUseSpecial = false;
             P2PU.color = new Color(1.0f, 0.0f, 1.0f, 1.0f);
+            CurrentP2DMG = 0;
             AudioManager.soundSrc[2].PlayOneShot(AudioManager.sfx[1]);
         }
     }
@@ -287,15 +291,21 @@ public class Manager : MonoBehaviour
     {
         if (P)
         {
-            player1.SetInteger("AnimState", 2);
+            rot = player1.GetComponent<Transform>().rotation;
+            pos = player1.GetComponent<Transform>().position;
+            player1.SetInteger("AnimState", 1);
             P1ATK.SetActive(true);
+            player1.applyRootMotion = true;
             P1ATK.transform.SetParent(P1LH.transform);
             P1ATK.transform.SetPositionAndRotation(P1LH.transform.position, P1LH.transform.rotation);
             StartCoroutine(Attacker(P1atkTime, 0.3f, player1, DMG, !P));
         }
         else
         {
+            rot = player2.GetComponent<Transform>().rotation;
+            pos = player2.GetComponent<Transform>().position;
             player2.SetInteger("AnimState", 2);
+            player2.applyRootMotion = true;
             P2ATK.SetActive(true);
             P2ATK.transform.SetParent(P2LH.transform);
             P2ATK.transform.SetPositionAndRotation(P2LH.transform.position, P2LH.transform.rotation);
@@ -307,34 +317,55 @@ public class Manager : MonoBehaviour
     IEnumerator Attacker(float clip, float time, Animator anim, float DMG, bool player)
     {
         yield return new WaitForSeconds(clip - time);
-        anim.SetInteger("AnimState", 1);
-
-        if (player)
+        anim.SetInteger("AnimState", 6);
+        anim.applyRootMotion = false;
+        
+        if (player == false)
         {
+            StartCoroutine(resetRot(player1.GetComponent<Transform>(), rot));
+            StartCoroutine(resetPos(player1.GetComponent<Transform>(), pos));
             P1ATK.transform.parent.DetachChildren();
             while (Vector3.Distance(P1ATK.transform.position, P2.transform.position) > 0.05f)
             {
-                P1ATK.transform.position = Vector3.Lerp(P1ATK.transform.position, P2.transform.position, Time.fixedDeltaTime * P1AtkSpeed);
+                P1ATK.transform.position = Vector3.Lerp(P1ATK.transform.position, P2.transform.position, Time.smoothDeltaTime * P1AtkSpeed);
                 yield return null;
             }
-            LowerHP(player, DMG);
+          //  LowerHP(player, DMG);
             AudioManager.soundSrc[1].PlayOneShot(AudioManager.sfx[0]);
             P1ATK.SetActive(false);
         }
-        else
+        else if (player == true)
         {
+            StartCoroutine(resetRot(player2.GetComponent<Transform>(), rot));
+            StartCoroutine(resetPos(player2.GetComponent<Transform>(), pos));
             P2ATK.transform.parent.DetachChildren();
             while (Vector3.Distance(P2ATK.transform.position, P1.transform.position) > 0.05f)
             {
-                P2ATK.transform.position = Vector3.Lerp(P2ATK.transform.position, P1.transform.position, Time.fixedDeltaTime * P2AtkSpeed);
+                P2ATK.transform.position = Vector3.Lerp(P2ATK.transform.position, P1.transform.position, Time.smoothDeltaTime * P2AtkSpeed);
                 yield return null;
             }
-            LowerHP(player, DMG);
+           // LowerHP(player, DMG);
             AudioManager.soundSrc[2].PlayOneShot(AudioManager.sfx[0]);
             P2ATK.SetActive(false);
         }
     }
 
+    IEnumerator resetPos(Transform player, Vector3 OrgPos)
+    {
+        while (Vector3.Distance(player.position, OrgPos) > 0.05f)
+        {
+            player.position = Vector3.Lerp(player.position, OrgPos, Time.smoothDeltaTime * 500);
+            yield return null;
+        }
+    }
+    IEnumerator resetRot(Transform player, Quaternion OrgRot)
+    {
+        while (player.transform.rotation.y != OrgRot.y)
+        {
+            player.rotation = Quaternion.RotateTowards(player.rotation, OrgRot, Time.smoothDeltaTime * 500);
+            yield return null;
+        }
+    }
     // Update is called once per frame
     void Update()
     {
@@ -345,7 +376,6 @@ public class Manager : MonoBehaviour
     public void UpdateAnimClipTimes()
     {
             AnimationClip[] p1clips = player1.runtimeAnimatorController.animationClips;
-            AnimationClip[] p2clips = player2.runtimeAnimatorController.animationClips;
         foreach (AnimationClip clip in p1clips)
             {
                 switch (clip.name)
@@ -353,10 +383,17 @@ public class Manager : MonoBehaviour
                     case "ATK":
                         P1atkTime = clip.length;
                         break;
-                    default:
-                        return;
+                    case "ATKL":
+                        P1atkTime = clip.length;
+                        break;
+                    case "ATKR":
+                        P1atkTime = clip.length;
+                        break;
+                default:
+                        break;
                 }
             }
+        AnimationClip[] p2clips = player2.runtimeAnimatorController.animationClips;
         foreach (AnimationClip clip in p2clips)
         {
             switch (clip.name)
@@ -364,9 +401,15 @@ public class Manager : MonoBehaviour
                 case "ATK":
                     P2atkTime = clip.length;
                     break;
+                case "ATKL":
+                    P2atkTime = clip.length;
+                    break;
+                case "ATKR":
+                    P2atkTime = clip.length;
+                    break;
                 default:
-                    return;
+                    break;
             }
         }
-    }      
+    }
 }
