@@ -23,8 +23,8 @@ public class Manager : MonoBehaviour
     public GameObject gameover;
     public GameObject gameoverMenu;
     public bool canB = true;
-    Animator player1;
-    Animator player2;
+    public Animator player1;
+    public Animator player2;
     public float P1atkTime;
     public float P2atkTime;
     bool P1Drain;
