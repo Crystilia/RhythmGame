@@ -330,7 +330,7 @@ public class Manager : MonoBehaviour
                 P1ATK.transform.position = Vector3.Lerp(P1ATK.transform.position, P2.transform.position, Time.smoothDeltaTime * P1AtkSpeed);
                 yield return null;
             }
-          //  LowerHP(player, DMG);
+            LowerHP(player, DMG);
             AudioManager.soundSrc[1].PlayOneShot(AudioManager.sfx[0]);
             P1ATK.SetActive(false);
         }
@@ -344,7 +344,7 @@ public class Manager : MonoBehaviour
                 P2ATK.transform.position = Vector3.Lerp(P2ATK.transform.position, P1.transform.position, Time.smoothDeltaTime * P2AtkSpeed);
                 yield return null;
             }
-           // LowerHP(player, DMG);
+            LowerHP(player, DMG);
             AudioManager.soundSrc[2].PlayOneShot(AudioManager.sfx[0]);
             P2ATK.SetActive(false);
         }
