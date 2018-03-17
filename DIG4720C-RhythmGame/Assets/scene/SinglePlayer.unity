@@ -310,6 +310,8 @@ MonoBehaviour:
   gameover: {fileID: 929071436}
   gameoverMenu: {fileID: 761254947}
   canB: 1
+  player1: {fileID: 0}
+  player2: {fileID: 0}
   P1atkTime: 0
   P2atkTime: 0
   P1ATK: {fileID: 2072917742}
@@ -1670,6 +1672,21 @@ Prefab:
     - target: {fileID: 4827219431957962, guid: b86c397f7a4e691469bbb90ae68f12ab, type: 2}
       propertyPath: m_RootOrder
       value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 114097507579776228, guid: b86c397f7a4e691469bbb90ae68f12ab,
+        type: 2}
+      propertyPath: offset
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114458323391730580, guid: b86c397f7a4e691469bbb90ae68f12ab,
+        type: 2}
+      propertyPath: offset
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114458323391730580, guid: b86c397f7a4e691469bbb90ae68f12ab,
+        type: 2}
+      propertyPath: _offset
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b86c397f7a4e691469bbb90ae68f12ab, type: 2}

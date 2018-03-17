@@ -47,6 +47,9 @@ public class Manager : MonoBehaviour
     public GameObject button;
     Quaternion rot;
     Vector3 pos;
+    private bool P2Dodge;
+    private bool P1Dodge;
+
     // Use this for initialization
     void Start()
     {
@@ -328,11 +331,31 @@ public class Manager : MonoBehaviour
             while (Vector3.Distance(P1ATK.transform.position, P2.transform.position) > 0.05f)
             {
                 P1ATK.transform.position = Vector3.Lerp(P1ATK.transform.position, P2.transform.position, Time.smoothDeltaTime * P1AtkSpeed);
+
+                if (Vector3.Distance(P1ATK.transform.position, P2.transform.position) < 1f)
+                {
+                    if (P2Dodge == false)
+                    {
+                        player2.SetInteger("AnimState", 8);
+                    }
+                    else
+                    {
+                        player2.SetInteger("AnimState", 3);
+                    }
+                }
                 yield return null;
             }
-            LowerHP(player, DMG);
-            AudioManager.soundSrc[1].PlayOneShot(AudioManager.sfx[0]);
-            P1ATK.SetActive(false);
+
+            if (P2Dodge == false)
+            {
+                LowerHP(player, DMG);
+                AudioManager.soundSrc[1].PlayOneShot(AudioManager.sfx[0]);
+                P1ATK.SetActive(false);
+            }
+            else
+            {
+                AudioManager.soundSrc[1].PlayOneShot(AudioManager.sfx[2]);
+            }
         }
         else if (player == true)
         {
@@ -342,11 +365,32 @@ public class Manager : MonoBehaviour
             while (Vector3.Distance(P2ATK.transform.position, P1.transform.position) > 0.05f)
             {
                 P2ATK.transform.position = Vector3.Lerp(P2ATK.transform.position, P1.transform.position, Time.smoothDeltaTime * P2AtkSpeed);
+                if (Vector3.Distance(P1ATK.transform.position, P2.transform.position) < 1f)
+                {
+                    if (P1Dodge == false)
+                    {
+                        player1.SetInteger("AnimState", 8);
+                    }
+                    else
+                    {
+                        player1.SetInteger("AnimState", 3);
+                    }
+                }
                 yield return null;
             }
             LowerHP(player, DMG);
             AudioManager.soundSrc[2].PlayOneShot(AudioManager.sfx[0]);
             P2ATK.SetActive(false);
+            if (P1Dodge == false)
+            {
+                LowerHP(player, DMG);
+                AudioManager.soundSrc[2].PlayOneShot(AudioManager.sfx[0]);
+                P2ATK.SetActive(false);
+            }
+            else
+            {
+                AudioManager.soundSrc[2].PlayOneShot(AudioManager.sfx[2]);
+            }
         }
     }
 
