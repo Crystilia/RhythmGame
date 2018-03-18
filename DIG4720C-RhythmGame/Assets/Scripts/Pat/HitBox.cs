@@ -21,7 +21,25 @@ public class HitBox : MonoBehaviour
     //[Range(1.7f, 3)]
     //public float Disolver;
     // Use this for initialization
-
+    private void Awake()
+    {
+        if (box == 0 || box == 4)
+        {
+            this.GetComponent<MeshRenderer>().material.color = new Color(1, 0, 1);
+        }
+        else if (box == 1 || box == 5)
+        {
+            this.GetComponent<MeshRenderer>().material.color = new Color(1, 1, 0);
+        }
+        else if (box == 2 || box == 6)
+        {
+            this.GetComponent<MeshRenderer>().material.color = new Color(0, 1, 1);
+        }
+        else if (box == 3 || box == 7)
+        {
+            this.GetComponent<MeshRenderer>().material.color = new Color(0, 1, 0);
+        }
+    }
     private void Start()
     {
         AIHitPercent = PlayerPrefs.GetInt("AI");
@@ -31,7 +49,7 @@ public class HitBox : MonoBehaviour
         private void OnTriggerEnter2D(Collider2D note)
     {
         Note = null;
-       note.GetComponent<MeshRenderer>().material.color = new Color(255, 0, 0);
+       note.GetComponent<MeshRenderer>().material.color = new Color(1, 0, 0);
         if (IsAI)
         {
             Rand = Random.Range(0, 101);
