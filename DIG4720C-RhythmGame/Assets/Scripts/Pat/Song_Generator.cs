@@ -26,6 +26,11 @@ public class Song_Generator : MonoBehaviour {
     float spready;
     private GameObject current_note;
     private float curPos;
+    private Quaternion rot1;
+    private Quaternion rot2;
+    private Quaternion rot3;
+    private Quaternion rot4;
+
     // Use this for initialization
     void Start () {
         spawner = GameObject.Find("NoteSpawn").GetComponent<Transform>();
@@ -33,6 +38,11 @@ public class Song_Generator : MonoBehaviour {
         spawnx = manager.NoteSpawnX;
         spawny = manager.NoteSpawnY;
         spready = manager.NoteSpreadY;
+        rot1 = GameObject.Find("HitBox").transform.rotation;
+        rot2 = GameObject.Find("HitBox (1)").transform.rotation;
+        rot3 = GameObject.Find("HitBox (2)").transform.rotation;
+        rot4 = GameObject.Find("HitBox (3)").transform.rotation;
+
         GenerateSong();
     }
 
@@ -71,18 +81,22 @@ public class Song_Generator : MonoBehaviour {
                 if (curPos == 0 )
                 {
                     current_note.GetComponent<MeshRenderer>().material.color = new Color(1, 0, 1);
+                    current_note.transform.rotation = rot1;
                 }
                 else if (curPos == 2 )
                 {
                     current_note.GetComponent<MeshRenderer>().material.color = new Color(1, 1, 0);
+                    current_note.transform.rotation = rot2;
                 }
                 else if (curPos == 4 )
                 {
                     current_note.GetComponent<MeshRenderer>().material.color = new Color(0, 1, 1);
+                    current_note.transform.rotation = rot3;
                 }
                 else if (curPos == 6 )
                 {
                     current_note.GetComponent<MeshRenderer>().material.color = new Color(0, 1, 0);
+                    current_note.transform.rotation = rot4;
                 }
                 MaxNotes++;
             }
@@ -97,18 +111,22 @@ public class Song_Generator : MonoBehaviour {
                 if (curPos == 12)
                 {
                     current_note.GetComponent<MeshRenderer>().material.color = new Color(1, 0, 1);
+                    current_note.transform.rotation = rot1;
                 }
                 else if (curPos == 14)
                 {
                     current_note.GetComponent<MeshRenderer>().material.color = new Color(1, 1, 0);
+                    current_note.transform.rotation = rot2;
                 }
                 else if (curPos == 16)
                 {
                     current_note.GetComponent<MeshRenderer>().material.color = new Color(0, 1, 1);
+                    current_note.transform.rotation = rot3;
                 }
                 else if (curPos == 18)
                 {
                     current_note.GetComponent<MeshRenderer>().material.color = new Color(0, 1, 0);
+                    current_note.transform.rotation = rot4;
                 }
             }
         }
