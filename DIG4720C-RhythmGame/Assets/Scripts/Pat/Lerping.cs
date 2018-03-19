@@ -14,6 +14,7 @@ public class Lerping : MonoBehaviour
         {
             mngr = GameObject.Find("Manager").GetComponent<Manager>();
         mngr.player1.SetInteger("AnimState", 4);
+        mngr.player2.SetInteger("AnimState", 4);
         startTime = Time.time;
             journeyLength = Vector3.Distance(startMarker.position, endMarker.position);
             StartCoroutine(lerper(startMarker, endMarker));
@@ -31,10 +32,13 @@ public class Lerping : MonoBehaviour
             float fracJourney = distCovered / journeyLength;
             transform.position = Vector3.Lerp(start.position, end.position, fracJourney);
             if (Vector3.Distance(transform.position, end.transform.position) < 2f)
+            {
                 mngr.player1.SetInteger("AnimState", 5);
+                mngr.player2.SetInteger("AnimState", 5);
+            }
             yield return null;
         }
         mngr.player1.SetInteger("AnimState", 6);
-
+        mngr.player2.SetInteger("AnimState", 6);
     }
 }

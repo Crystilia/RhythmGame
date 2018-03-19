@@ -24,6 +24,8 @@ public class Song_Generator : MonoBehaviour {
     float spawnx;
     float spawny;
     float spready;
+    private GameObject current_note;
+    private float curPos;
     // Use this for initialization
     void Start () {
         spawner = GameObject.Find("NoteSpawn").GetComponent<Transform>();
@@ -64,7 +66,24 @@ public class Song_Generator : MonoBehaviour {
                 // multiply x to create space between notes, add to x to shift all notes left or right.
              
                 Vector2 ArrNotePos = new Vector2(x* spawnx, (y* spready) + spawny);
-                Instantiate(Note.BasicNote, ArrNotePos, Quaternion.identity, spawner);
+                current_note = Instantiate(Note.BasicNote, ArrNotePos, Quaternion.identity, spawner);
+                curPos = current_note.transform.position.x;
+                if (curPos == 0 )
+                {
+                    current_note.GetComponent<MeshRenderer>().material.color = new Color(1, 0, 1);
+                }
+                else if (curPos == 2 )
+                {
+                    current_note.GetComponent<MeshRenderer>().material.color = new Color(1, 1, 0);
+                }
+                else if (curPos == 4 )
+                {
+                    current_note.GetComponent<MeshRenderer>().material.color = new Color(0, 1, 1);
+                }
+                else if (curPos == 6 )
+                {
+                    current_note.GetComponent<MeshRenderer>().material.color = new Color(0, 1, 0);
+                }
                 MaxNotes++;
             }
             //player 2
@@ -73,7 +92,24 @@ public class Song_Generator : MonoBehaviour {
                 // multiply x to create space between notes, add to x to shift all notes left or right.
 
                 Vector2 ArrNotePos = new Vector2((x* spawnx) +12, (y * spready) + spawny);
-                Instantiate(Note.BasicNote, ArrNotePos, Quaternion.identity, spawner);
+                current_note = Instantiate(Note.BasicNote, ArrNotePos, Quaternion.identity, spawner);
+                curPos = current_note.transform.position.x;
+                if (curPos == 12)
+                {
+                    current_note.GetComponent<MeshRenderer>().material.color = new Color(1, 0, 1);
+                }
+                else if (curPos == 14)
+                {
+                    current_note.GetComponent<MeshRenderer>().material.color = new Color(1, 1, 0);
+                }
+                else if (curPos == 16)
+                {
+                    current_note.GetComponent<MeshRenderer>().material.color = new Color(0, 1, 1);
+                }
+                else if (curPos == 18)
+                {
+                    current_note.GetComponent<MeshRenderer>().material.color = new Color(0, 1, 0);
+                }
             }
         }
         if(count)

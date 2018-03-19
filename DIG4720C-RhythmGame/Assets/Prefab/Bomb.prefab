@@ -173,6 +173,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 0}
+  bomb: 1
+  startC: {r: 1, g: 1, b: 1, a: 0}
+  nextC: {r: 1, g: 0, b: 0, a: 0}
+  speed: 0.09
+  rate: 0.1
 --- !u!198 &198505755281070292
 ParticleSystem:
   m_ObjectHideFlags: 1
