@@ -13,9 +13,9 @@ public class CharMenu : MonoBehaviour {
     public Vector3 P1Spot = new Vector3(1.85f, 226.41f, 5.08f);
     public static bool first = true;
     public PauseMenu Pause;
+    private Manager mngr;
     private void Start()
     {
-
         Time.timeScale = 1f;
 
         // PlayerPrefs.SetInt("P1Flag", 0);
@@ -61,11 +61,14 @@ public class CharMenu : MonoBehaviour {
             P2Spot = new Vector3(32f, 226.41f, 5.08f);
             P1.position = P1Spot;
             P2.position = P2Spot;// Vector3(P2.transform.position.x,P2.transform.position.y,P2.transform.position.z);
+            mngr = GameObject.Find("Manager").GetComponent<Manager>();
 
         }
         if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("SinglePlayer"))
         {
-           // Pause = GameObject.Find("PauseMenu").GetComponent<PauseMenu>();
+            mngr = GameObject.Find("Manager").GetComponent<Manager>();
+
+            // Pause = GameObject.Find("PauseMenu").GetComponent<PauseMenu>();
             P1 = GameObject.Find("P1").transform;
             P2 = GameObject.Find("P2").transform;
             PlayerButton(PlayerPrefs.GetInt("Player1Pref"));
@@ -93,7 +96,7 @@ public class CharMenu : MonoBehaviour {
             P2Spot = new Vector3(32f, 226.41f, 5.08f);
             P1.position = P1Spot;
             P2.position = P2Spot;// Vector3(P2.transform.position.x,P2.transform.position.y,P2.transform.position.z);
-
+            mngr.isAI = true;
         }
     }
     public void SinglePlayerStart()

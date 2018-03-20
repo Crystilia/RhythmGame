@@ -53,6 +53,11 @@ public class Manager : MonoBehaviour
     public Animator DoorR;
     public Lerping P1Lerp;
     public Lerping P2Lerp;
+    public bool p1activeATK = false;
+    public bool p2activeATK = false;
+    public bool isAI = false;
+    private int Rand;
+    private bool AIHit = false;
 
     // Use this for initialization
     void Start()
@@ -141,7 +146,7 @@ public class Manager : MonoBehaviour
                 P1PU.color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
             }
         }
-        if (!P)
+        if (P == false)
         {
             if (P2PU.fillAmount < 1f)
             {
@@ -152,6 +157,7 @@ public class Manager : MonoBehaviour
             {
                 P2CurrentPU = 1f;
                 p2canUseSpecial = true;
+                AIHit = true;
                 P2PU.fillAmount = P2CurrentPU;
                 P2PU.color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
             }
@@ -246,73 +252,122 @@ public class Manager : MonoBehaviour
 
     public void StartATK()
     {
-        //player1 attack
-        if (p1canUseSpecial && Input.GetKeyDown(KeyCode.Space))
+        if (p2activeATK == false)
         {
-            P1PU.color = new Color(0.0f, 1.0f, 1.0f, 1.0f);
-            P1Drain = true;
-            P1DMG = (200 / P1Uses);
-            P1Uses++;
+            //player1 attack
+            if (p1canUseSpecial && Input.GetKeyDown(KeyCode.Space))
+            {
+                p1activeATK = true;
+                P1PU.color = new Color(0.0f, 1.0f, 1.0f, 1.0f);
+                P1Drain = true;
+                P1DMG = (200 / P1Uses);
+                P1Uses++;
+
+            }
+            if (P1Drain)
+            {
+                // P1PU.fillAmount = (P1CurrentPU - (0.1f * Time.deltaTime));
+                P1DMG -= 1;
+                CurrentP1DMG = Mathf.Clamp01((P1DMG / 200f));
+                P1PU.fillAmount = CurrentP1DMG;
+                P1CurrentPU = P1PU.fillAmount;
+
+            }
+            if (p1canUseSpecial && Input.GetKeyUp(KeyCode.Space))
+            {
+                P1Drain = false;
+                AttackAnim(true, CurrentP1DMG);
+                P1CurrentHP = P1CurrentHP + CurrentP1DMG;
+                if (P1CurrentHP > 1)
+                {
+                    P1CurrentHP = 1;
+                }
+                P1HP.fillAmount = P1CurrentHP;
+                P1CurrentPU = 0;
+                P1PU.fillAmount = P1CurrentPU;
+                p1canUseSpecial = false;
+                P1PU.color = new Color(1.0f, 0.0f, 1.0f, 1.0f);
+                CurrentP1DMG = 0;
+                AudioManager.soundSrc[1].PlayOneShot(AudioManager.sfx[0]);
+            }
         }
-        if (P1Drain)
+            //player2 attack
+            if (p1activeATK == false && isAI == false)
+            {
+                if (p2canUseSpecial && Input.GetKeyDown(KeyCode.B) && isAI == false)
+                {
+                p2activeATK = true;
+                P2PU.color = new Color(0.0f, 1.0f, 1.0f, 1.0f);
+                    P2Drain = true;
+                    P2DMG = (200 / P2Uses);
+                    P2Uses++;
+                }
+                if (P2Drain)
+                {
+                    P2DMG -= 1;
+                    CurrentP2DMG = Mathf.Clamp01((P2DMG / 200f));
+                    P2PU.fillAmount = CurrentP2DMG;
+                    P2CurrentPU = P2PU.fillAmount;
+                }
+                if (p2canUseSpecial && Input.GetKeyUp(KeyCode.B) && isAI == false)
+                {
+                    P2Drain = false;
+                    AttackAnim(false, CurrentP2DMG);
+                    P2CurrentHP = P2CurrentHP + CurrentP2DMG;
+                    if (P2CurrentHP > 1)
+                    {
+                        P2CurrentHP = 1;
+                    }
+                    P2HP.fillAmount = P2CurrentHP;
+                    P2CurrentPU = 0;
+                    P2PU.fillAmount = P2CurrentPU;
+                    p2canUseSpecial = false;
+                    P2PU.color = new Color(1.0f, 0.0f, 1.0f, 1.0f);
+                    CurrentP2DMG = 0;
+                    AudioManager.soundSrc[2].PlayOneShot(AudioManager.sfx[1]);
+                }
+            }
+            else if (isAI)
         {
-            // P1PU.fillAmount = (P1CurrentPU - (0.1f * Time.deltaTime));
-            P1DMG -= 1;
-            CurrentP1DMG = Mathf.Clamp01((P1DMG / 200f));
-            P1PU.fillAmount = CurrentP1DMG;
-            P1CurrentPU = P1PU.fillAmount;
+           
+            if (p2canUseSpecial && AIHit)
+            {
+                p2activeATK = true;
+                P2PU.color = new Color(0.0f, 1.0f, 1.0f, 1.0f);
+                P2Drain = true;
+                P2DMG = (200 / P2Uses);
+                P2Uses++;
+                AIHit = false;
+            }
+            if (P2Drain)
+            {
+                P2DMG -= 1;
+                CurrentP2DMG = Mathf.Clamp01((P2DMG / 200f));
+                P2PU.fillAmount = CurrentP2DMG;
+                P2CurrentPU = P2PU.fillAmount;
+                Rand = Random.Range(0, 31);
+            }
+            if (p2canUseSpecial && Rand == 5)
+            {
+                P2Drain = false;
+                AttackAnim(false, CurrentP2DMG);
+                P2CurrentHP = P2CurrentHP + CurrentP2DMG;
+                if (P2CurrentHP > 1)
+                {
+                    P2CurrentHP = 1;
+                }
+                P2HP.fillAmount = P2CurrentHP;
+                P2CurrentPU = 0;
+                P2PU.fillAmount = P2CurrentPU;
+                p2canUseSpecial = false;
+                P2PU.color = new Color(1.0f, 0.0f, 1.0f, 1.0f);
+                CurrentP2DMG = 0;
+                AudioManager.soundSrc[2].PlayOneShot(AudioManager.sfx[1]);
+            }
 
         }
-        if (p1canUseSpecial && Input.GetKeyUp(KeyCode.Space))
-        {
-            P1Drain = false;
-            AttackAnim(true, CurrentP1DMG);
-            P1CurrentHP = P1CurrentHP + CurrentP1DMG;
-            if (P1CurrentHP > 1)
-            {
-                P1CurrentHP = 1;
-            }
-            P1HP.fillAmount = P1CurrentHP;
-            P1CurrentPU = 0;
-            P1PU.fillAmount = P1CurrentPU;
-            p1canUseSpecial = false;
-            P1PU.color = new Color(1.0f, 0.0f, 1.0f, 1.0f);
-            CurrentP1DMG = 0;
-            AudioManager.soundSrc[1].PlayOneShot(AudioManager.sfx[0]);
         }
-        //player2 attack
-        if (p2canUseSpecial && Input.GetKeyDown(KeyCode.B))
-        {
-            P2PU.color = new Color(0.0f, 1.0f, 1.0f, 1.0f);
-            P2Drain = true;
-            P2DMG = (200 / P2Uses);
-            P2Uses++;
-        }
-        if (P2Drain)
-        {
-            P2DMG -= 1;
-            CurrentP2DMG = Mathf.Clamp01((P2DMG / 200f));
-            P2PU.fillAmount = CurrentP2DMG;
-            P2CurrentPU = P2PU.fillAmount;
-        }
-        if (p2canUseSpecial && Input.GetKeyUp(KeyCode.B))
-        {
-            P2Drain = false;
-            AttackAnim(false, CurrentP2DMG);
-            P2CurrentHP = P2CurrentHP + CurrentP2DMG;
-            if (P2CurrentHP > 1)
-            {
-                P2CurrentHP = 1;
-            }
-            P2HP.fillAmount = P2CurrentHP;
-            P2CurrentPU = 0;
-            P2PU.fillAmount = P2CurrentPU;
-            p2canUseSpecial = false;
-            P2PU.color = new Color(1.0f, 0.0f, 1.0f, 1.0f);
-            CurrentP2DMG = 0;
-            AudioManager.soundSrc[2].PlayOneShot(AudioManager.sfx[1]);
-        }
-    }
+    
 
     void AttackAnim(bool P, float DMG)
     {
@@ -373,6 +428,7 @@ public class Manager : MonoBehaviour
             if (P2Dodge == false)
             {
                 LowerHP(player, DMG);
+                Debug.Log(DMG);
                 AudioManager.soundSrc[1].PlayOneShot(AudioManager.sfx[0]);
                 P1ATK.SetActive(false);
             }
@@ -402,12 +458,13 @@ public class Manager : MonoBehaviour
                 }
                 yield return null;
             }
-            LowerHP(player, DMG);
             AudioManager.soundSrc[2].PlayOneShot(AudioManager.sfx[0]);
             P2ATK.SetActive(false);
             if (P1Dodge == false)
             {
                 LowerHP(player, DMG);
+                Debug.Log(DMG);
+
                 AudioManager.soundSrc[2].PlayOneShot(AudioManager.sfx[0]);
                 P2ATK.SetActive(false);
             }
@@ -416,6 +473,8 @@ public class Manager : MonoBehaviour
                 AudioManager.soundSrc[2].PlayOneShot(AudioManager.sfx[2]);
             }
         }
+        p1activeATK = false;
+        p2activeATK = false;
     }
 
     IEnumerator resetPos(Transform player, Vector3 OrgPos)

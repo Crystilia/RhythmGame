@@ -173,37 +173,40 @@ public class HitBox : MonoBehaviour
                 hit(false);
             }
         }
-        else if (i == 0 && Input.GetKeyDown(KeyCode.LeftArrow))
+        if (IsAI == false)
         {
-            hit(true);
-        }
-        else if (i == 1 && Input.GetKeyDown(KeyCode.RightArrow))
-        {
-            hit(true);
-        }
-        else if (i == 2 && Input.GetKeyDown(KeyCode.UpArrow))
-        {
-            hit(true);
-        }
-        else if (i == 3 && Input.GetKeyDown(KeyCode.DownArrow))
-        {
-            hit(true);
-        }
-        else if (i == 4 && Input.GetKeyDown(KeyCode.A))
-        {
-            hit(false);
-        }
-        else if (i == 5 && Input.GetKeyDown(KeyCode.D))
-        {
-            hit(false);
-        }
-        else if (i == 6 && Input.GetKeyDown(KeyCode.W))
-        {
-            hit(false);
-        }
-        else if (i == 7 && Input.GetKeyDown(KeyCode.S))
-        {
-            hit(false);
+            if (i == 0 && Input.GetKeyDown(KeyCode.LeftArrow))
+            {
+                hit(true);
+            }
+            else if (i == 1 && Input.GetKeyDown(KeyCode.RightArrow))
+            {
+                hit(true);
+            }
+            else if (i == 2 && Input.GetKeyDown(KeyCode.UpArrow))
+            {
+                hit(true);
+            }
+            else if (i == 3 && Input.GetKeyDown(KeyCode.DownArrow))
+            {
+                hit(true);
+            }
+            else if (i == 4 && Input.GetKeyDown(KeyCode.A))
+            {
+                hit(false);
+            }
+            else if (i == 5 && Input.GetKeyDown(KeyCode.D))
+            {
+                hit(false);
+            }
+            else if (i == 6 && Input.GetKeyDown(KeyCode.W))
+            {
+                hit(false);
+            }
+            else if (i == 7 && Input.GetKeyDown(KeyCode.S))
+            {
+                hit(false);
+            }
         }
     }
 
