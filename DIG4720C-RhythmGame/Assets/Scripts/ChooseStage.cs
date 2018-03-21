@@ -77,16 +77,16 @@ public class ChooseStage : MonoBehaviour {
 		{
 			//scene stage 1
 			if(pick.transform.position.y >= 300 && pick.transform.position.y <= 310)
-				SceneManager.LoadScene("Stage 1");
+				SceneManager.LoadScene("Stage1");
 			//scene stage 2
 			if(pick.transform.position.y >= 200 && pick.transform.position.y <= 210)
-				SceneManager.LoadScene("Stage 2");
+				SceneManager.LoadScene("Stage2");
 			//scene stage 3
 			if(pick.transform.position.y >= 100 && pick.transform.position.y <= 110)
-				SceneManager.LoadScene("Stage 3");
+				SceneManager.LoadScene("Stage3");
 			//scene stage 4
 			if(pick.transform.position.y >= 0 && pick.transform.position.y <= 10)
-				SceneManager.LoadScene("Stage 4");
+				SceneManager.LoadScene("Stage4");
 		}
 	}
 }
