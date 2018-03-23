@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ScrollTest : MonoBehaviour {
+public class ScrolTest : MonoBehaviour {
 
 	public GameObject songs;
 	public GameObject song1;

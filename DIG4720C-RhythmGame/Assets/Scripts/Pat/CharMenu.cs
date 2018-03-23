@@ -62,6 +62,7 @@ public class CharMenu : MonoBehaviour {
             P1.position = P1Spot;
             P2.position = P2Spot;// Vector3(P2.transform.position.x,P2.transform.position.y,P2.transform.position.z);
             mngr = GameObject.Find("Manager").GetComponent<Manager>();
+            mngr.BG.material.SetTexture("_MainTex",mngr.BGs[PlayerPrefs.GetInt("Player2Pref")]);
 
         }
         if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("SinglePlayer"))
@@ -97,6 +98,8 @@ public class CharMenu : MonoBehaviour {
             P1.position = P1Spot;
             P2.position = P2Spot;// Vector3(P2.transform.position.x,P2.transform.position.y,P2.transform.position.z);
             mngr.isAI = true;
+            mngr.BG.material.SetTexture("_MainTex", mngr.BGs[PlayerPrefs.GetInt("Player2Pref")]);
+
         }
     }
     public void SinglePlayerStart()

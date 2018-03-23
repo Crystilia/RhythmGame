@@ -5,6 +5,7 @@ using TMPro;
 using System.Collections;
 public class Manager : MonoBehaviour
 {
+    #region vars
     public float NoteSpeed;
     public float NoteSpawnX;
     public float NoteSpawnY;
@@ -41,8 +42,8 @@ public class Manager : MonoBehaviour
     public GameObject P2LH;
     public GameObject P1;
     public GameObject P2;
-    float P1AtkSpeed = 2f;
-    float P2AtkSpeed = 2f;
+    public float P1AtkSpeed = 0.006f;
+    public float P2AtkSpeed = 0.006f;
     public AM AudioManager;
     public GameObject button;
     Quaternion rot;
@@ -58,7 +59,15 @@ public class Manager : MonoBehaviour
     public bool isAI = false;
     private int Rand;
     private bool AIHit = false;
-
+    public bool P2CanDodge = false;
+    public bool P1CanDodge = false;
+    private ParticleSystem P1Body;
+    private ParticleSystem P2Body;
+    private GameObject P1M;
+    private GameObject P2M;
+    public Texture[] BGs;
+    public MeshRenderer BG;
+    #endregion
     // Use this for initialization
     void Start()
     {
@@ -84,9 +93,19 @@ public class Manager : MonoBehaviour
         DoorR.SetInteger("AnimState", 0);
         // edit these
         P1LH = player1.GetComponentInParent<Transform>().GetChild(3).gameObject;
-        P2LH = player2.GetComponentInParent<Transform>().GetChild(4).gameObject;
+        P2LH = player2.GetComponentInParent<Transform>().GetChild(3).gameObject;
         P1Lerp = player1.GetComponentInParent<Lerping>();
         P2Lerp = player2.GetComponentInParent<Lerping>();
+        P1Body = P1.GetComponentInChildren<ParticleSystem>();
+        P2Body = P2.GetComponentInChildren<ParticleSystem>();
+        P1M = GameObject.Find("P1_AtkMiss");
+        P2M = GameObject.Find("P2_AtkMiss");
+
+        if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("SinglePlayer") || SceneManager.GetActiveScene() == SceneManager.GetSceneByName("MultiPlayer"))
+        {
+            AudioManager.soundSrc[0].clip =AudioManager.sfx[5];
+            AudioManager.soundSrc[0].Play();
+        }
         //button = GameObject.Find("Next Button");
         if (gameover != null)
         {
@@ -252,52 +271,68 @@ public class Manager : MonoBehaviour
 
     public void StartATK()
     {
-        if (p2activeATK == false)
+        #region P1
+        if (P1CanDodge == false)
         {
-            //player1 attack
-            if (p1canUseSpecial && Input.GetKeyDown(KeyCode.Space))
+            if (p2activeATK == false)
             {
-                p1activeATK = true;
-                P1PU.color = new Color(0.0f, 1.0f, 1.0f, 1.0f);
-                P1Drain = true;
-                P1DMG = (200 / P1Uses);
-                P1Uses++;
-
-            }
-            if (P1Drain)
-            {
-                // P1PU.fillAmount = (P1CurrentPU - (0.1f * Time.deltaTime));
-                P1DMG -= 1;
-                CurrentP1DMG = Mathf.Clamp01((P1DMG / 200f));
-                P1PU.fillAmount = CurrentP1DMG;
-                P1CurrentPU = P1PU.fillAmount;
-
-            }
-            if (p1canUseSpecial && Input.GetKeyUp(KeyCode.Space))
-            {
-                P1Drain = false;
-                AttackAnim(true, CurrentP1DMG);
-                P1CurrentHP = P1CurrentHP + CurrentP1DMG;
-                if (P1CurrentHP > 1)
+                //player1 attack
+                if (p1canUseSpecial && Input.GetKeyDown(KeyCode.Space))
                 {
-                    P1CurrentHP = 1;
+                    P2CanDodge = true;
+                    p1activeATK = true;
+                    P1PU.color = new Color(0.0f, 1.0f, 1.0f, 1.0f);
+                    P1Drain = true;
+                    P1DMG = (200 / P1Uses);
+                    P1Uses++;
+
                 }
-                P1HP.fillAmount = P1CurrentHP;
-                P1CurrentPU = 0;
-                P1PU.fillAmount = P1CurrentPU;
-                p1canUseSpecial = false;
-                P1PU.color = new Color(1.0f, 0.0f, 1.0f, 1.0f);
-                CurrentP1DMG = 0;
-                AudioManager.soundSrc[1].PlayOneShot(AudioManager.sfx[0]);
+                if (P1Drain)
+                {
+                    // P1PU.fillAmount = (P1CurrentPU - (0.1f * Time.deltaTime));
+                    P1DMG -= 1;
+                    CurrentP1DMG = Mathf.Clamp01((P1DMG / 200f));
+                    P1PU.fillAmount = CurrentP1DMG;
+                    P1CurrentPU = P1PU.fillAmount;
+
+                }
+                if (p1canUseSpecial && Input.GetKeyUp(KeyCode.Space))
+                {
+                    P1Drain = false;
+                    AttackAnim(true, CurrentP1DMG);
+                    P1CurrentHP = P1CurrentHP + CurrentP1DMG;
+                    if (P1CurrentHP > 1)
+                    {
+                        P1CurrentHP = 1;
+                    }
+                    P1HP.fillAmount = P1CurrentHP;
+                    P1CurrentPU = 0;
+                    P1PU.fillAmount = P1CurrentPU;
+                    p1canUseSpecial = false;
+                    P1PU.color = new Color(1.0f, 0.0f, 1.0f, 1.0f);
+                    CurrentP1DMG = 0;
+                    AudioManager.soundSrc[1].PlayOneShot(AudioManager.sfx[0]);
+                }
             }
         }
+
+        else if (P1CanDodge == true && Input.GetKeyDown(KeyCode.Space))
+        {
+            P1Dodge = true;
+        }
+        #endregion
+
+        #region P2/AI
+        if (P2CanDodge == false)
+        {
             //player2 attack
             if (p1activeATK == false && isAI == false)
             {
-                if (p2canUseSpecial && Input.GetKeyDown(KeyCode.B) && isAI == false)
+                if (p2canUseSpecial && Input.GetKeyDown(KeyCode.LeftControl) && isAI == false)
                 {
-                p2activeATK = true;
-                P2PU.color = new Color(0.0f, 1.0f, 1.0f, 1.0f);
+                    P1CanDodge = true;
+                    p2activeATK = true;
+                    P2PU.color = new Color(0.0f, 1.0f, 1.0f, 1.0f);
                     P2Drain = true;
                     P2DMG = (200 / P2Uses);
                     P2Uses++;
@@ -327,47 +362,77 @@ public class Manager : MonoBehaviour
                     AudioManager.soundSrc[2].PlayOneShot(AudioManager.sfx[1]);
                 }
             }
-            else if (isAI)
-        {
-           
-            if (p2canUseSpecial && AIHit)
-            {
-                p2activeATK = true;
-                P2PU.color = new Color(0.0f, 1.0f, 1.0f, 1.0f);
-                P2Drain = true;
-                P2DMG = (200 / P2Uses);
-                P2Uses++;
-                AIHit = false;
-            }
-            if (P2Drain)
-            {
-                P2DMG -= 1;
-                CurrentP2DMG = Mathf.Clamp01((P2DMG / 200f));
-                P2PU.fillAmount = CurrentP2DMG;
-                P2CurrentPU = P2PU.fillAmount;
-                Rand = Random.Range(0, 31);
-            }
-            if (p2canUseSpecial && Rand == 5)
-            {
-                P2Drain = false;
-                AttackAnim(false, CurrentP2DMG);
-                P2CurrentHP = P2CurrentHP + CurrentP2DMG;
-                if (P2CurrentHP > 1)
-                {
-                    P2CurrentHP = 1;
-                }
-                P2HP.fillAmount = P2CurrentHP;
-                P2CurrentPU = 0;
-                P2PU.fillAmount = P2CurrentPU;
-                p2canUseSpecial = false;
-                P2PU.color = new Color(1.0f, 0.0f, 1.0f, 1.0f);
-                CurrentP2DMG = 0;
-                AudioManager.soundSrc[2].PlayOneShot(AudioManager.sfx[1]);
-            }
 
+            else if (isAI)
+            {
+
+                if (p2canUseSpecial && p1activeATK == false)
+                {
+                    Rand = Random.Range(0, 81);
+                    if (AIHit && Rand == 30)
+                    {
+                        P1CanDodge = true;
+                        p2activeATK = true;
+                        P2PU.color = new Color(0.0f, 1.0f, 1.0f, 1.0f);
+                        P2Drain = true;
+                        P2DMG = (200 / P2Uses);
+                        P2Uses++;
+                        AIHit = false;
+                    }
+                }
+                if (P2Drain)
+                {
+                    P2DMG -= 1;
+                    CurrentP2DMG = Mathf.Clamp01((P2DMG / 200f));
+                    P2PU.fillAmount = CurrentP2DMG;
+                    P2CurrentPU = P2PU.fillAmount;
+                    //   Rand = Random.Range(0, 31);
+                }
+                if (p2canUseSpecial && Rand == 5)
+                {
+                    P2Drain = false;
+                    AttackAnim(false, CurrentP2DMG);
+                    P2CurrentHP = P2CurrentHP + CurrentP2DMG;
+                    if (P2CurrentHP > 1)
+                    {
+                        P2CurrentHP = 1;
+                    }
+                    P2HP.fillAmount = P2CurrentHP;
+                    P2CurrentPU = 0;
+                    P2PU.fillAmount = P2CurrentPU;
+                    p2canUseSpecial = false;
+                    P2PU.color = new Color(1.0f, 0.0f, 1.0f, 1.0f);
+                    CurrentP2DMG = 0;
+                    AudioManager.soundSrc[2].PlayOneShot(AudioManager.sfx[1]);
+                }
+
+            }
         }
+
+        else if (P2CanDodge == true)
+        {
+            if (isAI == false)
+            {
+                if (Input.GetKeyDown(KeyCode.LeftControl))
+                {
+                    P2Dodge = true;
+                }
+            }
+            else if(isAI == true)
+            {
+                Rand = Random.Range(0, 81);
+                if (Rand == 5)
+                {
+                    P2Dodge = true;
+                }
+            }
         }
-    
+
+        #endregion
+
+
+    }
+
 
     void AttackAnim(bool P, float DMG)
     {
@@ -377,21 +442,21 @@ public class Manager : MonoBehaviour
             pos = player1.GetComponent<Transform>().position;
             player1.SetInteger("AnimState", 1);
             P1ATK.SetActive(true);
-            player1.applyRootMotion = true;
+           // player1.applyRootMotion = true;
             P1ATK.transform.SetParent(P1LH.transform);
             P1ATK.transform.SetPositionAndRotation(P1LH.transform.position, P1LH.transform.rotation);
-            StartCoroutine(Attacker(P1atkTime, 0.3f, player1, DMG, !P));
+            StartCoroutine(Attacker(P1atkTime, (P1atkTime / 2.0f), player1, DMG, !P));
         }
-        else
+        else if (P == false)
         {
             rot = player2.GetComponent<Transform>().rotation;
             pos = player2.GetComponent<Transform>().position;
             player2.SetInteger("AnimState", 2);
-            player2.applyRootMotion = true;
+           // player2.applyRootMotion = true;
             P2ATK.SetActive(true);
             P2ATK.transform.SetParent(P2LH.transform);
             P2ATK.transform.SetPositionAndRotation(P2LH.transform.position, P2LH.transform.rotation);
-            StartCoroutine(Attacker(P2atkTime, 0.3f, player2, DMG, !P));
+            StartCoroutine(Attacker(P2atkTime, (P2atkTime/2.0f), player2, DMG, !P));
         }
     }
 
@@ -400,83 +465,115 @@ public class Manager : MonoBehaviour
     {
         yield return new WaitForSeconds(clip - time);
         anim.SetInteger("AnimState", 6);
-        anim.applyRootMotion = false;
+      //  anim.applyRootMotion = false;
         
         if (player == false)
         {
-            StartCoroutine(resetRot(player1.GetComponent<Transform>(), rot));
-            StartCoroutine(resetPos(player1.GetComponent<Transform>(), pos));
+           // StartCoroutine(resetRot(player1.GetComponent<Transform>(), rot));
+           // StartCoroutine(resetPos(player1.GetComponent<Transform>(), pos));
             P1ATK.transform.parent.DetachChildren();
-            while (Vector3.Distance(P1ATK.transform.position, P2.transform.position) > 0.05f)
+            while (Vector3.Distance(P1ATK.transform.position, P2.transform.position) > 1f)
             {
                 P1ATK.transform.position = Vector3.Lerp(P1ATK.transform.position, P2.transform.position, Time.smoothDeltaTime * P1AtkSpeed);
-
-                if (Vector3.Distance(P1ATK.transform.position, P2.transform.position) < 1f)
+                if (P2Dodge == false)
                 {
-                    if (P2Dodge == false)
-                    {
-                        player2.SetInteger("AnimState", 8);
-                    }
-                    else
-                    {
-                        player2.SetInteger("AnimState", 3);
-                    }
+                    player2.SetInteger("AnimState", 8);
+                    //break;
+                }
+                else if (P2Dodge == true)
+                {
+                    player2.SetInteger("AnimState", 3);
+
+                }
+                if (Vector3.Distance(P1ATK.transform.position, P2.transform.position) < 5f)
+                {
+                    P2CanDodge = false;
                 }
                 yield return null;
             }
 
             if (P2Dodge == false)
             {
+                P2Body.Play();
                 LowerHP(player, DMG);
-                Debug.Log(DMG);
                 AudioManager.soundSrc[1].PlayOneShot(AudioManager.sfx[0]);
                 P1ATK.SetActive(false);
+                p1activeATK = false;
             }
-            else
+            else if (P2Dodge == true)
             {
+
                 AudioManager.soundSrc[1].PlayOneShot(AudioManager.sfx[2]);
+                //attack miss stuff here
+                player2.SetInteger("AnimState", 8);
+                P2Dodge = false;
+                //   P1ATK.SetActive(false);
+                StartCoroutine(ATKLerp(P1ATK, P2M, P1AtkSpeed));
+                p1activeATK = false;
             }
+          
         }
         else if (player == true)
         {
-            StartCoroutine(resetRot(player2.GetComponent<Transform>(), rot));
-            StartCoroutine(resetPos(player2.GetComponent<Transform>(), pos));
+            //StartCoroutine(resetRot(player2.GetComponent<Transform>(), rot));
+           // StartCoroutine(resetPos(player2.GetComponent<Transform>(), pos));
             P2ATK.transform.parent.DetachChildren();
-            while (Vector3.Distance(P2ATK.transform.position, P1.transform.position) > 0.05f)
+            while (Vector3.Distance(P2ATK.transform.position, P1.transform.position) > 1f)
             {
-                P2ATK.transform.position = Vector3.Lerp(P2ATK.transform.position, P1.transform.position, Time.smoothDeltaTime * P2AtkSpeed);
-                if (Vector3.Distance(P1ATK.transform.position, P2.transform.position) < 1f)
+                P2ATK.transform.position = Vector3.Lerp(P2ATK.transform.position, P1.transform.position, Time.time * P2AtkSpeed);
+
+                if (P1Dodge == false)
                 {
-                    if (P1Dodge == false)
-                    {
-                        player1.SetInteger("AnimState", 8);
-                    }
-                    else
-                    {
-                        player1.SetInteger("AnimState", 3);
-                    }
+                    player1.SetInteger("AnimState", 8);
+                }
+                if (P1Dodge == true)
+                {
+                    player1.SetInteger("AnimState", 3);
+                }
+                if (Vector3.Distance(P2ATK.transform.position, P2.transform.position) < 5f)
+                {
+                    P1CanDodge = false;
                 }
                 yield return null;
             }
             AudioManager.soundSrc[2].PlayOneShot(AudioManager.sfx[0]);
-            P2ATK.SetActive(false);
             if (P1Dodge == false)
             {
+                P1Body.Play();
                 LowerHP(player, DMG);
-                Debug.Log(DMG);
-
                 AudioManager.soundSrc[2].PlayOneShot(AudioManager.sfx[0]);
                 P2ATK.SetActive(false);
+                p2activeATK = false;
             }
-            else
+            else if (P1Dodge == true)
             {
-                AudioManager.soundSrc[2].PlayOneShot(AudioManager.sfx[2]);
-            }
-        }
-        p1activeATK = false;
-        p2activeATK = false;
-    }
+                
 
+                AudioManager.soundSrc[2].PlayOneShot(AudioManager.sfx[2]);
+                //attack miss stuff here
+                player1.SetInteger("AnimState", 8);
+              //  P2ATK.SetActive(false);
+                p2activeATK = false;
+                P1Dodge = false;
+                StartCoroutine(ATKLerp(P2ATK, P1M, P2AtkSpeed));
+            }
+
+        }
+       
+        
+    }
+    IEnumerator ATKLerp(GameObject ATK, GameObject POS, float SPEED)
+    {
+        while (Vector3.Distance(ATK.transform.position, POS.transform.position) > 1f)
+        {
+            ATK.transform.position = Vector3.Lerp(ATK.transform.position, POS.transform.position, Time.time * (SPEED/2.0f));
+            yield return null;
+        }
+        ATK.SetActive(false);
+        P1CanDodge = false;
+        P2CanDodge = false;
+        yield return null;
+    }
     IEnumerator resetPos(Transform player, Vector3 OrgPos)
     {
         while (Vector3.Distance(player.position, OrgPos) > 0.05f)
@@ -507,10 +604,10 @@ public class Manager : MonoBehaviour
             {
                 switch (clip.name)
                 {
-                    case "ATK":
-                        P1atkTime = clip.length;
-                        break;
-                    case "ATKL":
+                case "ATK":
+                    P1atkTime = clip.length;
+                    break;
+                case "ATKL":
                         P1atkTime = clip.length;
                         break;
                     case "ATKR":
