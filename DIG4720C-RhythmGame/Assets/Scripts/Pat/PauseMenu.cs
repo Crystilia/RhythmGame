@@ -20,11 +20,14 @@ public class PauseMenu : MonoBehaviour {
         }
     }
 
+    //resets the game back to level 1
     public void Reset()
     {
         stage = 1;
         Manager.BossDmg = 0;
     }
+
+    //resume the game
     public void Resume()
     {
         MenuHUD.SetActive(false);
@@ -34,7 +37,7 @@ public class PauseMenu : MonoBehaviour {
     }
 
 
-
+    // return to the mainmenu
     public void QuitGame()
     {
         Paused = false;
@@ -42,6 +45,7 @@ public class PauseMenu : MonoBehaviour {
         SceneManager.LoadScene(0);
     }
 
+    //update players based on stage
     public void Progress()
     {
         if (stage != 3)
@@ -75,6 +79,9 @@ public class PauseMenu : MonoBehaviour {
             SceneManager.LoadScene(1);
         }
     }
+
+
+    //pause the game
     void Pause()
     {
         MenuHUD.SetActive(true);

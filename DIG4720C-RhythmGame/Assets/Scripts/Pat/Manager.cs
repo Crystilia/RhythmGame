@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
 using System.Collections;
+
 public class Manager : MonoBehaviour
 {
     #region vars
@@ -69,11 +70,12 @@ public class Manager : MonoBehaviour
     public MeshRenderer BG;
     static public float BossDmg = 0;
     #endregion
+
     // Use this for initialization
     void Start()
     {
 
-
+        #region initialization
         SG = GameObject.Find("SongManager").GetComponent<Song_Generator>();
         SG = GameObject.Find("SongManager").GetComponent<Song_Generator>();
         AudioManager = GameObject.Find("AM").GetComponent<AM>();
@@ -104,6 +106,8 @@ public class Manager : MonoBehaviour
         P1M = GameObject.Find("P1_AtkMiss");
         P2M = GameObject.Find("P2_AtkMiss");
 
+        #endregion
+
         if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("SinglePlayer") || SceneManager.GetActiveScene() == SceneManager.GetSceneByName("MultiPlayer"))
         {
             AudioManager.soundSrc[0].clip =AudioManager.sfx[5];
@@ -117,6 +121,8 @@ public class Manager : MonoBehaviour
         }
     }
 
+
+    //whenever a player or ai takes damage
     public void LowerHP(bool P, float Dmg)
     {
         if (P)
@@ -151,6 +157,8 @@ public class Manager : MonoBehaviour
         }
     }
 
+
+    //whenever a player or ai hits a note gain meter here
     public void RaisePU(bool P)
     {
         if (P)
@@ -186,6 +194,8 @@ public class Manager : MonoBehaviour
         }
     }
 
+
+    //power ups grant full meter
     public void MaxPU(bool P)
     {
         if (P)
@@ -201,11 +211,14 @@ public class Manager : MonoBehaviour
             AudioManager.soundSrc[2].PlayOneShot(AudioManager.sfx[3]);
         }
     }
+
+    //exit the application
     public void ExitGame()
     {
         Application.Quit();
     }
 
+    //storing the number of notes left in the song
     public void SongDur()
     {
         SG.MaxNotes--;
@@ -214,7 +227,7 @@ public class Manager : MonoBehaviour
             GameOver(0);
         }
     }
-
+    //all possible endings go here
     public void GameOver(int Condition)
     {
             gameover.SetActive(true);
@@ -272,6 +285,8 @@ public class Manager : MonoBehaviour
         }
     }
 
+
+    //run every frame to see if a player or ai is trying to attack or dodge
     public void StartATK()
     {
         #region P1
@@ -462,7 +477,7 @@ public class Manager : MonoBehaviour
 
     }
 
-
+    //making the attack stick to a player or ai and chosing the animation
     void AttackAnim(bool P, float DMG)
     {
         if (P)
@@ -489,7 +504,8 @@ public class Manager : MonoBehaviour
         }
     }
 
-
+    #region IEnums
+    //time the dmg and dodge
     IEnumerator Attacker(float clip, float time, Animator anim, float DMG, bool player)
     {
         yield return new WaitForSeconds(clip - time);
@@ -591,6 +607,7 @@ public class Manager : MonoBehaviour
        
         
     }
+    //if dodge lerp past player
     IEnumerator ATKLerp(GameObject ATK, GameObject POS, float SPEED)
     {
         while (Vector3.Distance(ATK.transform.position, POS.transform.position) > 1f)
@@ -603,6 +620,7 @@ public class Manager : MonoBehaviour
         P2CanDodge = false;
         yield return null;
     }
+    //for root motion / not in use
     IEnumerator resetPos(Transform player, Vector3 OrgPos)
     {
         while (Vector3.Distance(player.position, OrgPos) > 0.05f)
@@ -611,6 +629,7 @@ public class Manager : MonoBehaviour
             yield return null;
         }
     }
+    //for root motion / not in use
     IEnumerator resetRot(Transform player, Quaternion OrgRot)
     {
         while (player.transform.rotation.y != OrgRot.y)
@@ -619,13 +638,16 @@ public class Manager : MonoBehaviour
             yield return null;
         }
     }
+    #endregion
+
+
     // Update is called once per frame
     void Update()
     {
         StartATK();
     }
 
-
+    // get how long the attack animation is for calculating when the attack detatches
     public void UpdateAnimClipTimes()
     {
             AnimationClip[] p1clips = player1.runtimeAnimatorController.animationClips;

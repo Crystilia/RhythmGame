@@ -3,6 +3,8 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 public class CharMenu : MonoBehaviour {
+
+    #region vars
     public GameObject[] Players;
     public static GameObject Player1;
     public static GameObject Player2;
@@ -14,21 +16,14 @@ public class CharMenu : MonoBehaviour {
     public static bool first = true;
     public PauseMenu Pause;
     private Manager mngr;
+    #endregion
 
     private void Start()
     {
-        //Time.timeScale = 1f;
-
-        // PlayerPrefs.SetInt("P1Flag", 0);
-        //  PlayerPrefs.SetInt("FightFlag", 1);
         for (int i = 0; i < 4; i++)
         {
             Players[i] = GameObject.Find("Players").transform.GetChild(i).gameObject;
         }
-        //  Players[0] = GameObject.Find("PatsPlayer");
-        //  Players[1] = GameObject.Find("PatsPlayer (1)");
-        //  Players[2] = GameObject.Find("PatsPlayer (2)");
-        //  Players[3] = GameObject.Find("PatsPlayer (3)");
 
         if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("CharSelect") || SceneManager.GetActiveScene() == SceneManager.GetSceneByName("MultiplayerCharSelect"))
         {
@@ -42,12 +37,6 @@ public class CharMenu : MonoBehaviour {
             PlayerButton(0);
         }
 
- //       if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("SinglePlayer"))
-  //      {
- //           PlayerButton(PlayerPrefs.GetInt("Player1Pref"));
- //           P1 = GameObject.Find("P1").transform;
- //           Player1.transform.SetParent(P1);
- //       }
         if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("MultiPlayer"))
         {
             P1 = GameObject.Find("P1").transform;
@@ -61,7 +50,7 @@ public class CharMenu : MonoBehaviour {
             P1Spot = new Vector3(1.85f, 226.41f, 5.08f);
             P2Spot = new Vector3(32f, 226.41f, 5.08f);
             P1.position = P1Spot;
-            P2.position = P2Spot;// Vector3(P2.transform.position.x,P2.transform.position.y,P2.transform.position.z);
+            P2.position = P2Spot;
             mngr = GameObject.Find("Manager").GetComponent<Manager>();
             mngr.BG.material.SetTexture("_MainTex",mngr.BGs[PlayerPrefs.GetInt("Player2Pref")]);
 
@@ -70,11 +59,9 @@ public class CharMenu : MonoBehaviour {
         {
             mngr = GameObject.Find("Manager").GetComponent<Manager>();
 
-            // Pause = GameObject.Find("PauseMenu").GetComponent<PauseMenu>();
             P1 = GameObject.Find("P1").transform;
             P2 = GameObject.Find("P2").transform;
             PlayerButton(PlayerPrefs.GetInt("Player1Pref"));
-            //Player2Button(PlayerPrefs.GetInt("Player1Pref") + PlayerPrefs.GetInt("FightFlag"));
             if (first)
             {
                 PlayerPrefs.SetInt("Player2Pref", PlayerPrefs.GetInt("Player1Pref") + 1);
@@ -97,24 +84,33 @@ public class CharMenu : MonoBehaviour {
             P1Spot = new Vector3(1.85f, 226.41f, 5.08f);
             P2Spot = new Vector3(32f, 226.41f, 5.08f);
             P1.position = P1Spot;
-            P2.position = P2Spot;// Vector3(P2.transform.position.x,P2.transform.position.y,P2.transform.position.z);
+            P2.position = P2Spot;
             mngr.isAI = true;
             mngr.BG.material.SetTexture("_MainTex", mngr.BGs[PlayerPrefs.GetInt("Player2Pref")]);
 
         }
     }
+
+    //Load Singleplayer
     public void SinglePlayerStart()
     {
         SceneManager.LoadScene(3);
     }
+
+    //Load Multiplayer
     public void MultiPlayerStart()
     {
         SceneManager.LoadScene(4);
     }
+
+    //Load MainMenu
     public void Backbutton()
     {
         SceneManager.LoadScene("MainMenu");
     }
+
+
+    //sets up first stage of the game 
     public void togglefirst()
     {
         first = true;
@@ -122,6 +118,8 @@ public class CharMenu : MonoBehaviour {
         if(Pause != null)
         Pause.Reset();
     }
+
+    //go through players set correct active and the rest not, assign to player pref for multiscene managment PLAYER1
     public void PlayerButton(int i)
     {
         if (Player1 != null)
@@ -145,6 +143,8 @@ public class CharMenu : MonoBehaviour {
             PlayerPrefs.SetInt("Player1Pref", i);
         }
     }
+
+    //go through players set correct active and the rest not, assign to player pref for multiscene managment PLAYER2
     public void Player2Button(int i)
     {
         if (Player2 != null)
@@ -165,6 +165,8 @@ public class CharMenu : MonoBehaviour {
             PlayerPrefs.SetInt("Player2Pref", i);
         }
     }
+
+    // set AI 
     public void AI(int i)
     {
         Player2 = Players[i];
@@ -174,6 +176,8 @@ public class CharMenu : MonoBehaviour {
         }
         SinglePlayerStart();
     }
+
+    // Player2 cannot choose who Player1 is.
     public void disableBut()
     {
         P2.GetChild(PlayerPrefs.GetInt("Player1Pref")).gameObject.GetComponent<Button>().enabled = false;     

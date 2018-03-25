@@ -12,7 +12,6 @@ public class Lerping : MonoBehaviour
     private Manager mngr;
     public Transform p1Pos;
     public Transform p2Pos;
-
     public Transform p1Death;
     public Transform p2Death;
 
