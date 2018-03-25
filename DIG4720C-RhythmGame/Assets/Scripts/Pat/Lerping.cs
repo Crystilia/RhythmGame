@@ -46,6 +46,8 @@ public class Lerping : MonoBehaviour
 
     public IEnumerator lerper(Transform start, Transform end)
     {
+        startTime = Time.time;
+        yield return null;
         while (transform.position != end.transform.position)
         {
             float distCovered = (Time.time - startTime) * speed;

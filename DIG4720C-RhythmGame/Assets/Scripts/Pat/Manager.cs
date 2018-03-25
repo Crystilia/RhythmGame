@@ -30,12 +30,12 @@ public class Manager : MonoBehaviour
     public float P2atkTime;
     bool P1Drain;
     bool P2Drain;
-    float CurrentP1DMG = 200;
+    float CurrentP1DMG = .4f;
     int P1DMG = 200;
     int P2DMG = 200;
-    float CurrentP2DMG = 200;
-    int P1Uses = 1;
-    int P2Uses = 1;
+    float CurrentP2DMG = 0.4f;
+    float P1Uses = 1;
+    float P2Uses = 1;
     public GameObject P1ATK;
     public GameObject P2ATK;
     public GameObject P1LH;
@@ -67,10 +67,13 @@ public class Manager : MonoBehaviour
     private GameObject P2M;
     public Texture[] BGs;
     public MeshRenderer BG;
+    static public float BossDmg = 0;
     #endregion
     // Use this for initialization
     void Start()
     {
+
+
         SG = GameObject.Find("SongManager").GetComponent<Song_Generator>();
         SG = GameObject.Find("SongManager").GetComponent<Song_Generator>();
         AudioManager = GameObject.Find("AM").GetComponent<AM>();
@@ -283,8 +286,8 @@ public class Manager : MonoBehaviour
                     p1activeATK = true;
                     P1PU.color = new Color(0.0f, 1.0f, 1.0f, 1.0f);
                     P1Drain = true;
-                    P1DMG = (200 / P1Uses);
-                    P1Uses++;
+                    P1DMG = 200;
+                    P1Uses+=0.3f;
 
                 }
                 if (P1Drain)
@@ -298,6 +301,7 @@ public class Manager : MonoBehaviour
                 }
                 if (p1canUseSpecial && Input.GetKeyUp(KeyCode.Space))
                 {
+                    CurrentP1DMG = Mathf.Clamp01((CurrentP1DMG / P1Uses));
                     P1Drain = false;
                     AttackAnim(true, CurrentP1DMG);
                     P1CurrentHP = P1CurrentHP + CurrentP1DMG;
@@ -334,8 +338,8 @@ public class Manager : MonoBehaviour
                     p2activeATK = true;
                     P2PU.color = new Color(0.0f, 1.0f, 1.0f, 1.0f);
                     P2Drain = true;
-                    P2DMG = (200 / P2Uses);
-                    P2Uses++;
+                    P2DMG = 200;
+                    P2Uses+=.3f;
                 }
                 if (P2Drain)
                 {
@@ -346,6 +350,7 @@ public class Manager : MonoBehaviour
                 }
                 if (p2canUseSpecial && Input.GetKeyUp(KeyCode.B) && isAI == false)
                 {
+                    CurrentP2DMG = Mathf.Clamp01(CurrentP2DMG / P2Uses);
                     P2Drain = false;
                     AttackAnim(false, CurrentP2DMG);
                     P2CurrentHP = P2CurrentHP + CurrentP2DMG;
@@ -365,31 +370,55 @@ public class Manager : MonoBehaviour
 
             else if (isAI)
             {
-
-                if (p2canUseSpecial && p1activeATK == false)
+                if (p2canUseSpecial && p1activeATK == false);
                 {
                     Rand = Random.Range(0, 81);
+                }
+          
+                if (p2canUseSpecial && p1activeATK == false && P2Drain == false)
+                {
+                   
                     if (AIHit && Rand == 30)
                     {
                         P1CanDodge = true;
                         p2activeATK = true;
                         P2PU.color = new Color(0.0f, 1.0f, 1.0f, 1.0f);
                         P2Drain = true;
-                        P2DMG = (200 / P2Uses);
-                        P2Uses++;
+                        P2DMG =200;
+                        P2Uses+=.3f;
                         AIHit = false;
                     }
+                    
                 }
-                if (P2Drain)
+                else if (P2Drain)
                 {
-                    P2DMG -= 1;
-                    CurrentP2DMG = Mathf.Clamp01((P2DMG / 200f));
-                    P2PU.fillAmount = CurrentP2DMG;
-                    P2CurrentPU = P2PU.fillAmount;
+                    if (P2DMG > 0)
+                    {
+                        P2DMG -= 1;
+                        CurrentP2DMG = Mathf.Clamp01(P2DMG / 200f);
+                        P2PU.fillAmount = CurrentP2DMG;
+                        P2CurrentPU = P2PU.fillAmount;
+                        Rand = Random.Range(0, 81);
+
+                    }
+                    else
+                    {
+                        //CurrentP2DMG = Mathf.Clamp01(CurrentP2DMG / P2Uses);
+
+                        P2Drain = false;
+                        P2CurrentPU = 0;
+                        P2PU.fillAmount = P2CurrentPU;
+                        p2canUseSpecial = false;
+                        P2PU.color = new Color(1.0f, 0.0f, 1.0f, 1.0f);
+                        CurrentP2DMG = 0;
+                        //AudioManager.soundSrc[2].PlayOneShot(AudioManager.sfx[1]);
+                    }
                     //   Rand = Random.Range(0, 31);
                 }
-                if (p2canUseSpecial && Rand == 5)
+                if (p2canUseSpecial && Rand == 5 && P2DMG < 180)
                 {
+                    CurrentP2DMG = (Mathf.Clamp01(CurrentP2DMG / P2Uses) + BossDmg);
+                    Debug.Log(CurrentP2DMG);
                     P2Drain = false;
                     AttackAnim(false, CurrentP2DMG);
                     P2CurrentHP = P2CurrentHP + CurrentP2DMG;

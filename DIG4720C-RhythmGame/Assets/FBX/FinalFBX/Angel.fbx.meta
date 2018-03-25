@@ -55,6 +55,9 @@ ModelImporter:
     100094: Spine
     100096: Spine1
     100098: Spine2
+    100100: Angel
+    100102: AngelNEW
+    100104: ANGNew
     400000: //RootNode
     400002: AngelBody2
     400004: Head
@@ -105,9 +108,13 @@ ModelImporter:
     400094: Spine
     400096: Spine1
     400098: Spine2
+    400100: Angel
+    400102: AngelNEW
+    400104: ANGNew
     2100000: lambert2
     4300000: Mouth1
     4300002: AngelBody2
+    4300004: ANGNew
     7400000: Fall
     7400002: Idle
     7400004: Land
@@ -121,6 +128,7 @@ ModelImporter:
     9500000: //RootNode
     13700000: Mouth1
     13700002: AngelBody2
+    13700004: ANGNew
   externalObjects: {}
   materials:
     importMaterials: 0
@@ -136,11 +144,7 @@ ModelImporter:
     rigImportErrors: 
     rigImportWarnings: 
     animationImportErrors: 
-    animationImportWarnings: "\nClip 'Take 001' has import animation warnings that
-      might lower retargeting quality:\nNote: Activate translation DOF on avatar to
-      improve retargeting quality.\n\t'QuickRigCharacter_LeftLeg' has translation
-      animation that will be discarded.\n\t'QuickRigCharacter_RightLeg' has translation
-      animation that will be discarded.\n"
+    animationImportWarnings: 
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
@@ -150,11 +154,8 @@ ModelImporter:
     animationScaleError: 0.5
     animationWrapMode: 0
     extraExposedTransformPaths:
-    - AngelBody2
     - QuickRigCharacter_Hips/QuickRigCharacter_Spine/QuickRigCharacter_Spine1/QuickRigCharacter_Spine2/QuickRigCharacter_LeftShoulder/QuickRigCharacter_LeftArm/QuickRigCharacter_LeftForeArm/QuickRigCharacter_LeftHand
     - QuickRigCharacter_Hips/QuickRigCharacter_Spine/QuickRigCharacter_Spine1/QuickRigCharacter_Spine2/QuickRigCharacter_RightShoulder/QuickRigCharacter_RightArm/QuickRigCharacter_RightForeArm/QuickRigCharacter_RightHand
-    - QuickRigCharacter_Hips/QuickRigCharacter_LeftUpLeg/QuickRigCharacter_LeftLeg/QuickRigCharacter_LeftFoot
-    - QuickRigCharacter_Hips/QuickRigCharacter_RightUpLeg/QuickRigCharacter_RightLeg/QuickRigCharacter_RightFoot
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16

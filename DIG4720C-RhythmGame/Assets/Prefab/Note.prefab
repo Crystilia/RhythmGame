@@ -147,3 +147,7 @@ MonoBehaviour:
   nextC: {r: 1, g: 1, b: 1, a: 0}
   speed: 0
   rate: 0
+  active: 1
+  RemovePos: {x: 0, y: 0, z: 0}
+  SpawnPos: {fileID: 0}
+  spawn: {fileID: 1542975710522678, guid: b564336dc012d56478ad27dc8d8e130a, type: 2}

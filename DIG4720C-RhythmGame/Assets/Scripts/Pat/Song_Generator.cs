@@ -147,7 +147,7 @@ public class Song_Generator : MonoBehaviour {
             {
                 NotePos = other.transform.position;
                 CurrentNote = Instantiate(BadNote, NotePos, Quaternion.identity);
-                CurrentNote.GetComponent<Rigidbody2D>().velocity = other.GetComponent<Rigidbody2D>().velocity;
+                //CurrentNote.GetComponent<Rigidbody2D>().velocity = other.GetComponent<Rigidbody2D>().velocity;
                 Destroy(other);
             }
         }
@@ -157,8 +157,8 @@ public class Song_Generator : MonoBehaviour {
             if (ChangeNote == 2)
             {
                 NotePos = other.transform.position;
-                CurrentNote = Instantiate(GoodNote, NotePos, Quaternion.identity);
-                CurrentNote.GetComponent<Rigidbody2D>().velocity = other.GetComponent<Rigidbody2D>().velocity;
+                CurrentNote = Instantiate(GoodNote, NotePos, other.transform.rotation);
+                //CurrentNote.GetComponent<Rigidbody2D>().velocity = other.GetComponent<Rigidbody2D>().velocity;
                 Destroy(other);
             }
         }

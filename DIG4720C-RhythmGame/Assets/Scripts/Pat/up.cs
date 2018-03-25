@@ -12,15 +12,27 @@ public class up : MonoBehaviour {
     public float speed;
     public float rate;
     public bool active = true;
+    public Vector3 RemovePos;
+    public Transform SpawnPos;
+    public GameObject spawn;
+ 
     // Use this for initialization
     void Start () {
 
+      
         manager = GameObject.Find("Manager").GetComponent<Manager>();
+        RemovePos = new Vector3(this.transform.position.x, manager.P1.transform.position.y+500f, this.transform.position.z);
         rb = this.GetComponent<Rigidbody2D>();
         curC = this.GetComponent<MeshRenderer>().material;
         if (active)
         {
-            rb.velocity = Vector2.up * manager.NoteSpeed;
+            SpawnPos=this.transform;
+
+
+            //RESET MANAGER NOTE SPREAD Y TO 2.3 ***************
+            //RESET NOTE SPAWN Y TO -1723
+            // rb.velocity = Vector2.up * manager.NoteSpeed;
+            //***************************************
         }
     }
     private void Update()
@@ -30,6 +42,12 @@ public class up : MonoBehaviour {
             rate = (Mathf.Sin(Time.time / speed));
             curC.color = Color.Lerp(startC, nextC, rate);
         }
+        if (active && Time.timeScale == 1)
+        {
+            transform.position = Vector3.MoveTowards(SpawnPos.position, RemovePos, 0.17f);
+
+        }
     }
 
 }
+///(float) (AudioSettings.dspTime*

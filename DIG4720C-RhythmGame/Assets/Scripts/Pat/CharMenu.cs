@@ -14,9 +14,10 @@ public class CharMenu : MonoBehaviour {
     public static bool first = true;
     public PauseMenu Pause;
     private Manager mngr;
+
     private void Start()
     {
-        Time.timeScale = 1f;
+        //Time.timeScale = 1f;
 
         // PlayerPrefs.SetInt("P1Flag", 0);
         //  PlayerPrefs.SetInt("FightFlag", 1);
