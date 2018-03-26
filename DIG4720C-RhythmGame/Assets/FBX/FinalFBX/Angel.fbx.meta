@@ -58,6 +58,7 @@ ModelImporter:
     100100: Angel
     100102: AngelNEW
     100104: ANGNew
+    100106: AngAGAin
     400000: //RootNode
     400002: AngelBody2
     400004: Head
@@ -111,10 +112,12 @@ ModelImporter:
     400100: Angel
     400102: AngelNEW
     400104: ANGNew
+    400106: AngAGAin
     2100000: lambert2
     4300000: Mouth1
     4300002: AngelBody2
     4300004: ANGNew
+    4300006: AngAGAin
     7400000: Fall
     7400002: Idle
     7400004: Land
@@ -125,10 +128,12 @@ ModelImporter:
     7400014: D2
     7400016: D3
     7400018: D4
+    7400020: Hit
     9500000: //RootNode
     13700000: Mouth1
     13700002: AngelBody2
     13700004: ANGNew
+    13700006: AngAGAin
   externalObjects: {}
   materials:
     importMaterials: 0
@@ -422,6 +427,34 @@ ModelImporter:
       loop: 0
       hasAdditiveReferencePose: 0
       loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Hit
+      takeName: Take 001
+      firstFrame: 58
+      lastFrame: 63
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0

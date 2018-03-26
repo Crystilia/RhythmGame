@@ -530,7 +530,7 @@ public class Manager : MonoBehaviour
                 P1ATK.transform.position = Vector3.Lerp(P1ATK.transform.position, P2.transform.position, Time.time * P1AtkSpeed);
                 if (P2Dodge == false)
                 {
-                    player2.SetInteger("AnimState", 8);
+                    player2.SetInteger("AnimState", 13);
                     //break;
                 }
                 else if (P2Dodge == true)
