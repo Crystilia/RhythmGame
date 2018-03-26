@@ -69,6 +69,7 @@ public class Manager : MonoBehaviour
     public Texture[] BGs;
     public MeshRenderer BG;
     static public float BossDmg = 0;
+    private int DanceRand;
     #endregion
 
     // Use this for initialization
@@ -285,6 +286,13 @@ public class Manager : MonoBehaviour
         }
     }
 
+    public void Dance()
+    {
+
+        DanceRand = Random.Range(6, 10);
+        player1.SetInteger("AnimState", DanceRand);
+        player2.SetInteger("AnimState", DanceRand);
+    }
 
     //run every frame to see if a player or ai is trying to attack or dodge
     public void StartATK()
@@ -569,7 +577,7 @@ public class Manager : MonoBehaviour
 
                 if (P1Dodge == false)
                 {
-                    player1.SetInteger("AnimState", 8);
+                    player1.SetInteger("AnimState", 13);
                 }
                 if (P1Dodge == true)
                 {
@@ -647,6 +655,10 @@ public class Manager : MonoBehaviour
         StartATK();
     }
 
+    private void FixedUpdate()
+    {
+      //  Dance();
+    }
     // get how long the attack animation is for calculating when the attack detatches
     public void UpdateAnimClipTimes()
     {

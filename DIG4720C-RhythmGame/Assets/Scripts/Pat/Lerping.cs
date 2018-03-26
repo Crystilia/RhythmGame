@@ -29,6 +29,7 @@ public class Lerping : MonoBehaviour
 
     public void die(bool player)
         {
+        mngr.CancelInvoke();
         if (player)
         {
             journeyLength = Vector3.Distance(p1Pos.position, p1Death.position);
@@ -61,5 +62,6 @@ public class Lerping : MonoBehaviour
         }
         mngr.player1.SetInteger("AnimState", 6);
         mngr.player2.SetInteger("AnimState", 6);
+        mngr.InvokeRepeating("Dance", 2.0f, 0.3f);
     }
 }
