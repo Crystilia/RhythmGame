@@ -1577,49 +1577,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 6
       objectReference: {fileID: 0}
-    - target: {fileID: 114195522632661550, guid: 9204fe99245a8de42862b3796fa2bc22,
-        type: 2}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114195522632661550, guid: 9204fe99245a8de42862b3796fa2bc22,
-        type: 2}
-      propertyPath: Note_Colors.Array.data[0].color.g
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114195522632661550, guid: 9204fe99245a8de42862b3796fa2bc22,
-        type: 2}
-      propertyPath: Note_Colors.Array.data[0].color.b
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114195522632661550, guid: 9204fe99245a8de42862b3796fa2bc22,
-        type: 2}
-      propertyPath: Note_Colors.Array.data[0].color.r
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114726417201244936, guid: 9204fe99245a8de42862b3796fa2bc22,
-        type: 2}
-      propertyPath: SongDurCounter
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 61344458661462568, guid: 9204fe99245a8de42862b3796fa2bc22,
-        type: 2}
-      propertyPath: m_Offset.y
-      value: 655.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 61252767188210498, guid: 9204fe99245a8de42862b3796fa2bc22,
-        type: 2}
-      propertyPath: m_Offset.y
-      value: 655.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1641371133900584, guid: 9204fe99245a8de42862b3796fa2bc22, type: 2}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1959029271536476, guid: 9204fe99245a8de42862b3796fa2bc22, type: 2}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9204fe99245a8de42862b3796fa2bc22, type: 2}
   m_IsPrefabParent: 0

@@ -295,7 +295,7 @@ public class Manager : MonoBehaviour
             if (p2activeATK == false)
             {
                 //player1 attack
-                if (p1canUseSpecial && Input.GetKeyDown(KeyCode.Space))
+                if (p1canUseSpecial && Input.GetKeyDown(KeyCode.Space) && P1Drain == false)
                 {
                     P2CanDodge = true;
                     p1activeATK = true;
@@ -347,7 +347,7 @@ public class Manager : MonoBehaviour
             //player2 attack
             if (p1activeATK == false && isAI == false)
             {
-                if (p2canUseSpecial && Input.GetKeyDown(KeyCode.LeftControl) && isAI == false)
+                if (p2canUseSpecial && Input.GetKeyDown(KeyCode.LeftControl) && isAI == false && P2Drain == false)
                 {
                     P1CanDodge = true;
                     p2activeATK = true;
@@ -385,7 +385,7 @@ public class Manager : MonoBehaviour
 
             else if (isAI)
             {
-                if (p2canUseSpecial && p1activeATK == false);
+                if (p2canUseSpecial && p1activeATK == false)
                 {
                     Rand = Random.Range(0, 81);
                 }
@@ -464,7 +464,7 @@ public class Manager : MonoBehaviour
             }
             else if(isAI == true)
             {
-                Rand = Random.Range(0, 81);
+                Rand = Random.Range(0, 200);
                 if (Rand == 5)
                 {
                     P2Dodge = true;
@@ -489,7 +489,7 @@ public class Manager : MonoBehaviour
            // player1.applyRootMotion = true;
             P1ATK.transform.SetParent(P1LH.transform);
             P1ATK.transform.SetPositionAndRotation(P1LH.transform.position, P1LH.transform.rotation);
-            StartCoroutine(Attacker(P1atkTime, (P1atkTime / 2.0f), player1, DMG, !P));
+            StartCoroutine(Attacker(P1atkTime, (P1atkTime / 2.0f), player1, DMG, false));
         }
         else if (P == false)
         {
@@ -500,7 +500,7 @@ public class Manager : MonoBehaviour
             P2ATK.SetActive(true);
             P2ATK.transform.SetParent(P2LH.transform);
             P2ATK.transform.SetPositionAndRotation(P2LH.transform.position, P2LH.transform.rotation);
-            StartCoroutine(Attacker(P2atkTime, (P2atkTime/2.0f), player2, DMG, !P));
+            StartCoroutine(Attacker(P2atkTime, (P2atkTime/2.0f), player2, DMG, true));
         }
     }
 
@@ -519,7 +519,7 @@ public class Manager : MonoBehaviour
             P1ATK.transform.parent.DetachChildren();
             while (Vector3.Distance(P1ATK.transform.position, P2.transform.position) > 1f)
             {
-                P1ATK.transform.position = Vector3.Lerp(P1ATK.transform.position, P2.transform.position, Time.smoothDeltaTime * P1AtkSpeed);
+                P1ATK.transform.position = Vector3.Lerp(P1ATK.transform.position, P2.transform.position, Time.time * P1AtkSpeed);
                 if (P2Dodge == false)
                 {
                     player2.SetInteger("AnimState", 8);
@@ -530,7 +530,7 @@ public class Manager : MonoBehaviour
                     player2.SetInteger("AnimState", 3);
 
                 }
-                if (Vector3.Distance(P1ATK.transform.position, P2.transform.position) < 5f)
+                if (Vector3.Distance(P1ATK.transform.position, P1.transform.position) < 5f)
                 {
                     P2CanDodge = false;
                 }
