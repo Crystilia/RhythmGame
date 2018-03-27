@@ -52,7 +52,7 @@ public class CharMenu : MonoBehaviour {
             P1.position = P1Spot;
             P2.position = P2Spot;
             mngr = GameObject.Find("Manager").GetComponent<Manager>();
-            mngr.BG.material.SetTexture("_MainTex",mngr.BGs[PlayerPrefs.GetInt("Player2Pref")]);
+            mngr.BG.material.SetTexture("_MainTex",mngr.BGs[PlayerPrefs.GetInt("StagePref")]);
 
         }
         if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("SinglePlayer"))
@@ -100,7 +100,7 @@ public class CharMenu : MonoBehaviour {
     //Load Multiplayer
     public void MultiPlayerStart()
     {
-        SceneManager.LoadScene(4);
+        SceneManager.LoadScene(5);
     }
 
     //Load MainMenu

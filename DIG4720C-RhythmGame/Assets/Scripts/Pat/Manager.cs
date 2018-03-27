@@ -362,7 +362,9 @@ public class Manager : MonoBehaviour
                     P2PU.color = new Color(0.0f, 1.0f, 1.0f, 1.0f);
                     P2Drain = true;
                     P2DMG = 200;
-                    P2Uses+=.3f;
+                    P2Uses+=0.3f;
+
+
                 }
                 if (P2Drain)
                 {
@@ -441,7 +443,6 @@ public class Manager : MonoBehaviour
                 if (p2canUseSpecial && Rand == 5 && P2DMG < 180)
                 {
                     CurrentP2DMG = (Mathf.Clamp01(CurrentP2DMG / P2Uses) + BossDmg);
-                    Debug.Log(CurrentP2DMG);
                     P2Drain = false;
                     AttackAnim(false, CurrentP2DMG);
                     P2CurrentHP = P2CurrentHP + CurrentP2DMG;

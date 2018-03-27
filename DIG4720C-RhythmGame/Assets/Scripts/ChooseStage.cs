@@ -73,20 +73,25 @@ public class ChooseStage : MonoBehaviour {
 		}
 
 		//pick a stage
-		if(Input.GetKeyDown(KeyCode.Return))
+		if(Input.GetKeyDown(KeyCode.Space))
 		{
 			//scene stage 1
 			if(pick.transform.position.y >= 300 && pick.transform.position.y <= 310)
-				SceneManager.LoadScene("Stage1");
-			//scene stage 2
-			if(pick.transform.position.y >= 200 && pick.transform.position.y <= 210)
-				SceneManager.LoadScene("Stage2");
-			//scene stage 3
-			if(pick.transform.position.y >= 100 && pick.transform.position.y <= 110)
-				SceneManager.LoadScene("Stage3");
-			//scene stage 4
-			if(pick.transform.position.y >= 0 && pick.transform.position.y <= 10)
-				SceneManager.LoadScene("Stage4");
-		}
-	}
+            PlayerPrefs.SetInt("StagePref", 0);
+            SceneManager.LoadScene(4);
+            //scene stage 2
+            if (pick.transform.position.y >= 200 && pick.transform.position.y <= 210)
+            PlayerPrefs.SetInt("StagePref", 2);
+
+            //scene stage 3
+            if (pick.transform.position.y >= 100 && pick.transform.position.y <= 110)
+            PlayerPrefs.SetInt("StagePref", 3);
+
+            //scene stage 4
+            if (pick.transform.position.y >= 0 && pick.transform.position.y <= 10)
+            PlayerPrefs.SetInt("StagePref", 1);
+
+            SceneManager.LoadScene(4);
+        }
+    }
 }

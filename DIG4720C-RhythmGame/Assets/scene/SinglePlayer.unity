@@ -358,8 +358,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   NoteSpeed: 7.1
   NoteSpawnX: 2
-  NoteSpawnY: -3475
-  NoteSpreadY: 4
+  NoteSpawnY: -1723
+  NoteSpreadY: 2.3
   gameover: {fileID: 929071436}
   gameoverMenu: {fileID: 761254947}
   canB: 1

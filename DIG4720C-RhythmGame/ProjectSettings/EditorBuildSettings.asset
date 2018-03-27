@@ -21,20 +21,8 @@ EditorBuildSettings:
     path: Assets/scene/MultiPlayer.unity
     guid: 2529d484bc9ea1540bcf819f0a8b5516
   - enabled: 1
-    path: Assets/scene/testing/Map 1.unity
-    guid: 0eb8753db4aaa5b458c3392200eeae59
+    path: Assets/scene/SongSelection.unity
+    guid: 592586d06084ca34ba88c228c9afcfc4
   - enabled: 1
-    path: Assets/scene/testing/Map 2.unity
-    guid: ac971135a226cdf4d950a0a9027249c5
-  - enabled: 1
-    path: Assets/scene/testing/Map 3.unity
-    guid: 46d86d5596d1f3941be5fc06fc13b8f2
-  - enabled: 1
-    path: Assets/scene/testing/Map 4.unity
-    guid: b2a6ccdc878c1ae4daf4969a35741da9
-  - enabled: 1
-    path: Assets/scene/testing/Map Selection Screen.unity
-    guid: 012e5fb4b1404b448a589c186e7cc956
-  - enabled: 1
-    path: Assets/scene/testing/Song Select.unity
-    guid: 4548822a34766004d809e45f6b844379
+    path: Assets/scene/StageSelection.unity
+    guid: bb1a49db83d069a4f84848de8919de3a
