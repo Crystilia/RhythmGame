@@ -291,6 +291,7 @@ public class Manager : MonoBehaviour
 
         DanceRand = Random.Range(6, 10);
         player1.SetInteger("AnimState", DanceRand);
+        DanceRand = Random.Range(6, 10);
         player2.SetInteger("AnimState", DanceRand);
     }
 
