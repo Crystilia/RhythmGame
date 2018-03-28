@@ -75,6 +75,7 @@ public class Manager : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        AM.on = false;
 
         #region initialization
         SG = GameObject.Find("SongManager").GetComponent<Song_Generator>();
@@ -109,16 +110,21 @@ public class Manager : MonoBehaviour
 
         #endregion
 
+
         if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("SinglePlayer") || SceneManager.GetActiveScene() == SceneManager.GetSceneByName("MultiPlayer"))
         {
-            AudioManager.soundSrc[0].clip =AudioManager.sfx[5];
+            AudioManager.soundSrc[0].clip = AudioManager.sfx[5];
             AudioManager.soundSrc[0].Play();
         }
         //button = GameObject.Find("Next Button");
         if (gameover != null)
         {
-            gameover.SetActive(false);
+            gameover.transform.parent.gameObject.SetActive(false);
             gameoverMenu.SetActive(false);
+        }
+        if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("SinglePlayer") && PauseMenu.stage == 3)
+        {
+            StartCoroutine(RemoveAfterMLP());
         }
     }
 
@@ -132,7 +138,7 @@ public class Manager : MonoBehaviour
             {
                 P1CurrentHP = P1CurrentHP - Dmg;
                 P1HP.fillAmount = P1CurrentHP;
-                AudioManager.soundSrc[3].PlayOneShot(AudioManager.sfx[2]);
+                AudioManager.soundSrc[3].PlayOneShot(AudioManager.sfx[12]);
             }
             else
             {
@@ -148,6 +154,8 @@ public class Manager : MonoBehaviour
             {
                 P2CurrentHP = P2CurrentHP - Dmg;
                 P2HP.fillAmount = P2CurrentHP;
+                if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("MultiPlayer"))
+                AudioManager.soundSrc[3].PlayOneShot(AudioManager.sfx[12]);
             }
             else
             {
@@ -231,57 +239,117 @@ public class Manager : MonoBehaviour
     //all possible endings go here
     public void GameOver(int Condition)
     {
-            gameover.SetActive(true);
+        if (canB)
+        {
+            Time.timeScale = 0;
+            gameover.transform.parent.gameObject.SetActive(true);
             gameoverMenu.SetActive(true);
             canB = false;
-        if (Condition == 2)
-        {
-            gameover.GetComponent<TextMeshProUGUI>().text = "P2 Wins!";
-            DoorL.SetInteger("AnimState", 1);
-            player1.SetInteger("AnimState", 4);
-            P1Lerp.die(true);
-        }
-        else if (Condition == 1)
-        {
-            gameover.GetComponent<TextMeshProUGUI>().text = "P1 Wins!";
-            DoorR.SetInteger("AnimState", 1);
-            player2.SetInteger("AnimState", 4);
-            P2Lerp.die(false);
-
-        }
-        else if (SG.MaxNotes == 0 && P1CurrentHP > P2CurrentHP)
-        {
-            gameover.GetComponent<TextMeshProUGUI>().text = "P1 Wins!";
-            DoorR.SetInteger("AnimState", 1);
-            player2.SetInteger("AnimState", 4);
-            P2Lerp.die(false);
-
-        }
-        else if (SG.MaxNotes == 0 && P1CurrentHP < P2CurrentHP)
-        {
-            gameover.GetComponent<TextMeshProUGUI>().text = "P2 Wins!";
-            DoorL.SetInteger("AnimState", 1);
-            player1.SetInteger("AnimState", 4);
-            P1Lerp.die(true);
-
-            if (button != null)
+            if (PauseMenu.stage != 3)
             {
-                button.SetActive(false);
+                if (Condition == 2)
+                {
+                    gameover.GetComponent<TextMeshProUGUI>().text = "P2 Wins!";
+                    DoorL.SetInteger("AnimState", 1);
+                    player1.SetInteger("AnimState", 4);
+                    P1Lerp.die(true);
+                }
+                else if (Condition == 1)
+                {
+                    gameover.GetComponent<TextMeshProUGUI>().text = "P1 Wins!";
+                    DoorR.SetInteger("AnimState", 1);
+                    player2.SetInteger("AnimState", 4);
+                    P2Lerp.die(false);
+
+                }
+                else if (SG.MaxNotes == 0 && P1CurrentHP > P2CurrentHP)
+                {
+                    gameover.GetComponent<TextMeshProUGUI>().text = "P1 Wins!";
+                    DoorR.SetInteger("AnimState", 1);
+                    player2.SetInteger("AnimState", 4);
+                    P2Lerp.die(false);
+
+                }
+                else if (SG.MaxNotes == 0 && P1CurrentHP < P2CurrentHP)
+                {
+                    gameover.GetComponent<TextMeshProUGUI>().text = "P2 Wins!";
+                    DoorL.SetInteger("AnimState", 1);
+                    player1.SetInteger("AnimState", 4);
+                    P1Lerp.die(true);
+
+                    if (button != null)
+                    {
+                        button.SetActive(false);
+                    }
+                }
+                else if (SG.MaxNotes == 0)
+                {
+                    gameover.GetComponent<TextMeshProUGUI>().text = "Tie!";
+                    DoorL.SetInteger("AnimState", 1);
+                    player1.SetInteger("AnimState", 4);
+                    P1Lerp.die(true);
+                    DoorR.SetInteger("AnimState", 1);
+                    player2.SetInteger("AnimState", 4);
+                    P2Lerp.die(false);
+
+                    if (button != null)
+                    {
+                        button.SetActive(false);
+                    }
+                }
             }
-        }
-        else if (SG.MaxNotes == 0)
-        {
-            gameover.GetComponent<TextMeshProUGUI>().text = "Tie!";
-            DoorL.SetInteger("AnimState", 1);
-            player1.SetInteger("AnimState", 4);
-            P1Lerp.die(true);
-            DoorR.SetInteger("AnimState", 1);
-            player2.SetInteger("AnimState", 4);
-            P2Lerp.die(false);
-
-            if (button != null)
+            else if (PauseMenu.stage == 3)
             {
-                button.SetActive(false);
+                if (Condition == 2)
+                {
+                    gameover.GetComponent<TextMeshProUGUI>().text = "You Lost!";
+                    DoorL.SetInteger("AnimState", 1);
+                    player1.SetInteger("AnimState", 4);
+                    P1Lerp.die(true);
+                }
+                else if (Condition == 1)
+                {
+                    gameover.GetComponent<TextMeshProUGUI>().text = "You Beat the Game!";
+                    DoorR.SetInteger("AnimState", 1);
+                    player2.SetInteger("AnimState", 4);
+                    P2Lerp.die(false);
+
+                }
+                else if (SG.MaxNotes == 0 && P1CurrentHP > P2CurrentHP)
+                {
+                    gameover.GetComponent<TextMeshProUGUI>().text = "You Win!";
+                    DoorR.SetInteger("AnimState", 1);
+                    player2.SetInteger("AnimState", 4);
+                    P2Lerp.die(false);
+
+                }
+                else if (SG.MaxNotes == 0 && P1CurrentHP < P2CurrentHP)
+                {
+                    gameover.GetComponent<TextMeshProUGUI>().text = "You Lost!";
+                    DoorL.SetInteger("AnimState", 1);
+                    player1.SetInteger("AnimState", 4);
+                    P1Lerp.die(true);
+
+                    if (button != null)
+                    {
+                        button.SetActive(false);
+                    }
+                }
+                else if (SG.MaxNotes == 0)
+                {
+                    gameover.GetComponent<TextMeshProUGUI>().text = "Tie!";
+                    DoorL.SetInteger("AnimState", 1);
+                    player1.SetInteger("AnimState", 4);
+                    P1Lerp.die(true);
+                    DoorR.SetInteger("AnimState", 1);
+                    player2.SetInteger("AnimState", 4);
+                    P2Lerp.die(false);
+
+                    if (button != null)
+                    {
+                        button.SetActive(false);
+                    }
+                }
             }
         }
     }
@@ -339,7 +407,7 @@ public class Manager : MonoBehaviour
                     p1canUseSpecial = false;
                     P1PU.color = new Color(1.0f, 0.0f, 1.0f, 1.0f);
                     CurrentP1DMG = 0;
-                    AudioManager.soundSrc[1].PlayOneShot(AudioManager.sfx[0]);
+                  //  AudioManager.soundSrc[1].PlayOneShot(AudioManager.sfx[0]);
                 }
             }
         }
@@ -390,7 +458,7 @@ public class Manager : MonoBehaviour
                     p2canUseSpecial = false;
                     P2PU.color = new Color(1.0f, 0.0f, 1.0f, 1.0f);
                     CurrentP2DMG = 0;
-                    AudioManager.soundSrc[2].PlayOneShot(AudioManager.sfx[1]);
+                  //  AudioManager.soundSrc[2].PlayOneShot(AudioManager.sfx[1]);
                 }
             }
 
@@ -457,7 +525,7 @@ public class Manager : MonoBehaviour
                     p2canUseSpecial = false;
                     P2PU.color = new Color(1.0f, 0.0f, 1.0f, 1.0f);
                     CurrentP2DMG = 0;
-                    AudioManager.soundSrc[2].PlayOneShot(AudioManager.sfx[1]);
+                   // AudioManager.soundSrc[2].PlayOneShot(AudioManager.sfx[1]);
                 }
 
             }
@@ -527,6 +595,7 @@ public class Manager : MonoBehaviour
            // StartCoroutine(resetRot(player1.GetComponent<Transform>(), rot));
            // StartCoroutine(resetPos(player1.GetComponent<Transform>(), pos));
             P1ATK.transform.parent.DetachChildren();
+            AudioManager.soundSrc[1].PlayOneShot(AudioManager.sfx[11]);
             while (Vector3.Distance(P1ATK.transform.position, P2.transform.position) > 1f)
             {
                 P1ATK.transform.position = Vector3.Lerp(P1ATK.transform.position, P2.transform.position, Time.time * P1AtkSpeed);
@@ -551,14 +620,14 @@ public class Manager : MonoBehaviour
             {
                 P2Body.Play();
                 LowerHP(player, DMG);
-                AudioManager.soundSrc[1].PlayOneShot(AudioManager.sfx[0]);
+                AudioManager.soundSrc[1].PlayOneShot(AudioManager.sfx[10]);
                 P1ATK.SetActive(false);
                 p1activeATK = false;
             }
             else if (P2Dodge == true)
             {
 
-                AudioManager.soundSrc[1].PlayOneShot(AudioManager.sfx[2]);
+                AudioManager.soundSrc[1].PlayOneShot(AudioManager.sfx[13]);
                 //attack miss stuff here
                 player2.SetInteger("AnimState", 8);
                 P2Dodge = false;
@@ -573,6 +642,7 @@ public class Manager : MonoBehaviour
             //StartCoroutine(resetRot(player2.GetComponent<Transform>(), rot));
            // StartCoroutine(resetPos(player2.GetComponent<Transform>(), pos));
             P2ATK.transform.parent.DetachChildren();
+            AudioManager.soundSrc[2].PlayOneShot(AudioManager.sfx[11]);
             while (Vector3.Distance(P2ATK.transform.position, P1.transform.position) > 1f)
             {
                 P2ATK.transform.position = Vector3.Lerp(P2ATK.transform.position, P1.transform.position, Time.time * P2AtkSpeed);
@@ -591,12 +661,12 @@ public class Manager : MonoBehaviour
                 }
                 yield return null;
             }
-            AudioManager.soundSrc[2].PlayOneShot(AudioManager.sfx[0]);
+           // AudioManager.soundSrc[2].PlayOneShot(AudioManager.sfx[0]);
             if (P1Dodge == false)
             {
                 P1Body.Play();
                 LowerHP(player, DMG);
-                AudioManager.soundSrc[2].PlayOneShot(AudioManager.sfx[0]);
+                AudioManager.soundSrc[2].PlayOneShot(AudioManager.sfx[10]);
                 P2ATK.SetActive(false);
                 p2activeATK = false;
             }
@@ -604,7 +674,7 @@ public class Manager : MonoBehaviour
             {
                 
 
-                AudioManager.soundSrc[2].PlayOneShot(AudioManager.sfx[2]);
+                AudioManager.soundSrc[2].PlayOneShot(AudioManager.sfx[13]);
                 //attack miss stuff here
                 player1.SetInteger("AnimState", 8);
               //  P2ATK.SetActive(false);
@@ -648,11 +718,29 @@ public class Manager : MonoBehaviour
             yield return null;
         }
     }
-    #endregion
 
+    IEnumerator RemoveAfterMLP()
+    {
+        if (gameover != null)
+        {
+            gameover.GetComponent<TextMeshProUGUI>().text = "BOSS BATTLE!";
+            gameover.transform.parent.gameObject.SetActive(true);
 
-    // Update is called once per frame
-    void Update()
+        }
+        yield return new WaitForSeconds(1);
+        if (gameover != null)
+        {
+            gameover.transform.parent.gameObject.SetActive(false);
+            gameoverMenu.SetActive(false);
+        }
+
+        yield return new WaitForSeconds(1);
+    }
+        #endregion
+    
+
+        // Update is called once per frame
+        void Update()
     {
         StartATK();
     }

@@ -12,13 +12,50 @@ public class ScrollTest : MonoBehaviour {
 	public GameObject song5;
 	public GameObject song6;
 	public GameObject song7;
+    private AM AudioManager;
+    private bool toggleNoise = true;
+    int i = 3;
 
-	// Use this for initialization
-	void Start () {
-	}
-	
-	// Update is called once per frame
-	void Update () 
+    private void Start()
+    {
+        AudioManager = GameObject.Find("AM").GetComponent<AM>();
+    }
+
+    public void UISfx(int i)
+    {
+        if (AM.on)
+            AudioManager.PlaySfx(3, i, 0.5f);
+        else
+        {
+            AM.on = true;
+        }
+    }
+    
+    public void songSelect(bool j)
+    {
+        if(j)
+        {
+            i++;
+        }
+        else if(!j)
+        {
+            i--;
+        }
+
+        if (i <= 3)
+        {
+            i = 9;
+        }
+        else if (i >= 10)
+        {
+            i = 3;
+        }
+        AudioManager.PlaySfx(0, i, 1);
+
+    }
+
+    // Update is called once per frame
+    void Update () 
 	{
 
         if (Input.GetKeyDown(KeyCode.Space))
@@ -26,6 +63,8 @@ public class ScrollTest : MonoBehaviour {
             PauseMenu.Paused = false;
             Time.timeScale = 1f;
             SceneManager.LoadScene(6);
+                UISfx(2);
+
         }
 
         //scroll up
@@ -33,6 +72,17 @@ public class ScrollTest : MonoBehaviour {
 		{
 			songs.transform.Translate (0, 15, 0);
             SongPos();
+            songSelect(false);
+            if (toggleNoise)
+            {
+                UISfx(0);
+                toggleNoise = false;
+            }
+            else
+            {
+                UISfx(1);
+                toggleNoise = true;
+            }
         }
 
 		//scroll down
@@ -40,6 +90,17 @@ public class ScrollTest : MonoBehaviour {
 		{
 			songs.transform.Translate (0, -15, 0);
             SongPos();
+            songSelect(true);
+            if (toggleNoise)
+            {
+                UISfx(0);
+                toggleNoise = false;
+            }
+            else
+            {
+                UISfx(1);
+                toggleNoise = true;
+            }
 
         }
 

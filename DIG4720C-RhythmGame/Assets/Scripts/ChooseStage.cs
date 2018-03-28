@@ -10,25 +10,61 @@ public class ChooseStage : MonoBehaviour {
 	public GameObject stage2;
 	public GameObject stage3;
 	public GameObject stage4;
-
-
-	// Use this for initialization
-	void Start () {
+    private AM AudioManager;
+    private bool toggleNoise = true;
+     void Start()
+    {
+        AudioManager = GameObject.Find("AM").GetComponent<AM>();
 		stage1.gameObject.SetActive (true);
 		stage2.gameObject.SetActive (false);
 		stage3.gameObject.SetActive (false);
 		stage4.gameObject.SetActive (false);
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		//move up
-		if (Input.GetKeyDown (KeyCode.W) || Input.GetKeyDown (KeyCode.UpArrow))
-			pick.transform.Translate (0,0,100);
-		
-		//move down
-		if (Input.GetKeyDown (KeyCode.S) || Input.GetKeyDown (KeyCode.DownArrow))
-			pick.transform.Translate (0,0,-100);
+
+
+    public void UISfx(int i)
+    {
+        if (AM.on)
+            AudioManager.PlaySfx(3, i, 0.5f);
+        else
+        {
+            AM.on = true;
+        }
+    }
+    // Update is called once per frame
+    void Update () {
+        //move up
+        if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
+        {
+            pick.transform.Translate(0, 0, 100);
+            if (toggleNoise)
+            {
+                UISfx(0);
+                toggleNoise = false;
+            }
+            else
+            {
+                UISfx(1);
+                toggleNoise = true;
+            }
+        }
+
+
+        //move down
+        if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
+        {
+            pick.transform.Translate(0, 0, -100);
+            if (toggleNoise)
+            {
+                UISfx(0);
+                toggleNoise = false;
+            }
+            else
+            {
+                UISfx(1);
+                toggleNoise = true;
+            }
+        }
 
 
 		//too far up
@@ -75,8 +111,9 @@ public class ChooseStage : MonoBehaviour {
 		//pick a stage
 		if(Input.GetKeyDown(KeyCode.Space))
 		{
-			//scene stage 1
-			if(pick.transform.position.y >= 300 && pick.transform.position.y <= 310)
+                UISfx(2);
+            //scene stage 1
+            if (pick.transform.position.y >= 300 && pick.transform.position.y <= 310)
             PlayerPrefs.SetInt("StagePref", 0);
             SceneManager.LoadScene(4);
             //scene stage 2

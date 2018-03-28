@@ -12,23 +12,44 @@ public class ScrolTest : MonoBehaviour {
 	public GameObject song5;
 	public GameObject song6;
 	public GameObject song7;
+    private AM AudioManager;
+    private bool toggleNoise = true;
 
-	// Use this for initialization
-	void Start () {
-	}
+    private void Start()
+    {
+        AudioManager = GameObject.Find("AM").GetComponent<AM>();
+    }
 
-    // Update is called once per frame
+    public void UISfx(int i)
+    {
+        if (AM.on)
+            AudioManager.PlaySfx(3, i, 0.5f);
+        else
+        {
+            AM.on = true;
+        }
+    }
     void Update()
     {
         //Select Song
-        Debug.Log("1");
        
 
         //scroll up
         if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
         {
+            
             songs.transform.Translate(0, 15, 0);
             RePosSongs();
+            if (toggleNoise)
+            {
+                UISfx(0);
+                toggleNoise = false;
+            }
+            else
+            {
+                UISfx(1);
+                toggleNoise = true;
+            }
         }
 
         //scroll down
@@ -36,6 +57,16 @@ public class ScrolTest : MonoBehaviour {
         {
             songs.transform.Translate(0, -15, 0);
             RePosSongs();
+            if (toggleNoise)
+            {
+                UISfx(0);
+                toggleNoise = false;
+            }
+            else
+            {
+                UISfx(1);
+                toggleNoise = true;
+            }
         }
     }
 

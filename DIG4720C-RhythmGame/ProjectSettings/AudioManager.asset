@@ -9,8 +9,8 @@ AudioManager:
   Default Speaker Mode: 2
   m_SampleRate: 0
   m_DSPBufferSize: 1024
-  m_VirtualVoiceCount: 40
-  m_RealVoiceCount: 5
+  m_VirtualVoiceCount: 400
+  m_RealVoiceCount: 10
   m_SpatializerPlugin: 
   m_AmbisonicDecoderPlugin: 
   m_DisableAudio: 0

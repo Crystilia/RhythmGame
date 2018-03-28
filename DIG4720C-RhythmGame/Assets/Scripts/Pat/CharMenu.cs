@@ -16,10 +16,12 @@ public class CharMenu : MonoBehaviour {
     public static bool first = true;
     public PauseMenu Pause;
     private Manager mngr;
+    private AM AudioManager;
     #endregion
 
     private void Start()
     {
+        AudioManager = GameObject.Find("AM").GetComponent<AM>();
         for (int i = 0; i < 4; i++)
         {
             Players[i] = GameObject.Find("Players").transform.GetChild(i).gameObject;
@@ -117,6 +119,18 @@ public class CharMenu : MonoBehaviour {
         PlayerPrefs.SetInt("AI", 75);
         if(Pause != null)
         Pause.Reset();
+    }
+
+
+
+    public void UISfx(int i)
+    {
+        if (AM.on)
+            AudioManager.PlaySfx(3, i, 0.5f);
+        else
+        {
+            AM.on = true;
+        }
     }
 
     //go through players set correct active and the rest not, assign to player pref for multiscene managment PLAYER1

@@ -26,3 +26,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/scene/StageSelection.unity
     guid: bb1a49db83d069a4f84848de8919de3a
+  - enabled: 1
+    path: Assets/scene/Credits.unity
+    guid: 2e9ef890349094a42b36df2d2fabbf14

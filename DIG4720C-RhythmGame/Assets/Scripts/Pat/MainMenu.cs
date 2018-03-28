@@ -13,7 +13,7 @@ public void PlayGame()
     }
     public void kim()
     {
-        SceneManager.LoadScene(9);
+        SceneManager.LoadScene(7);
     }
     public void kim2()
     {
@@ -31,6 +31,17 @@ public void PlayGame()
         {
             AudioManager.soundSrc[0].clip = AudioManager.sfx[4];
             AudioManager.soundSrc[0].Play();
+        }
+    }
+
+
+    public void UISfx(int i)
+    {
+        if (AM.on)
+            AudioManager.PlaySfx(3, i, 0.5f);
+        else
+        {
+            AM.on = true;
         }
     }
 }
