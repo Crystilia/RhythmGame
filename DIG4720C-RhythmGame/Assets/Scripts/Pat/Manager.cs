@@ -241,7 +241,7 @@ public class Manager : MonoBehaviour
     {
         if (canB)
         {
-            Time.timeScale = 0;
+            StartCoroutine(SlowDown(1));
             gameover.transform.parent.gameObject.SetActive(true);
             gameoverMenu.SetActive(true);
             canB = false;
@@ -684,7 +684,6 @@ public class Manager : MonoBehaviour
             }
 
         }
-       
         
     }
     //if dodge lerp past player
@@ -735,6 +734,26 @@ public class Manager : MonoBehaviour
         }
 
         yield return new WaitForSeconds(1);
+    }
+
+    IEnumerator SlowDown(float x)
+    {
+        yield return new WaitForSeconds(0);
+        while (x > 0)
+        {
+            x -= .01f;
+            if (Time.timeScale > 0.2f)
+            {
+                
+                Debug.Log(x);
+                Time.timeScale = x;
+            }
+            else
+            {
+                Time.timeScale = 0;
+            }
+            yield return null;
+        }
     }
         #endregion
     

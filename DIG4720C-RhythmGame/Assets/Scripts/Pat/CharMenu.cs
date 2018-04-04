@@ -21,6 +21,7 @@ public class CharMenu : MonoBehaviour {
 
     private void Start()
     {
+
         AudioManager = GameObject.Find("AM").GetComponent<AM>();
         for (int i = 0; i < 4; i++)
         {
@@ -197,4 +198,8 @@ public class CharMenu : MonoBehaviour {
         P2.GetChild(PlayerPrefs.GetInt("Player1Pref")).gameObject.GetComponent<Button>().enabled = false;     
     }
 
+    public void ResetTime()
+    {
+        Time.timeScale = 1;
+    }
 }
