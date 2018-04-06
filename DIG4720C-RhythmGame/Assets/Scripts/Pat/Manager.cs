@@ -35,8 +35,8 @@ public class Manager : MonoBehaviour
     int P1DMG = 200;
     int P2DMG = 200;
     float CurrentP2DMG = 0.4f;
-    float P1Uses = 1;
-    float P2Uses = 1;
+    float P1Uses = 2.5f;
+    float P2Uses = 2.5f;
     public GameObject P1ATK;
     public GameObject P2ATK;
     public GameObject P1LH;
@@ -396,7 +396,7 @@ public class Manager : MonoBehaviour
                     CurrentP1DMG = Mathf.Clamp01((CurrentP1DMG / P1Uses));
                     P1Drain = false;
                     AttackAnim(true, CurrentP1DMG);
-                    P1CurrentHP = P1CurrentHP + CurrentP1DMG;
+                    P1CurrentHP = Mathf.Clamp01(P1CurrentHP + ((1 - CurrentP1DMG)/ P1Uses));
                     if (P1CurrentHP > 1)
                     {
                         P1CurrentHP = 1;
@@ -447,7 +447,7 @@ public class Manager : MonoBehaviour
                     CurrentP2DMG = Mathf.Clamp01(CurrentP2DMG / P2Uses);
                     P2Drain = false;
                     AttackAnim(false, CurrentP2DMG);
-                    P2CurrentHP = P2CurrentHP + CurrentP2DMG;
+                    P2CurrentHP = Mathf.Clamp01(P2CurrentHP + ((1 - CurrentP2DMG)/P2Uses));
                     if (P2CurrentHP > 1)
                     {
                         P2CurrentHP = 1;
@@ -513,8 +513,10 @@ public class Manager : MonoBehaviour
                 {
                     CurrentP2DMG = (Mathf.Clamp01(CurrentP2DMG / P2Uses) + BossDmg);
                     P2Drain = false;
+
+
                     AttackAnim(false, CurrentP2DMG);
-                    P2CurrentHP = P2CurrentHP + CurrentP2DMG;
+                    P2CurrentHP = Mathf.Clamp01(P2CurrentHP + ((1 - CurrentP2DMG)/P2Uses));
                     if (P2CurrentHP > 1)
                     {
                         P2CurrentHP = 1;
@@ -745,7 +747,6 @@ public class Manager : MonoBehaviour
             if (Time.timeScale > 0.2f)
             {
                 
-                Debug.Log(x);
                 Time.timeScale = x;
             }
             else

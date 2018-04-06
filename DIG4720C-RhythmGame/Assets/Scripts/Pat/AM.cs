@@ -9,7 +9,7 @@ public class AM : MonoBehaviour {
     public static AM am;
     // Use this for initialization
     void Awake() {
-        // Time.timeScale = 0.5f;
+  
 
         if (am == null)
         {

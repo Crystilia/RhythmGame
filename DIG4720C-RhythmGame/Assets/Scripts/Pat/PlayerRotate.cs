@@ -22,7 +22,7 @@ public class PlayerRotate : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void FixedUpdate () {
-        transform.Rotate(Vector3.up, speed * Time.deltaTime);
+	void Update () {
+        transform.Rotate(Vector3.up, speed * Time.smoothDeltaTime);
 	}
 }
