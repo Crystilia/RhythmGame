@@ -12496,6 +12496,11 @@ Prefab:
       propertyPath: m_FillAmount
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114899466073139810, guid: 69bd6309b6d2c2948aa4b0dd07dd62fc,
+        type: 2}
+      propertyPath: m_FillAmount
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114314778223972542, guid: 69bd6309b6d2c2948aa4b0dd07dd62fc, type: 2}
     - {fileID: 114454511917763076, guid: 69bd6309b6d2c2948aa4b0dd07dd62fc, type: 2}
@@ -13027,11 +13032,11 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 0
+  m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 0
+  m_isInputParsingRequired: 1
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:

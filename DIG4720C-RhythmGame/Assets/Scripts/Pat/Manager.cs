@@ -249,6 +249,10 @@ public class Manager : MonoBehaviour
             {
                 if (Condition == 2)
                 {
+                    if (button != null)
+                    {
+                        button.SetActive(false);
+                    }
                     gameover.GetComponent<TextMeshProUGUI>().text = "P2 Wins!";
                     DoorL.SetInteger("AnimState", 1);
                     player1.SetInteger("AnimState", 4);
@@ -306,6 +310,10 @@ public class Manager : MonoBehaviour
                     DoorL.SetInteger("AnimState", 1);
                     player1.SetInteger("AnimState", 4);
                     P1Lerp.die(true);
+                    if (button != null)
+                    {
+                        button.SetActive(false);
+                    }
                 }
                 else if (Condition == 1)
                 {
@@ -313,7 +321,10 @@ public class Manager : MonoBehaviour
                     DoorR.SetInteger("AnimState", 1);
                     player2.SetInteger("AnimState", 4);
                     P2Lerp.die(false);
-
+                    if (button != null)
+                    {
+                        button.SetActive(false);
+                    }
                 }
                 else if (SG.MaxNotes == 0 && P1CurrentHP > P2CurrentHP)
                 {
@@ -356,11 +367,18 @@ public class Manager : MonoBehaviour
 
     public void Dance()
     {
-
-        DanceRand = Random.Range(6, 10);
-        player1.SetInteger("AnimState", DanceRand);
+        if (player1.GetInteger("AnimState") != 1 || player1.GetInteger("AnimState") != 2
+           || player1.GetInteger("AnimState") != 3 || player1.GetInteger("AnimState") != 13)
+        {
+            DanceRand = Random.Range(6, 10);
+            player1.SetInteger("AnimState", DanceRand);
+        }
+        if( player2.GetInteger("AnimState") != 1 || player2.GetInteger("AnimState") != 0
+           || player2.GetInteger("AnimState") != 3 || player2.GetInteger("AnimState") != 13)
+        {
         DanceRand = Random.Range(6, 10);
         player2.SetInteger("AnimState", DanceRand);
+        }
     }
 
     //run every frame to see if a player or ai is trying to attack or dodge
@@ -441,6 +459,7 @@ public class Manager : MonoBehaviour
                     CurrentP2DMG = Mathf.Clamp01((P2DMG / 200f));
                     P2PU.fillAmount = CurrentP2DMG;
                     P2CurrentPU = P2PU.fillAmount;
+
                 }
                 if (p2canUseSpecial && Input.GetKeyUp(KeyCode.B) && isAI == false)
                 {
@@ -569,7 +588,7 @@ public class Manager : MonoBehaviour
            // player1.applyRootMotion = true;
             P1ATK.transform.SetParent(P1LH.transform);
             P1ATK.transform.SetPositionAndRotation(P1LH.transform.position, P1LH.transform.rotation);
-            StartCoroutine(Attacker(P1atkTime, (P1atkTime / 2.0f), player1, DMG, false));
+            StartCoroutine(Attacker(P1atkTime, (P1atkTime / 2.5f), player1, DMG, false));
         }
         else if (P == false)
         {
@@ -580,7 +599,7 @@ public class Manager : MonoBehaviour
             P2ATK.SetActive(true);
             P2ATK.transform.SetParent(P2LH.transform);
             P2ATK.transform.SetPositionAndRotation(P2LH.transform.position, P2LH.transform.rotation);
-            StartCoroutine(Attacker(P2atkTime, (P2atkTime/2.0f), player2, DMG, true));
+            StartCoroutine(Attacker(P2atkTime, (P2atkTime/2.5f), player2, DMG, true));
         }
     }
 

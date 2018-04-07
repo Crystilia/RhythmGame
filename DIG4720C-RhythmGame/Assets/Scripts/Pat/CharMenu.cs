@@ -2,6 +2,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using System.Collections.Generic;
 public class CharMenu : MonoBehaviour {
 
     #region vars
@@ -17,6 +18,9 @@ public class CharMenu : MonoBehaviour {
     public PauseMenu Pause;
     private Manager mngr;
     private AM AudioManager;
+    private Animator player1;
+    private Animator player2;
+    private int DanceRand;
     #endregion
 
     private void Start()
@@ -34,10 +38,14 @@ public class CharMenu : MonoBehaviour {
             if (GameObject.Find("P2") != null)
             {
                 P2 = GameObject.Find("P2").transform;
-
+                player2 = Player2.GetComponent<Animator>();
                 P2.gameObject.SetActive(false);
             }
             PlayerButton(0);
+
+            player1 = Player1.GetComponent<Animator>();
+
+            InvokeRepeating("stance", 0, 1f);
         }
 
         if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("MultiPlayer"))
@@ -97,18 +105,21 @@ public class CharMenu : MonoBehaviour {
     //Load Singleplayer
     public void SinglePlayerStart()
     {
+        CancelInvoke();
         SceneManager.LoadScene(3);
     }
 
     //Load Multiplayer
     public void MultiPlayerStart()
     {
+        CancelInvoke();
         SceneManager.LoadScene(5);
     }
 
     //Load MainMenu
     public void Backbutton()
     {
+        CancelInvoke();
         SceneManager.LoadScene("MainMenu");
     }
 
@@ -152,7 +163,7 @@ public class CharMenu : MonoBehaviour {
         }
         Player1.SetActive(true);
         Player1.transform.rotation = rot;
-
+        player1 = player1 = Player1.GetComponent<Animator>();
         if (PlayerPrefs.GetInt("Player1Pref") != i)
         {
             PlayerPrefs.SetInt("Player1Pref", i);
@@ -174,7 +185,7 @@ public class CharMenu : MonoBehaviour {
         }
         Player2.SetActive(true);
         Player2.transform.rotation = rot;
-
+        player2 = Player2.GetComponent<Animator>();
         if (PlayerPrefs.GetInt("Player2Pref") != i)
         {
             PlayerPrefs.SetInt("Player2Pref", i);
@@ -201,5 +212,22 @@ public class CharMenu : MonoBehaviour {
     public void ResetTime()
     {
         Time.timeScale = 1;
+    }
+
+    void stance()
+    {
+        DanceRand = Random.Range(1, 10);
+        if (player1 != null && Player1.activeSelf == true)
+        {
+            if (DanceRand == 4 || DanceRand == 5)
+            {
+                DanceRand = 0;
+            }
+            player1.SetInteger("AnimState", DanceRand);
+        }
+        if (player2 != null && Player2.activeSelf == true)
+        {
+            player2.SetInteger("AnimState", DanceRand);
+        }
     }
 }
