@@ -70,6 +70,19 @@ public class Manager : MonoBehaviour
     public MeshRenderer BG;
     static public float BossDmg = 0;
     private int DanceRand;
+
+    private Material p1curC;
+    public Color p1startC;
+    public Color p1nextC;
+    private Material p2curC;
+    public Color p2startC;
+    public Color p2nextC;
+    public float speed;
+    public float rate;
+
+    public ParticleSystemRenderer[] atks;
+    public ParticleSystemRenderer[] atks2;
+
     #endregion
 
     // Use this for initialization
@@ -107,9 +120,26 @@ public class Manager : MonoBehaviour
         P2Body = P2.GetComponentInChildren<ParticleSystem>();
         P1M = GameObject.Find("P1_AtkMiss");
         P2M = GameObject.Find("P2_AtkMiss");
-
+        p1curC = P1PU.GetComponent<Image>().material;
+        p2curC = P2PU.GetComponent<Image>().material;
         #endregion
+        /*
+        atks = P1ATK.GetComponentsInChildren<ParticleSystemRenderer>();
+        atks2 = P2ATK.GetComponentsInChildren<ParticleSystemRenderer>();
+   
+        foreach (ParticleSystemRenderer p in atks)
+        {
+            Debug.Log(p);
 
+        }
+        */
+        //change attack color depending on the player
+         for (int i = 0; i < atks.Length; i++)
+        {
+            atks[i].GetComponent<ParticleSystemRenderer>().material.color = new Color(1, 0, 0);
+            atks2[i].GetComponent<ParticleSystemRenderer>().material.color = new Color(0.007f, 0.811f, 1f);
+
+        }
 
         if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("SinglePlayer") || SceneManager.GetActiveScene() == SceneManager.GetSceneByName("MultiPlayer"))
         {
@@ -126,6 +156,7 @@ public class Manager : MonoBehaviour
         {
             StartCoroutine(RemoveAfterMLP());
         }
+
     }
 
 
@@ -394,7 +425,7 @@ public class Manager : MonoBehaviour
                 {
                     P2CanDodge = true;
                     p1activeATK = true;
-                    P1PU.color = new Color(0.0f, 1.0f, 1.0f, 1.0f);
+                    p1curC.color = new Color(1f, 0.862f, 0.219f);
                     P1Drain = true;
                     P1DMG = 200;
                     P1Uses+=0.3f;
@@ -423,7 +454,7 @@ public class Manager : MonoBehaviour
                     P1CurrentPU = 0;
                     P1PU.fillAmount = P1CurrentPU;
                     p1canUseSpecial = false;
-                    P1PU.color = new Color(1.0f, 0.0f, 1.0f, 1.0f);
+                    p1curC.color = new Color(0.780f, 0f, 0f);
                     CurrentP1DMG = 0;
                   //  AudioManager.soundSrc[1].PlayOneShot(AudioManager.sfx[0]);
                 }
@@ -446,7 +477,7 @@ public class Manager : MonoBehaviour
                 {
                     P1CanDodge = true;
                     p2activeATK = true;
-                    P2PU.color = new Color(0.0f, 1.0f, 1.0f, 1.0f);
+                    p2curC.color = new Color(1f, 0.862f, 0.219f);
                     P2Drain = true;
                     P2DMG = 200;
                     P2Uses+=0.3f;
@@ -475,7 +506,7 @@ public class Manager : MonoBehaviour
                     P2CurrentPU = 0;
                     P2PU.fillAmount = P2CurrentPU;
                     p2canUseSpecial = false;
-                    P2PU.color = new Color(1.0f, 0.0f, 1.0f, 1.0f);
+                    p2curC.color = new Color(0.780f, 0f, 0f);
                     CurrentP2DMG = 0;
                   //  AudioManager.soundSrc[2].PlayOneShot(AudioManager.sfx[1]);
                 }
@@ -495,7 +526,7 @@ public class Manager : MonoBehaviour
                     {
                         P1CanDodge = true;
                         p2activeATK = true;
-                        P2PU.color = new Color(0.0f, 1.0f, 1.0f, 1.0f);
+                        p2curC.color = new Color(1f, 0.862f, 0.219f);
                         P2Drain = true;
                         P2DMG =200;
                         P2Uses+=.3f;
@@ -522,7 +553,7 @@ public class Manager : MonoBehaviour
                         P2CurrentPU = 0;
                         P2PU.fillAmount = P2CurrentPU;
                         p2canUseSpecial = false;
-                        P2PU.color = new Color(1.0f, 0.0f, 1.0f, 1.0f);
+                        p2curC.color = new Color(1f, 0.862f, 0.219f);
                         CurrentP2DMG = 0;
                         //AudioManager.soundSrc[2].PlayOneShot(AudioManager.sfx[1]);
                     }
@@ -544,7 +575,7 @@ public class Manager : MonoBehaviour
                     P2CurrentPU = 0;
                     P2PU.fillAmount = P2CurrentPU;
                     p2canUseSpecial = false;
-                    P2PU.color = new Color(1.0f, 0.0f, 1.0f, 1.0f);
+                    p2curC.color = new Color(0.780f, 0f, 0f);
                     CurrentP2DMG = 0;
                    // AudioManager.soundSrc[2].PlayOneShot(AudioManager.sfx[1]);
                 }
@@ -587,7 +618,9 @@ public class Manager : MonoBehaviour
             P1ATK.SetActive(true);
            // player1.applyRootMotion = true;
             P1ATK.transform.SetParent(P1LH.transform);
-            P1ATK.transform.SetPositionAndRotation(P1LH.transform.position, P1LH.transform.rotation);
+            //  P1ATK.transform.SetPositionAndRotation(P1LH.transform.position, P1LH.transform.rotation);
+              P1ATK.transform.SetPositionAndRotation(P1LH.transform.position, Quaternion.identity);
+
             StartCoroutine(Attacker(P1atkTime, (P1atkTime / 2.5f), player1, DMG, false));
         }
         else if (P == false)
@@ -598,7 +631,9 @@ public class Manager : MonoBehaviour
            // player2.applyRootMotion = true;
             P2ATK.SetActive(true);
             P2ATK.transform.SetParent(P2LH.transform);
-            P2ATK.transform.SetPositionAndRotation(P2LH.transform.position, P2LH.transform.rotation);
+            //  P2ATK.transform.SetPositionAndRotation(P2LH.transform.position, P2LH.transform.rotation);
+             P2ATK.transform.SetPositionAndRotation(P2LH.transform.position, Quaternion.identity);
+
             StartCoroutine(Attacker(P2atkTime, (P2atkTime/2.5f), player2, DMG, true));
         }
     }
@@ -782,6 +817,17 @@ public class Manager : MonoBehaviour
         void Update()
     {
         StartATK();
+
+        if (P1PU.fillAmount == 1)
+        {
+            rate = (Mathf.Sin(Time.time / speed));
+            p1curC.color = Color.Lerp(p1startC, p1nextC, rate);
+        }
+        else if(P2PU.fillAmount == 1)
+        {
+            rate = (Mathf.Sin(Time.time / speed));
+            p2curC.color = Color.Lerp(p2startC, p2nextC, rate);
+        }
     }
 
     private void FixedUpdate()

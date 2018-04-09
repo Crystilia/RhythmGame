@@ -68,14 +68,14 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1054066711053056}
-  m_LocalRotation: {x: 0.9501627, y: -0, z: -0, w: -0.31175444}
+  m_LocalRotation: {x: 0.95604926, y: 0, z: 0, w: 0.2932062}
   m_LocalPosition: {x: -0.14, y: 0.5001537, z: 0.005999565}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4400129144795564}
   m_Father: {fileID: 4679100079970878}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 216.33, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 145.9, y: 0, z: 0}
 --- !u!4 &4400129144795564
 Transform:
   m_ObjectHideFlags: 1
@@ -84,7 +84,7 @@ Transform:
   m_GameObject: {fileID: 1770130368472160}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 21.119892, z: 0.99999994}
+  m_LocalScale: {x: 1, y: 0, z: 0.99999994}
   m_Children: []
   m_Father: {fileID: 4028642092496128}
   m_RootOrder: 0
@@ -204,7 +204,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -255658179
+  randomSeed: 1690276721
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -850,16 +850,16 @@ ParticleSystem:
     curve:
       serializedVersion: 2
       minMaxState: 1
-      scalar: 3
+      scalar: 25
       minScalar: 1
       maxCurve:
         serializedVersion: 2
         m_Curve:
         - serializedVersion: 2
           time: 0
-          value: 0.17297363
-          inSlope: 2.7474627
-          outSlope: 2.7474627
+          value: 0.40322876
+          inSlope: 1.8680004
+          outSlope: 1.8680004
           tangentMode: 0
         - serializedVersion: 2
           time: 1
@@ -976,7 +976,7 @@ ParticleSystem:
     x:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0
+      scalar: 0.4860742
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -1058,7 +1058,7 @@ ParticleSystem:
     curve:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0
+      scalar: 18.849556
       minScalar: 0.7853982
       maxCurve:
         serializedVersion: 2
@@ -6902,7 +6902,7 @@ ParticleSystemRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_RenderMode: 4
+  m_RenderMode: 3
   m_SortMode: 0
   m_MinParticleSize: 0
   m_MaxParticleSize: 0.5
@@ -6956,7 +6956,7 @@ ParticleSystemRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_RenderMode: 4
+  m_RenderMode: 3
   m_SortMode: 0
   m_MinParticleSize: 0
   m_MaxParticleSize: 0.5

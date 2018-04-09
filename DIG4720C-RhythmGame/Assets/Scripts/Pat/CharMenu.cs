@@ -163,7 +163,7 @@ public class CharMenu : MonoBehaviour {
         }
         Player1.SetActive(true);
         Player1.transform.rotation = rot;
-        player1 = player1 = Player1.GetComponent<Animator>();
+        player1 = Player1.GetComponent<Animator>();
         if (PlayerPrefs.GetInt("Player1Pref") != i)
         {
             PlayerPrefs.SetInt("Player1Pref", i);
