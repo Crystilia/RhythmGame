@@ -38,7 +38,6 @@ public class CharMenu : MonoBehaviour {
             if (GameObject.Find("P2") != null)
             {
                 P2 = GameObject.Find("P2").transform;
-                player2 = Player2.GetComponent<Animator>();
                 P2.gameObject.SetActive(false);
             }
             PlayerButton(0);
@@ -64,6 +63,8 @@ public class CharMenu : MonoBehaviour {
             P2.position = P2Spot;
             mngr = GameObject.Find("Manager").GetComponent<Manager>();
             mngr.BG.material.SetTexture("_MainTex",mngr.BGs[PlayerPrefs.GetInt("StagePref")]);
+            mngr.P1Icon.sprite = mngr.PlayerIcon[PlayerPrefs.GetInt("Player1Pref")];
+            mngr.P2Icon.sprite = mngr.PlayerIcon[PlayerPrefs.GetInt("Player2Pref")];
 
         }
         if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("SinglePlayer"))
@@ -98,7 +99,8 @@ public class CharMenu : MonoBehaviour {
             P2.position = P2Spot;
             mngr.isAI = true;
             mngr.BG.material.SetTexture("_MainTex", mngr.BGs[PlayerPrefs.GetInt("Player2Pref")]);
-
+            mngr.P1Icon.sprite = mngr.PlayerIcon[PlayerPrefs.GetInt("Player1Pref")];
+            mngr.P2Icon.sprite = mngr.PlayerIcon[PlayerPrefs.GetInt("Player2Pref")];
         }
     }
 

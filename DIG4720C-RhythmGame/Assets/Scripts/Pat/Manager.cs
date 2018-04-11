@@ -68,6 +68,10 @@ public class Manager : MonoBehaviour
     private GameObject P2M;
     public Texture[] BGs;
     public MeshRenderer BG;
+    public Sprite[] PlayerIcon;
+    public Image P1Icon;
+    public Image P2Icon;
+
     static public float BossDmg = 0;
     private int DanceRand;
 
@@ -79,7 +83,7 @@ public class Manager : MonoBehaviour
     public Color p2nextC;
     public float speed;
     public float rate;
-
+    public Color[] atksC;
     public ParticleSystemRenderer[] atks;
     public ParticleSystemRenderer[] atks2;
 
@@ -135,8 +139,8 @@ public class Manager : MonoBehaviour
         //change attack color depending on the player
          for (int i = 0; i < atks.Length; i++)
         {
-            atks[i].GetComponent<ParticleSystemRenderer>().material.color = new Color(1, 0, 0);
-            atks2[i].GetComponent<ParticleSystemRenderer>().material.color = new Color(0.007f, 0.811f, 1f);
+            atks[i].GetComponent<ParticleSystemRenderer>().material.color = atksC[PlayerPrefs.GetInt("Player1Pref")];
+            atks2[i].GetComponent<ParticleSystemRenderer>().material.color = atksC[PlayerPrefs.GetInt("Player2Pref")];
 
         }
 
@@ -207,7 +211,7 @@ public class Manager : MonoBehaviour
                 P1CurrentPU = P1CurrentPU + 0.1f;
                 P1PU.fillAmount = P1CurrentPU;
             }
-            else if (P1PU.fillAmount >= 1f)
+            else if (P1PU.fillAmount >= .85f)
             {
                 P1CurrentPU = 1f;
                 p1canUseSpecial = true;
