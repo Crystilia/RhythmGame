@@ -1,0 +1,23 @@
+fileFormatVersion: 2
+guid: 36b939c303325e146b44ecfb34cbbca8
+timeCreated: 1523402162
+licenseType: Free
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Rhythmaction_font
+  fontNames:
+  - Rhythmaction_font
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

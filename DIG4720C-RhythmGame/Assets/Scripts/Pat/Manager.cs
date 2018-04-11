@@ -92,7 +92,6 @@ public class Manager : MonoBehaviour
 
         #region initialization
         SG = GameObject.Find("SongManager").GetComponent<Song_Generator>();
-        SG = GameObject.Find("SongManager").GetComponent<Song_Generator>();
         AudioManager = GameObject.Find("AM").GetComponent<AM>();
         player1 = GameObject.Find("P1").GetComponentInChildren<Animator>();
         player2 = GameObject.Find("P2").GetComponentInChildren<Animator>();
