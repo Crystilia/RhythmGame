@@ -402,13 +402,13 @@ public class Manager : MonoBehaviour
     public void Dance()
     {
         if (player1.GetInteger("AnimState") != 1 || player1.GetInteger("AnimState") != 2
-           || player1.GetInteger("AnimState") != 3 || player1.GetInteger("AnimState") != 13)
+           || player1.GetInteger("AnimState") != 17 || player1.GetInteger("AnimState") != 14)
         {
             DanceRand = Random.Range(6, 10);
             player1.SetInteger("AnimState", DanceRand);
         }
-        if( player2.GetInteger("AnimState") != 1 || player2.GetInteger("AnimState") != 0
-           || player2.GetInteger("AnimState") != 3 || player2.GetInteger("AnimState") != 13)
+        if( player2.GetInteger("AnimState") != 2 || player2.GetInteger("AnimState") != 0
+           || player2.GetInteger("AnimState") != 16 || player2.GetInteger("AnimState") != 13)
         {
         DanceRand = Random.Range(6, 10);
         player2.SetInteger("AnimState", DanceRand);
@@ -665,7 +665,7 @@ public class Manager : MonoBehaviour
                 }
                 else if (P2Dodge == true)
                 {
-                    player2.SetInteger("AnimState", 3);
+                    player2.SetInteger("AnimState", 16);
 
                 }
                 if (Vector3.Distance(P1ATK.transform.position, P1.transform.position) < 5f)
@@ -708,11 +708,11 @@ public class Manager : MonoBehaviour
 
                 if (P1Dodge == false)
                 {
-                    player1.SetInteger("AnimState", 13);
+                    player1.SetInteger("AnimState", 14);
                 }
                 if (P1Dodge == true)
                 {
-                    player1.SetInteger("AnimState", 3);
+                    player1.SetInteger("AnimState", 17);
                 }
                 if (Vector3.Distance(P2ATK.transform.position, P2.transform.position) < 5f)
                 {
