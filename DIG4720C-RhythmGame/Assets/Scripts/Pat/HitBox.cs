@@ -51,7 +51,7 @@ public class HitBox : MonoBehaviour
         private void OnTriggerEnter2D(Collider2D note)
     {
         Note = null;
-       note.GetComponent<MeshRenderer>().material.color = new Color(1, 0, 0);
+       note.GetComponent<MeshRenderer>().material.color = new Color(1, 1, 1);
         if (IsAI)
         {
             Rand = Random.Range(0, 101);

@@ -25,9 +25,9 @@ public class CharMenu : MonoBehaviour {
 
     private void Start()
     {
-
+        Players = new GameObject[5];
         AudioManager = GameObject.Find("AM").GetComponent<AM>();
-        for (int i = 0; i < 4; i++)
+        for (int i = 0; i < 5; i++)
         {
             Players[i] = GameObject.Find("Players").transform.GetChild(i).gameObject;
         }
@@ -74,7 +74,7 @@ public class CharMenu : MonoBehaviour {
             P1 = GameObject.Find("P1").transform;
             P2 = GameObject.Find("P2").transform;
             PlayerButton(PlayerPrefs.GetInt("Player1Pref"));
-            if (first)
+            if (!first)
             {
                 PlayerPrefs.SetInt("Player2Pref", PlayerPrefs.GetInt("Player1Pref") + 1);
 
@@ -85,10 +85,19 @@ public class CharMenu : MonoBehaviour {
                 Player2Button(PlayerPrefs.GetInt("Player2Pref"));
                 first = false;
             }
-            else
+
+            else if (PauseMenu.stage == 3 )
+            {
+                Debug.Log(PlayerPrefs.GetInt("Player2Pref"));
+                PlayerPrefs.SetInt("Player2Pref", 4);
+                Player2Button(PlayerPrefs.GetInt("Player2Pref"));
+            }
+            else 
             {
                 Player2Button(PlayerPrefs.GetInt("Player2Pref"));
             }
+
+
             Player1.transform.SetParent(P1);
             Player2.transform.SetParent(P2);
             Player1.SetActive(true);
