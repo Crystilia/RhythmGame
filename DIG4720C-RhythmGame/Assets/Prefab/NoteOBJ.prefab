@@ -321,7 +321,7 @@ MonoBehaviour:
     BasicNote: {fileID: 1078513642919848, guid: 2a14542a169ea794bb3f7e3b75ee8b9c,
       type: 2}
   BadNote: {fileID: 1900942275302864, guid: 17a10099af0cbd348b50b15680a939d5, type: 2}
-  GoodNote: {fileID: 1499834526668102, guid: ef1d23faa23aae146a20bba6c35a8a7a, type: 2}
+  GoodNote: {fileID: 1196313887607430, guid: a1dc25db4edb0cc4e84ce68cc8c7c2b1, type: 2}
   MaxNotes: 1
 --- !u!114 &114697182101622502
 MonoBehaviour:
