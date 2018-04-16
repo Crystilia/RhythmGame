@@ -273,14 +273,18 @@ public class Manager : MonoBehaviour
     //all possible endings go here
     public void GameOver(int Condition)
     {
+        //if the game can end
         if (canB)
         {
             StartCoroutine(SlowDown(1));
             gameover.transform.parent.gameObject.SetActive(true);
             gameoverMenu.SetActive(true);
             canB = false;
+
+            // if it isnt the boss stage
             if (PauseMenu.stage != 3)
             {
+                //P2 Win
                 if (Condition == 2)
                 {
                     if (button != null)
@@ -292,6 +296,8 @@ public class Manager : MonoBehaviour
                     player1.SetInteger("AnimState", 4);
                     P1Lerp.die(true);
                 }
+
+                // Player 1 Win
                 else if (Condition == 1)
                 {
                     gameover.GetComponent<TextMeshProUGUI>().text = "P1 Wins!";
@@ -300,6 +306,8 @@ public class Manager : MonoBehaviour
                     P2Lerp.die(false);
 
                 }
+
+                // Player 1 Win by Time / Hp
                 else if (SG.MaxNotes == 0 && P1CurrentHP > P2CurrentHP)
                 {
                     gameover.GetComponent<TextMeshProUGUI>().text = "P1 Wins!";
@@ -308,6 +316,8 @@ public class Manager : MonoBehaviour
                     P2Lerp.die(false);
 
                 }
+
+                // Player 2 Win by Time / hp
                 else if (SG.MaxNotes == 0 && P1CurrentHP < P2CurrentHP)
                 {
                     gameover.GetComponent<TextMeshProUGUI>().text = "P2 Wins!";
@@ -320,6 +330,8 @@ public class Manager : MonoBehaviour
                         button.SetActive(false);
                     }
                 }
+
+                //Tie
                 else if (SG.MaxNotes == 0)
                 {
                     gameover.GetComponent<TextMeshProUGUI>().text = "Tie!";
@@ -399,6 +411,8 @@ public class Manager : MonoBehaviour
         }
     }
 
+
+    // randomlly dance everey so often if not doing something important, atk/dodge etc
     public void Dance()
     {
         if (player1.GetInteger("AnimState") != 1 || player1.GetInteger("AnimState") != 2
@@ -473,7 +487,7 @@ public class Manager : MonoBehaviour
         #region P2/AI
         if (P2CanDodge == false)
         {
-            //player2 attack
+            //player2 attack on press
             if (p1activeATK == false && isAI == false)
             {
                 if (p2canUseSpecial && Input.GetKeyDown(KeyCode.LeftControl) && isAI == false && P2Drain == false)
@@ -487,6 +501,8 @@ public class Manager : MonoBehaviour
 
 
                 }
+
+                //player 2 attack until button up
                 if (P2Drain)
                 {
                     P2DMG -= 1;
@@ -495,7 +511,8 @@ public class Manager : MonoBehaviour
                     P2CurrentPU = P2PU.fillAmount;
 
                 }
-                if (p2canUseSpecial && Input.GetKeyUp(KeyCode.B) && isAI == false)
+                //player 2 final attack stats on button up
+                if (p2canUseSpecial && Input.GetKeyUp(KeyCode.LeftControl) && isAI == false)
                 {
                     CurrentP2DMG = Mathf.Clamp01(CurrentP2DMG / P2Uses);
                     P2Drain = false;
