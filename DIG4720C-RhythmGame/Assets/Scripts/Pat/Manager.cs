@@ -88,6 +88,7 @@ public class Manager : MonoBehaviour
     public ParticleSystemRenderer[] atks;
     public ParticleSystemRenderer[] atks2;
     public EventSystem m_es = EventSystem.current;
+    public GameObject GameOverB;
     #endregion
 
     // Use this for initialization
@@ -280,7 +281,7 @@ public class Manager : MonoBehaviour
             StartCoroutine(SlowDown(1));
             gameover.transform.parent.gameObject.SetActive(true);
             gameoverMenu.SetActive(true);
-          
+            m_es.SetSelectedGameObject(GameObject.Find("RetryButton"));
             canB = false;
 
             // if it isnt the boss stage
