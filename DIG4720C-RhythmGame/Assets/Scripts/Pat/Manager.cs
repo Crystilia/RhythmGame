@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
 using System.Collections;
+using UnityEngine.EventSystems;
 
 public class Manager : MonoBehaviour
 {
@@ -86,7 +87,7 @@ public class Manager : MonoBehaviour
     public Color[] atksC;
     public ParticleSystemRenderer[] atks;
     public ParticleSystemRenderer[] atks2;
-
+    public EventSystem m_es = EventSystem.current;
     #endregion
 
     // Use this for initialization
@@ -279,6 +280,7 @@ public class Manager : MonoBehaviour
             StartCoroutine(SlowDown(1));
             gameover.transform.parent.gameObject.SetActive(true);
             gameoverMenu.SetActive(true);
+          
             canB = false;
 
             // if it isnt the boss stage
@@ -295,6 +297,8 @@ public class Manager : MonoBehaviour
                     DoorL.SetInteger("AnimState", 1);
                     player1.SetInteger("AnimState", 4);
                     P1Lerp.die(true);
+                  //  m_es.SetSelectedGameObject(GameObject.Find("RetryButton"));
+
                 }
 
                 // Player 1 Win

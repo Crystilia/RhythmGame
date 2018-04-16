@@ -74,7 +74,7 @@ public class CharMenu : MonoBehaviour {
             P1 = GameObject.Find("P1").transform;
             P2 = GameObject.Find("P2").transform;
             PlayerButton(PlayerPrefs.GetInt("Player1Pref"));
-            if (!first)
+            if (first)
             {
                 PlayerPrefs.SetInt("Player2Pref", PlayerPrefs.GetInt("Player1Pref") + 1);
 
