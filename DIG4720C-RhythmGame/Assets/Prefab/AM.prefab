@@ -56,7 +56,7 @@ AudioSource:
     type: 2}
   m_audioClip: {fileID: 8300000, guid: 6faeefa9068c9f54da0e0173b53f4c61, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.433
+  m_Volume: 1
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -355,7 +355,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -394,4 +394,10 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 8529f4d1c9477fe4dbb927af03e88be2, type: 3}
   - {fileID: 8300000, guid: ca1c553ba7a79d842b33c3560c02e5ab, type: 3}
   - {fileID: 8300000, guid: 961b6b095be868c429dbe1744868078b, type: 3}
+  mus:
+  - {fileID: 8300000, guid: 6dc9e8a3c35f84c4e9d1de9fb8530ef0, type: 3}
+  - {fileID: 8300000, guid: d48d3f6e29191b240b5603824d297ce6, type: 3}
+  - {fileID: 8300000, guid: c9c8b97e58b62824cb57bd5ca2deb4c2, type: 3}
+  - {fileID: 8300000, guid: 1e2916a801a1ceb4d883b082e528900b, type: 3}
+  - {fileID: 8300000, guid: 756a3f2da4049da438e8ce91c9e75a55, type: 3}
   soundSrc: []

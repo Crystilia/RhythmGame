@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 public class AM : MonoBehaviour {
 
     public AudioClip[] sfx;
+    public AudioClip[] mus;
     public AudioSource[] soundSrc;
     public static bool on = false;
     public static AM am;

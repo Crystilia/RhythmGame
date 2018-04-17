@@ -113,6 +113,14 @@ public class CharMenu : MonoBehaviour {
         }
     }
 
+    //change info text
+    public void ChangeInfo()
+    {
+        return;
+    }
+
+
+
     //Load Singleplayer
     public void SinglePlayerStart()
     {

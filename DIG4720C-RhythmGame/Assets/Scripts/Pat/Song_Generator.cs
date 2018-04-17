@@ -43,10 +43,10 @@ public class Song_Generator : MonoBehaviour {
         rot3 = GameObject.Find("HitBox (2)").transform.rotation;
         rot4 = GameObject.Find("HitBox (3)").transform.rotation;
 
-        GenerateSong();
+        //GenerateSong();
     }
 
-    void GenerateSong()
+    public void GenerateSong()
     {
         for(int x = 0; x < song.width; x++)
         {

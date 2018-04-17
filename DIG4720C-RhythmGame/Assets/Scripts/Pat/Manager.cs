@@ -128,16 +128,7 @@ public class Manager : MonoBehaviour
         p1curC = P1PU.GetComponent<Image>().material;
         p2curC = P2PU.GetComponent<Image>().material;
         #endregion
-        /*
-        atks = P1ATK.GetComponentsInChildren<ParticleSystemRenderer>();
-        atks2 = P2ATK.GetComponentsInChildren<ParticleSystemRenderer>();
-   
-        foreach (ParticleSystemRenderer p in atks)
-        {
-            Debug.Log(p);
-
-        }
-        */
+       
         //change attack color depending on the player
          for (int i = 0; i < atks.Length; i++)
         {
@@ -146,9 +137,19 @@ public class Manager : MonoBehaviour
 
         }
 
+         //song generation settings
         if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("SinglePlayer") || SceneManager.GetActiveScene() == SceneManager.GetSceneByName("MultiPlayer"))
         {
-            AudioManager.soundSrc[0].clip = AudioManager.sfx[5];
+            AudioManager.soundSrc[0].clip = AudioManager.mus[PlayerPrefs.GetInt("Player2Pref")];
+            SG.GenerateSong();
+            AudioManager.soundSrc[0].Play();
+        }
+
+        //song generation settings
+        if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("MultiPlayer"))
+        {
+            AudioManager.soundSrc[0].clip = AudioManager.mus[PlayerPrefs.GetInt("SongPref")];
+            SG.GenerateSong();
             AudioManager.soundSrc[0].Play();
         }
         //button = GameObject.Find("Next Button");
