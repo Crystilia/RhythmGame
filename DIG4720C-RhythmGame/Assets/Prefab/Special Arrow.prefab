@@ -24,9 +24,9 @@ GameObject:
   - component: {fileID: 114783272765543408}
   - component: {fileID: 61792064389747570}
   - component: {fileID: 50459559962421098}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Special Arrow
-  m_TagString: Untagged
+  m_TagString: PowerUp
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -58,7 +58,7 @@ GameObject:
   - component: {fileID: 4259665323528900}
   - component: {fileID: 198884081634888488}
   - component: {fileID: 199859325160733968}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SubEmitter0
   m_TagString: Untagged
   m_Icon: {fileID: 0}

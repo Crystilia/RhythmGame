@@ -89,13 +89,16 @@ public class Manager : MonoBehaviour
     public ParticleSystemRenderer[] atks2;
     public EventSystem m_es = EventSystem.current;
     public GameObject GameOverB;
+    private SensorCore SC;
+    public bool P1Flex = false;
+    public bool P1FlexDur = false;
     #endregion
 
     // Use this for initialization
     void Start()
     {
         AM.on = false;
-
+        SC = GameObject.Find("Sensor Core").GetComponent<SensorCore>();
         #region initialization
         SG = GameObject.Find("SongManager").GetComponent<Song_Generator>();
         AudioManager = GameObject.Find("AM").GetComponent<AM>();
@@ -165,6 +168,23 @@ public class Manager : MonoBehaviour
 
     }
 
+    public void P1FlexTrue()
+    {
+        P1Flex = true;
+        P1FlexDur = false;
+     //   StartCoroutine(flexer());
+    }
+    public void P1FlexFalse()
+    {
+        P1Flex = false;
+        P1FlexDur = false;
+
+    }
+    public void P1FlexRest()
+    {
+        P1Flex = false;
+        P1FlexDur = true;
+    }
 
     //whenever a player or ai takes damage
     public void LowerHP(bool P, float Dmg)
@@ -444,14 +464,14 @@ public class Manager : MonoBehaviour
             if (p2activeATK == false)
             {
                 //player1 attack
-                if (p1canUseSpecial && Input.GetKeyDown(KeyCode.Space) && P1Drain == false)
+                if (p1canUseSpecial && ((Input.GetKeyDown(KeyCode.Space)) || P1Flex == true) && P1Drain == false)
                 {
                     P2CanDodge = true;
                     p1activeATK = true;
                     p1curC.color = new Color(1f, 0.862f, 0.219f);
                     P1Drain = true;
                     P1DMG = 200;
-                    P1Uses+=0.3f;
+                    P1Uses += 0.3f;
 
                 }
                 if (P1Drain)
@@ -463,12 +483,12 @@ public class Manager : MonoBehaviour
                     P1CurrentPU = P1PU.fillAmount;
 
                 }
-                if (p1canUseSpecial && Input.GetKeyUp(KeyCode.Space))
+                if (p1canUseSpecial && ((Input.GetKeyUp(KeyCode.Space)) || (P1Flex == false && P1FlexDur == false)))
                 {
                     CurrentP1DMG = Mathf.Clamp01((CurrentP1DMG / P1Uses));
                     P1Drain = false;
                     AttackAnim(true, CurrentP1DMG);
-                    P1CurrentHP = Mathf.Clamp01(P1CurrentHP + ((1 - CurrentP1DMG)/ P1Uses));
+                    P1CurrentHP = Mathf.Clamp01(P1CurrentHP + ((1 - CurrentP1DMG) / P1Uses));
                     if (P1CurrentHP > 1)
                     {
                         P1CurrentHP = 1;
@@ -479,12 +499,12 @@ public class Manager : MonoBehaviour
                     p1canUseSpecial = false;
                     p1curC.color = new Color(0.780f, 0f, 0f);
                     CurrentP1DMG = 0;
-                  //  AudioManager.soundSrc[1].PlayOneShot(AudioManager.sfx[0]);
+                    //  AudioManager.soundSrc[1].PlayOneShot(AudioManager.sfx[0]);
                 }
             }
         }
 
-        else if (P1CanDodge == true && Input.GetKeyDown(KeyCode.Space))
+        else if (P1CanDodge == true && ((Input.GetKeyDown(KeyCode.Space)) || P1Flex == true))
         {
             P1Dodge = true;
         }
@@ -798,6 +818,11 @@ public class Manager : MonoBehaviour
             player.rotation = Quaternion.RotateTowards(player.rotation, OrgRot, Time.smoothDeltaTime * 500);
             yield return null;
         }
+    }
+    IEnumerator flexer()
+    {
+        yield return new WaitForSeconds(.5f);
+        P1FlexDur = false;
     }
 
     IEnumerator RemoveAfterMLP()
