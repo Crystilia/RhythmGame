@@ -91,7 +91,7 @@ public class Manager : MonoBehaviour
     public GameObject GameOverB;
     private SensorCore SC;
     public bool P1Flex = false;
-    public bool P1FlexDur = false;
+    public bool P1FlexDur = true;
     #endregion
 
     // Use this for initialization

@@ -124,3 +124,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 0}
+  bomb: 0
+  startC: {r: 0, g: 0, b: 0, a: 0}
+  nextC: {r: 0, g: 0, b: 0, a: 0}
+  speed: 0
+  rate: 0
+  active: 1
+  RemovePos: {x: 0, y: 0, z: 0}
+  SpawnPos: {fileID: 0}
+  spawn: {fileID: 0}

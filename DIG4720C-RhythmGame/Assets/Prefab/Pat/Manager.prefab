@@ -64,3 +64,51 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd3ba2cd27a08f54090bf2e10f677e8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  NoteSpeed: 0
+  NoteSpawnX: 0
+  NoteSpawnY: 0
+  NoteSpreadY: 0
+  gameover: {fileID: 0}
+  gameoverMenu: {fileID: 0}
+  canB: 1
+  player1: {fileID: 0}
+  player2: {fileID: 0}
+  P1atkTime: 0
+  P2atkTime: 0
+  P1ATK: {fileID: 0}
+  P2ATK: {fileID: 0}
+  P1LH: {fileID: 0}
+  P2LH: {fileID: 0}
+  P1: {fileID: 0}
+  P2: {fileID: 0}
+  P1AtkSpeed: 0.006
+  P2AtkSpeed: 0.006
+  AudioManager: {fileID: 0}
+  button: {fileID: 0}
+  DoorL: {fileID: 0}
+  DoorR: {fileID: 0}
+  P1Lerp: {fileID: 0}
+  P2Lerp: {fileID: 0}
+  p1activeATK: 0
+  p2activeATK: 0
+  isAI: 0
+  P2CanDodge: 0
+  P1CanDodge: 0
+  BGs: []
+  BG: {fileID: 0}
+  PlayerIcon: []
+  P1Icon: {fileID: 0}
+  P2Icon: {fileID: 0}
+  p1startC: {r: 0, g: 0, b: 0, a: 0}
+  p1nextC: {r: 0, g: 0, b: 0, a: 0}
+  p2startC: {r: 0, g: 0, b: 0, a: 0}
+  p2nextC: {r: 0, g: 0, b: 0, a: 0}
+  speed: 0
+  rate: 0
+  atksC: []
+  atks: []
+  atks2: []
+  m_es: {fileID: 0}
+  GameOverB: {fileID: 0}
+  P1Flex: 0
+  P1FlexDur: 0

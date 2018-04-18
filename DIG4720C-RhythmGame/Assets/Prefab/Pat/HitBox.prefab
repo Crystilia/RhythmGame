@@ -158,6 +158,8 @@ MonoBehaviour:
   IsAI: 0
   AIlvl: 0
   SongDurCounter: 1
+  Song_Gen: 0
+  PlaceNote: {fileID: 0}
 --- !u!198 &198247026219273642
 ParticleSystem:
   m_ObjectHideFlags: 1
