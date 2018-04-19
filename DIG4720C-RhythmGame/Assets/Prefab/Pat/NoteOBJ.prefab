@@ -315,7 +315,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf178b930d39a274e824ae23f535e6be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  song: {fileID: 2800000, guid: e7f6ef7a3495f7f449362374113a73a9, type: 3}
+  song:
+  - {fileID: 2800000, guid: 3b2184f25540c40419d1e20b0e55c002, type: 3}
+  - {fileID: 2800000, guid: e16c224779efad74bba17424f237c2a3, type: 3}
+  - {fileID: 2800000, guid: 62edae2d4e1ba2b4ea87633ebb83e7e8, type: 3}
+  - {fileID: 2800000, guid: 34bcbdcabc3fde84fa1c36ef54308389, type: 3}
+  - {fileID: 2800000, guid: b397af0b38a72f24092389f0a06e0f1d, type: 3}
   Note_Colors:
   - color: {r: 1, g: 0, b: 0, a: 1}
     BasicNote: {fileID: 1078513642919848, guid: 2a14542a169ea794bb3f7e3b75ee8b9c,
@@ -323,6 +328,7 @@ MonoBehaviour:
   BadNote: {fileID: 1900942275302864, guid: 17a10099af0cbd348b50b15680a939d5, type: 2}
   GoodNote: {fileID: 1196313887607430, guid: a1dc25db4edb0cc4e84ce68cc8c7c2b1, type: 2}
   MaxNotes: 1
+  songInt: 0
 --- !u!114 &114697182101622502
 MonoBehaviour:
   m_ObjectHideFlags: 1

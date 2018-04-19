@@ -92,14 +92,17 @@ public class Manager : MonoBehaviour
     private SensorCore SC;
     public bool P1Flex = false;
     public bool P1FlexDur = true;
+    public GameObject[] Stage;
     #endregion
 
-    // Use this for initialization
+
+
     void Start()
     {
+        #region initialization
+
         AM.on = false;
         SC = GameObject.Find("Sensor Core").GetComponent<SensorCore>();
-        #region initialization
         SG = GameObject.Find("SongManager").GetComponent<Song_Generator>();
         AudioManager = GameObject.Find("AM").GetComponent<AM>();
         player1 = GameObject.Find("P1").GetComponentInChildren<Animator>();
@@ -141,18 +144,31 @@ public class Manager : MonoBehaviour
         }
 
          //song generation settings
-        if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("SinglePlayer") || SceneManager.GetActiveScene() == SceneManager.GetSceneByName("MultiPlayer"))
+        if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("SinglePlayer"))
         {
+
+            //set the song file to be played
             AudioManager.soundSrc[0].clip = AudioManager.mus[PlayerPrefs.GetInt("Player2Pref")];
+
+            //read image file and spawn notes
+            SG.songInt = PlayerPrefs.GetInt("Player2Pref");
             SG.GenerateSong();
+
+            //start playing the song
             AudioManager.soundSrc[0].Play();
         }
 
         //song generation settings
         if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("MultiPlayer"))
         {
+            //set the song file to be played
             AudioManager.soundSrc[0].clip = AudioManager.mus[PlayerPrefs.GetInt("SongPref")];
+
+            //read image file and spawn notes
+            SG.songInt = PlayerPrefs.GetInt("SongPref");
             SG.GenerateSong();
+
+            //start playing the song
             AudioManager.soundSrc[0].Play();
         }
         //button = GameObject.Find("Next Button");
@@ -302,7 +318,10 @@ public class Manager : MonoBehaviour
             StartCoroutine(SlowDown(1));
             gameover.transform.parent.gameObject.SetActive(true);
             gameoverMenu.SetActive(true);
-            m_es.SetSelectedGameObject(GameObject.Find("RetryButton"));
+            if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("SinglePlayer"))
+            { 
+                m_es.SetSelectedGameObject(GameObject.Find("RetryButton"));
+        }
             canB = false;
 
             // if it isnt the boss stage
@@ -831,9 +850,11 @@ public class Manager : MonoBehaviour
         {
             gameover.GetComponent<TextMeshProUGUI>().text = "BOSS BATTLE!";
             gameover.transform.parent.gameObject.SetActive(true);
+            Stage[0].gameObject.SetActive(false);
+            Stage[1].gameObject.SetActive(true);
 
         }
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(2);
         if (gameover != null)
         {
             gameover.transform.parent.gameObject.SetActive(false);

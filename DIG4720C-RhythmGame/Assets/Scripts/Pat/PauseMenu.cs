@@ -25,6 +25,8 @@ public class PauseMenu : MonoBehaviour {
     {
         stage = 1;
         Manager.BossDmg = 0;
+        mngr.Stage[0].gameObject.SetActive(true);
+        mngr.Stage[1].gameObject.SetActive(false);
     }
 
     //resume the game

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-//[ExecuteInEditMode]
+
 public class Song_Generator : MonoBehaviour {
 
 
@@ -14,7 +14,7 @@ public class Song_Generator : MonoBehaviour {
     private int ChangeNote;
     private GameObject CurrentNote;
     Manager manager;
-    public Texture2D song;
+    public Texture2D[] song;
     public ColorToPrefab[] Note_Colors;
     public GameObject BadNote;
     public GameObject GoodNote;
@@ -30,7 +30,7 @@ public class Song_Generator : MonoBehaviour {
     private Quaternion rot2;
     private Quaternion rot3;
     private Quaternion rot4;
-
+    public int songInt;
     // Use this for initialization
     void Start () {
         spawner = GameObject.Find("NoteSpawn").GetComponent<Transform>();
@@ -48,9 +48,9 @@ public class Song_Generator : MonoBehaviour {
 
     public void GenerateSong()
     {
-        for(int x = 0; x < song.width; x++)
+        for(int x = 0; x < song[songInt].width; x++)
         {
-            for (int y = 0; y < song.height; y++)
+            for (int y = 0; y < song[songInt].height; y++)
             {
                 GenerateNote(x, y);
             }
@@ -59,7 +59,7 @@ public class Song_Generator : MonoBehaviour {
 
     void GenerateNote(int x, int y)
     {
-        pixelC = song.GetPixel(x, y);
+        pixelC = song[songInt].GetPixel(x, y);
    
         //ignore transparent pixels
         if (pixelC.a == 0)

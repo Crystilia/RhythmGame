@@ -2,8 +2,13 @@
 using UnityEngine.SceneManagement;
 public class MainMenu : MonoBehaviour {
     private AM AudioManager;
+    public bool EMGT = true;
+    public GameObject SM;
+    public GameObject MM;
+    public GameObject PM;
+    public GameObject TT;
 
-public void PlayGame()
+    public void PlayGame()
     {
         SceneManager.LoadScene(1);
     }
@@ -23,7 +28,21 @@ public void PlayGame()
     {
         Application.Quit();
     }
+    public void EMG()
+    {
+        if (EMGT)
+        {
+           SM.SetActive(true);
+           MM.SetActive(false);
+           PM.SetActive(false);
+           TT.SetActive(false);
+        }
+        else
+            PM.SetActive(true);
+            MM.SetActive(false);
 
+        return;
+    }
     public void Start()
     {
         AudioManager = GameObject.Find("AM").GetComponent<AM>();

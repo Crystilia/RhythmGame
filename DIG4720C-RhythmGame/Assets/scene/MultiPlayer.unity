@@ -370,7 +370,7 @@ MonoBehaviour:
   P2atkTime: 0
   P1ATK: {fileID: 2072917742}
   P2ATK: {fileID: 262674371}
-  P1LH: {fileID: 1489748579}
+  P1LH: {fileID: 0}
   P2LH: {fileID: 0}
   P1: {fileID: 1779185251}
   P2: {fileID: 1362878264}
@@ -421,6 +421,10 @@ MonoBehaviour:
   - {fileID: 414783265}
   - {fileID: 414783264}
   - {fileID: 644768769}
+  m_es: {fileID: 0}
+  GameOverB: {fileID: 0}
+  P1Flex: 0
+  P1FlexDur: 1
 --- !u!114 &80304177
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10168,12 +10172,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Padding:
-    m_Left: 15
-    m_Right: 15
-    m_Top: 15
-    m_Bottom: 15
+    m_Left: 25
+    m_Right: 25
+    m_Top: 25
+    m_Bottom: 25
   m_ChildAlignment: 1
-  m_Spacing: 15
+  m_Spacing: 25
   m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 1
   m_ChildControlWidth: 1
@@ -11371,12 +11375,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Padding:
-    m_Left: 15
-    m_Right: 15
-    m_Top: 15
-    m_Bottom: 15
+    m_Left: 25
+    m_Right: 25
+    m_Top: 25
+    m_Bottom: 25
   m_ChildAlignment: 1
-  m_Spacing: 15
+  m_Spacing: 25
   m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 1
   m_ChildControlWidth: 1
@@ -11393,7 +11397,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0, b: 0, a: 0.392}
+  m_Color: {r: 0.3241377, g: 0, b: 1, a: 0.392}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -11800,11 +11804,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4758d769b6a6a54ea86d04d93917168, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &1489748579 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1050965919479794, guid: b86c397f7a4e691469bbb90ae68f12ab,
-    type: 2}
-  m_PrefabInternal: {fileID: 1601618323}
 --- !u!1 &1511690221
 GameObject:
   m_ObjectHideFlags: 0
@@ -13353,12 +13352,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Padding:
-    m_Left: 15
-    m_Right: 15
-    m_Top: 15
-    m_Bottom: 15
+    m_Left: 25
+    m_Right: 25
+    m_Top: 25
+    m_Bottom: 25
   m_ChildAlignment: 1
-  m_Spacing: 15
+  m_Spacing: 25
   m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 1
   m_ChildControlWidth: 1
@@ -13375,7 +13374,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0, b: 0, a: 0.392}
+  m_Color: {r: 0.3241377, g: 0, b: 1, a: 0.392}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
