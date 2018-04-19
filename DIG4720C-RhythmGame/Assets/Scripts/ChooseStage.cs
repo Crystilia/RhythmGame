@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
+using UnityEngine.EventSystems;
 public class ChooseStage : MonoBehaviour {
 
 	public GameObject pick;
@@ -11,6 +11,10 @@ public class ChooseStage : MonoBehaviour {
 	public GameObject stage3;
 	public GameObject stage4;
     private AM AudioManager;
+    public bool stagesel = true;
+    public EventSystem em;
+    public GameObject but;
+
     private bool toggleNoise = true;
      void Start()
     {
@@ -34,7 +38,7 @@ public class ChooseStage : MonoBehaviour {
     // Update is called once per frame
     void Update () {
         //move up
-        if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
+        if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow) && stagesel)
         {
             pick.transform.Translate(0, 0, 100);
             if (toggleNoise)
@@ -51,7 +55,7 @@ public class ChooseStage : MonoBehaviour {
 
 
         //move down
-        if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
+        if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow) && stagesel)
         {
             pick.transform.Translate(0, 0, -100);
             if (toggleNoise)
@@ -109,7 +113,7 @@ public class ChooseStage : MonoBehaviour {
 		}
 
 		//pick a stage
-		if(Input.GetKeyDown(KeyCode.Space))
+		if(Input.GetKeyDown(KeyCode.Return) && stagesel)
 		{
                 UISfx(2);
             //scene stage 1
@@ -129,6 +133,40 @@ public class ChooseStage : MonoBehaviour {
             PlayerPrefs.SetInt("StagePref", 1);
 
             SceneManager.LoadScene(4);
+        }
+
+        if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D))
+        {
+            stagesel = true;
+            PauseMenu.Paused = false;
+            if (toggleNoise)
+            {
+                UISfx(0);
+                toggleNoise = false;
+            }
+            else
+            {
+                UISfx(1);
+                toggleNoise = true;
+            }
+            em.SetSelectedGameObject(null);
+        }
+
+        if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A))
+        {
+            stagesel = false;
+            PauseMenu.Paused = false;
+            if (toggleNoise)
+            {
+                UISfx(0);
+                toggleNoise = false;
+            }
+            else
+            {
+                UISfx(1);
+                toggleNoise = true;
+            }
+            em.SetSelectedGameObject(but);
         }
     }
 }
