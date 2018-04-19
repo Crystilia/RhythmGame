@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
 public class ScrollTest : MonoBehaviour {
 
 	public GameObject songs;
@@ -14,11 +15,17 @@ public class ScrollTest : MonoBehaviour {
 	public GameObject song7;
     private AM AudioManager;
     private bool toggleNoise = true;
-    int i = 3;
+    int i = 4;
+    int k = 7;
+    public EventSystem em;
+    public GameObject but;
+    public bool songsel = true;
 
     private void Start()
     {
         AudioManager = GameObject.Find("AM").GetComponent<AM>();
+        AudioManager.PlaySfx(0, k, 1);
+        PlayerPrefs.SetInt("SongPref", k - 4);
     }
 
     public void UISfx(int i)
@@ -35,30 +42,43 @@ public class ScrollTest : MonoBehaviour {
     {
         if(j)
         {
-            i++;
+            i--;
         }
         else if(!j)
         {
-            i--;
+            i++;
         }
 
-        if (i <= 3)
+        if (i < 1)
         {
-            i = 9;
+            i = 8;
         }
-        else if (i >= 10)
+        if (i > 7)
         {
-            i = 3;
+            i = 1;
         }
-        AudioManager.PlaySfx(0, i, 1);
+        k = i + 3;
+        if (i == 6)
+        {
+            k = 6;
+        }
 
+        if (i == 7)
+        {
+            k = 8;
+        }
+
+
+
+        AudioManager.PlaySfx(0, k, 1);
+        PlayerPrefs.SetInt("SongPref", k-4);
     }
 
     // Update is called once per frame
     void Update () 
 	{
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Return) && songsel == true)
         {
             PauseMenu.Paused = false;
             Time.timeScale = 1f;
@@ -66,9 +86,42 @@ public class ScrollTest : MonoBehaviour {
                 UISfx(2);
 
         }
+        if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A))
+        {
+            songsel = false;
+            PauseMenu.Paused = false;
+            if (toggleNoise)
+            {
+                UISfx(0);
+                toggleNoise = false;
+            }
+            else
+            {
+                UISfx(1);
+                toggleNoise = true;
+            }
+            em.SetSelectedGameObject(but);
+        }
 
+
+        if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D))
+        {
+            songsel = true;
+            PauseMenu.Paused = false;
+            if (toggleNoise)
+            {
+                UISfx(0);
+                toggleNoise = false;
+            }
+            else
+            {
+                UISfx(1);
+                toggleNoise = true;
+            }
+            em.SetSelectedGameObject(null);
+        }
         //scroll up
-        if (Input.GetKeyDown (KeyCode.W) || Input.GetKeyDown (KeyCode.DownArrow))
+        if (Input.GetKeyDown (KeyCode.W) || Input.GetKeyDown (KeyCode.DownArrow) && songsel == true)
 		{
 			songs.transform.Translate (0, 15, 0);
             SongPos();
@@ -86,7 +139,7 @@ public class ScrollTest : MonoBehaviour {
         }
 
 		//scroll down
-		if (Input.GetKeyDown (KeyCode.S) || Input.GetKeyDown (KeyCode.UpArrow))
+		if (Input.GetKeyDown (KeyCode.S) || Input.GetKeyDown (KeyCode.UpArrow) && songsel == true)
 		{
 			songs.transform.Translate (0, -15, 0);
             SongPos();
