@@ -431,7 +431,7 @@ MonoBehaviour:
   m_es: {fileID: 750324073}
   GameOverB: {fileID: 927427706}
   P1Flex: 0
-  P1FlexDur: 0
+  P1FlexDur: 1
   Stage:
   - {fileID: 1459327484}
   - {fileID: 417348118}
@@ -12195,6 +12195,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114088613716720558, guid: 541698ff903bb1c4fb76859c2531c40a,
+        type: 2}
+      propertyPath: flexKeys.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4493796732511564, guid: 541698ff903bb1c4fb76859c2531c40a, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -12226,6 +12231,20 @@ Prefab:
     - target: {fileID: 4493796732511564, guid: 541698ff903bb1c4fb76859c2531c40a, type: 2}
       propertyPath: m_RootOrder
       value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 114088613716720558, guid: 541698ff903bb1c4fb76859c2531c40a,
+        type: 2}
+      propertyPath: flexKeys.Array.data[1]
+      value: q
+      objectReference: {fileID: 0}
+    - target: {fileID: 114088613716720558, guid: 541698ff903bb1c4fb76859c2531c40a,
+        type: 2}
+      propertyPath: flexKeys.Array.data[0]
+      value: l
+      objectReference: {fileID: 0}
+    - target: {fileID: 1512626714208732, guid: 541698ff903bb1c4fb76859c2531c40a, type: 2}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 541698ff903bb1c4fb76859c2531c40a, type: 2}

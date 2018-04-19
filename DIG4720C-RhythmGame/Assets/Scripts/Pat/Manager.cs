@@ -102,7 +102,10 @@ public class Manager : MonoBehaviour
         #region initialization
 
         AM.on = false;
-        SC = GameObject.Find("Sensor Core").GetComponent<SensorCore>();
+        if (GameObject.Find("Sensor Core") != null)
+        {
+            SC = GameObject.Find("Sensor Core").GetComponent<SensorCore>();
+        }
         SG = GameObject.Find("SongManager").GetComponent<Song_Generator>();
         AudioManager = GameObject.Find("AM").GetComponent<AM>();
         player1 = GameObject.Find("P1").GetComponentInChildren<Animator>();
@@ -899,6 +902,20 @@ public class Manager : MonoBehaviour
         {
             rate = (Mathf.Sin(Time.time / speed));
             p2curC.color = Color.Lerp(p2startC, p2nextC, rate);
+        }
+
+        if (P1Flex)
+        {
+            Debug.Log(P1Flex);
+        }
+
+        if(Input.GetKeyDown(KeyCode.Space))
+            {
+            Debug.Log("space");
+        }
+        if(P1FlexDur)
+        {
+            Debug.Log("dur");
         }
     }
 
