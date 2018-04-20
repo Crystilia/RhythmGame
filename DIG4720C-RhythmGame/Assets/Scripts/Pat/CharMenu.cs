@@ -16,7 +16,7 @@ public class CharMenu : MonoBehaviour {
     public Vector3 P1Spot = new Vector3(1.85f, 226.41f, 5.08f);
 
     //set to true when not testing
-    public static bool first = false;
+    public static bool first = true;
 
 
     public PauseMenu Pause;

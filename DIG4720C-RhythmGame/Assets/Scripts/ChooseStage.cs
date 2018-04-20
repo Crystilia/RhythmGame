@@ -72,12 +72,12 @@ public class ChooseStage : MonoBehaviour {
 
 
 		//too far up
-		if(pick.transform.position.x == 780 && pick.transform.position.y > 306)
-			pick.transform.position = new Vector3 (780,5,1);
+		if(pick.transform.position.x == 659 && pick.transform.position.y > 306)
+			pick.transform.position = new Vector3 (659, 5,1);
 		
 		//too far down
-		if(pick.transform.position.x == 780 && pick.transform.position.y < 4)
-			pick.transform.position = new Vector3 (780,305,1);
+		if(pick.transform.position.x == 659 && pick.transform.position.y < 4)
+			pick.transform.position = new Vector3 (659, 305,1);
 
 		//stage 1
 		if (pick.transform.position.y >= 300 && pick.transform.position.y <= 310)
@@ -113,7 +113,7 @@ public class ChooseStage : MonoBehaviour {
 		}
 
 		//pick a stage
-		if(Input.GetKeyDown(KeyCode.Return) && stagesel)
+		if((Input.GetKeyDown(KeyCode.Return)  || Input.GetKeyDown(KeyCode.Space)) && stagesel)
 		{
                 UISfx(2);
             //scene stage 1

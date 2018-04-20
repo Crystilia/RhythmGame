@@ -249,7 +249,7 @@ public class Manager : MonoBehaviour
 
     //whenever a player or ai takes damage
     public void LowerHP(bool P, float Dmg)
-    {/*
+    {
         if (P)
         {
             if (P1CurrentHP > 0)
@@ -282,7 +282,7 @@ public class Manager : MonoBehaviour
                 GameOver(1);
             }
         }
-       */
+       
         return;
     }
 
@@ -582,7 +582,7 @@ public class Manager : MonoBehaviour
             //player2 attack on press
             if (p1activeATK == false && isAI == false)
             {
-                if (p2canUseSpecial && Input.GetKeyDown(KeyCode.LeftControl) && isAI == false && P2Drain == false)
+                if (p2canUseSpecial && Input.GetKeyDown(KeyCode.RightControl) && isAI == false && P2Drain == false)
                 {
                     P1CanDodge = true;
                     p2activeATK = true;
@@ -604,7 +604,7 @@ public class Manager : MonoBehaviour
 
                 }
                 //player 2 final attack stats on button up
-                if (p2canUseSpecial && Input.GetKeyUp(KeyCode.LeftControl) && isAI == false)
+                if (p2canUseSpecial && Input.GetKeyUp(KeyCode.RightControl) && isAI == false)
                 {
                     CurrentP2DMG = Mathf.Clamp01(CurrentP2DMG / P2Uses);
                     P2Drain = false;
@@ -699,7 +699,7 @@ public class Manager : MonoBehaviour
         {
             if (isAI == false)
             {
-                if (Input.GetKeyDown(KeyCode.LeftControl))
+                if (Input.GetKeyDown(KeyCode.RightControl))
                 {
                     P2Dodge = true;
                 }

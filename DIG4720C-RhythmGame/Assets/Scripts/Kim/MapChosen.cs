@@ -8,7 +8,7 @@ public class MapChosen : MonoBehaviour {
 	void Update ()
 	//public void LoadMap() 
 	{ 
-		if (Input.GetKeyDown (KeyCode.Return))
+		if (Input.GetKeyDown (KeyCode.Return) ||Input.GetKeyDown(KeyCode.Space))
 		{
 			//load map 1
 			if (transform.position.x == -31.1f && transform.position.y == 21.3f)

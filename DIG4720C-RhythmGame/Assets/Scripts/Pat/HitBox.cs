@@ -179,35 +179,35 @@ public class HitBox : MonoBehaviour
             }
             if (IsAI == false)
             {
-                if (i == 0 && Input.GetKeyDown(KeyCode.LeftArrow))
+                if (i == 0 && Input.GetKeyDown(KeyCode.A))
                 {
                     hit(true);
                 }
-                else if (i == 1 && Input.GetKeyDown(KeyCode.RightArrow))
+                else if (i == 1 && Input.GetKeyDown(KeyCode.D))
                 {
                     hit(true);
                 }
-                else if (i == 2 && Input.GetKeyDown(KeyCode.UpArrow))
+                else if (i == 2 && Input.GetKeyDown(KeyCode.W))
                 {
                     hit(true);
                 }
-                else if (i == 3 && Input.GetKeyDown(KeyCode.DownArrow))
+                else if (i == 3 && Input.GetKeyDown(KeyCode.S))
                 {
                     hit(true);
                 }
-                else if (i == 4 && Input.GetKeyDown(KeyCode.A))
+                else if (i == 4 && Input.GetKeyDown(KeyCode.LeftArrow))
                 {
                     hit(false);
                 }
-                else if (i == 5 && Input.GetKeyDown(KeyCode.D))
+                else if (i == 5 && Input.GetKeyDown(KeyCode.RightArrow))
                 {
                     hit(false);
                 }
-                else if (i == 6 && Input.GetKeyDown(KeyCode.W))
+                else if (i == 6 && Input.GetKeyDown(KeyCode.UpArrow))
                 {
                     hit(false);
                 }
-                else if (i == 7 && Input.GetKeyDown(KeyCode.S))
+                else if (i == 7 && Input.GetKeyDown(KeyCode.DownArrow))
                 {
                     hit(false);
                 }

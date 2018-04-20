@@ -584,11 +584,11 @@ MonoBehaviour:
     lineCount: 2
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 0
+  m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 0
+  m_isInputParsingRequired: 1
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
@@ -2005,6 +2005,16 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 1.1925
       objectReference: {fileID: 0}
+    - target: {fileID: 114288856793567554, guid: e90c00df62a836d47b5c496728917008,
+        type: 2}
+      propertyPath: mus.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: 0385f7994f5494847a81633f2abfd51e, type: 3}
+    - target: {fileID: 114288856793567554, guid: e90c00df62a836d47b5c496728917008,
+        type: 2}
+      propertyPath: sfx.Array.data[5]
+      value: 
+      objectReference: {fileID: 8300000, guid: 0385f7994f5494847a81633f2abfd51e, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e90c00df62a836d47b5c496728917008, type: 2}
   m_IsPrefabParent: 0

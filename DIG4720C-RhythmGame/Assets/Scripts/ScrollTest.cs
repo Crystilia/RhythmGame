@@ -2,22 +2,31 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-public class ScrolTest : MonoBehaviour {
+using UnityEngine.EventSystems;
+public class ScrolTest : MonoBehaviour
+{
 
-	public GameObject songs;
-	public GameObject song1;
-	public GameObject song2;
-	public GameObject song3;
-	public GameObject song4;
-	public GameObject song5;
-	public GameObject song6;
-	public GameObject song7;
+    public GameObject songs;
+    public GameObject song1;
+    public GameObject song2;
+    public GameObject song3;
+    public GameObject song4;
+    public GameObject song5;
+    public GameObject song6;
+    public GameObject song7;
     private AM AudioManager;
     private bool toggleNoise = true;
+    int i = 4;
+    int k = 7;
+    public EventSystem em;
+    public GameObject but;
+    public bool songsel = true;
 
     private void Start()
     {
         AudioManager = GameObject.Find("AM").GetComponent<AM>();
+        AudioManager.PlaySfx(0, k, 1);
+        PlayerPrefs.SetInt("SongPref", k - 4);
     }
 
     public void UISfx(int i)
@@ -29,17 +38,95 @@ public class ScrolTest : MonoBehaviour {
             AM.on = true;
         }
     }
+
+    public void songSelect(bool j)
+    {
+        if (j)
+        {
+            i--;
+        }
+        else if (!j)
+        {
+            i++;
+        }
+
+        if (i < 1)
+        {
+            i = 8;
+        }
+        if (i > 7)
+        {
+            i = 1;
+        }
+        k = i + 3;
+        if (i == 6)
+        {
+            k = 6;
+        }
+
+        if (i == 7)
+        {
+            k = 8;
+        }
+
+
+
+        AudioManager.PlaySfx(0, k, 1);
+        PlayerPrefs.SetInt("SongPref", k - 4);
+    }
+
+    // Update is called once per frame
     void Update()
     {
-        //Select Song
-       
 
-        //scroll up
-        if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
+        if (Input.GetKeyDown(KeyCode.Return) && songsel == true)
         {
-            
+            PauseMenu.Paused = false;
+            Time.timeScale = 1f;
+            SceneManager.LoadScene(6);
+            UISfx(2);
+
+        }
+        if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A))
+        {
+            songsel = false;
+            PauseMenu.Paused = false;
+            if (toggleNoise)
+            {
+                UISfx(0);
+                toggleNoise = false;
+            }
+            else
+            {
+                UISfx(1);
+                toggleNoise = true;
+            }
+            em.SetSelectedGameObject(but);
+        }
+
+
+        if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D))
+        {
+            songsel = true;
+            PauseMenu.Paused = false;
+            if (toggleNoise)
+            {
+                UISfx(0);
+                toggleNoise = false;
+            }
+            else
+            {
+                UISfx(1);
+                toggleNoise = true;
+            }
+            em.SetSelectedGameObject(null);
+        }
+        //scroll up
+        if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.DownArrow) && songsel == true)
+        {
             songs.transform.Translate(0, 15, 0);
-            RePosSongs();
+            SongPos();
+            songSelect(false);
             if (toggleNoise)
             {
                 UISfx(0);
@@ -53,10 +140,11 @@ public class ScrolTest : MonoBehaviour {
         }
 
         //scroll down
-        if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
+        if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.UpArrow) && songsel == true)
         {
             songs.transform.Translate(0, -15, 0);
-            RePosSongs();
+            SongPos();
+            songSelect(true);
             if (toggleNoise)
             {
                 UISfx(0);
@@ -67,11 +155,14 @@ public class ScrolTest : MonoBehaviour {
                 UISfx(1);
                 toggleNoise = true;
             }
-        }
-    }
 
-    void RePosSongs()
+        }
+
+
+    }
+    void SongPos()
     {
+
         //move bottom song to top
         if (song1.transform.position.y < 0)
             song1.transform.position = new Vector3(15, 90, 0);
@@ -330,5 +421,4 @@ public class ScrolTest : MonoBehaviour {
 
     }
 
-	
 }

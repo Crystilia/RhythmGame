@@ -78,7 +78,7 @@ public class ScrollTest : MonoBehaviour {
     void Update () 
 	{
 
-        if (Input.GetKeyDown(KeyCode.Return) && songsel == true)
+        if ((Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Space)) && songsel == true)
         {
             PauseMenu.Paused = false;
             Time.timeScale = 1f;
