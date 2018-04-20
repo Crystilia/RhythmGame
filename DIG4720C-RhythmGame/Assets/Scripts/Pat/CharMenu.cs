@@ -16,7 +16,7 @@ public class CharMenu : MonoBehaviour {
     public Vector3 P1Spot = new Vector3(1.85f, 226.41f, 5.08f);
 
     //set to true when not testing
-    public static bool first = true;
+    public static bool first = false;
 
 
     public PauseMenu Pause;
@@ -92,7 +92,7 @@ public class CharMenu : MonoBehaviour {
 
             else if (PauseMenu.stage == 3 )
             {
-                Debug.Log(PlayerPrefs.GetInt("Player2Pref"));
+                Debug.Log("p2p" + PlayerPrefs.GetInt("Player2Pref"));
                 PlayerPrefs.SetInt("Player2Pref", 4);
                 Player2Button(PlayerPrefs.GetInt("Player2Pref"));
             }

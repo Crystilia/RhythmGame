@@ -7,7 +7,7 @@ public class PauseMenu : MonoBehaviour {
     static public bool Paused = false;
     public GameObject MenuHUD;
     private Manager mngr;
-    static public int stage = 1;
+    static public int stage = 3;
 
 
     // Use this for initialization

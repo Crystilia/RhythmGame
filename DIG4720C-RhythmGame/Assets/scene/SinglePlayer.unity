@@ -11518,17 +11518,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 7
       objectReference: {fileID: 0}
-    - target: {fileID: 114936766680989134, guid: 75208815ec0ec524a83c7fed461abd18,
-        type: 2}
-      propertyPath: Song_Gen
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114936766680989134, guid: 75208815ec0ec524a83c7fed461abd18,
-        type: 2}
-      propertyPath: PlaceNote
-      value: 
-      objectReference: {fileID: 1078513642919848, guid: 2a14542a169ea794bb3f7e3b75ee8b9c,
-        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 75208815ec0ec524a83c7fed461abd18, type: 2}
   m_IsPrefabParent: 0

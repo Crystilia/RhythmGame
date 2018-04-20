@@ -210,8 +210,8 @@ public class Manager : MonoBehaviour
         {
             NoteSpeed = 7.1f;
             NoteSpawnX = 2f;
-            NoteSpawnY = -1722f;
-            NoteSpreadY = 2.3f;
+            NoteSpawnY = -1937f;
+            NoteSpreadY = 2.5f;
         }
         else if (i == 3)
         {
@@ -224,8 +224,8 @@ public class Manager : MonoBehaviour
         {
             NoteSpeed = 7.1f;
             NoteSpawnX = 2f;
-            NoteSpawnY = -1722f;
-            NoteSpreadY = 2.3f;
+            NoteSpawnY = -2904f;
+            NoteSpreadY = 3.4f;
         }
         SG.GenerateSong();
     }
