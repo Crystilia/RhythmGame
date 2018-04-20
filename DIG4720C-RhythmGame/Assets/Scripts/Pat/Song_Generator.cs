@@ -48,7 +48,13 @@ public class Song_Generator : MonoBehaviour {
 
     public void GenerateSong()
     {
-        for(int x = 0; x < song[songInt].width; x++)
+        spawnx = manager.NoteSpawnX;
+        spawny = manager.NoteSpawnY;
+        spready = manager.NoteSpreadY;
+
+
+
+        for (int x = 0; x < song[songInt].width; x++)
         {
             for (int y = 0; y < song[songInt].height; y++)
             {

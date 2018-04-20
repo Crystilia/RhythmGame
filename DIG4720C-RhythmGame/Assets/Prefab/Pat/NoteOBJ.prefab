@@ -316,9 +316,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   song:
-  - {fileID: 2800000, guid: 3b2184f25540c40419d1e20b0e55c002, type: 3}
-  - {fileID: 2800000, guid: e16c224779efad74bba17424f237c2a3, type: 3}
+  - {fileID: 2800000, guid: 96b720891819ab5489ad025e0409521c, type: 3}
   - {fileID: 2800000, guid: 62edae2d4e1ba2b4ea87633ebb83e7e8, type: 3}
+  - {fileID: 2800000, guid: e16c224779efad74bba17424f237c2a3, type: 3}
   - {fileID: 2800000, guid: 34bcbdcabc3fde84fa1c36ef54308389, type: 3}
   - {fileID: 2800000, guid: b397af0b38a72f24092389f0a06e0f1d, type: 3}
   Note_Colors:

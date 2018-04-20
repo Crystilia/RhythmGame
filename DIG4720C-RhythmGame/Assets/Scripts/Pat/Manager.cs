@@ -155,7 +155,8 @@ public class Manager : MonoBehaviour
 
             //read image file and spawn notes
             SG.songInt = PlayerPrefs.GetInt("Player2Pref");
-            SG.GenerateSong();
+
+            SetSongVars(PlayerPrefs.GetInt("Player2Pref"));
 
             //start playing the song
             AudioManager.soundSrc[0].Play();
@@ -169,7 +170,8 @@ public class Manager : MonoBehaviour
 
             //read image file and spawn notes
             SG.songInt = PlayerPrefs.GetInt("SongPref");
-            SG.GenerateSong();
+
+            SetSongVars(PlayerPrefs.GetInt("SongPref"));
 
             //start playing the song
             AudioManager.soundSrc[0].Play();
@@ -187,6 +189,46 @@ public class Manager : MonoBehaviour
 
     }
 
+    void SetSongVars(int i)
+    {
+        Debug.Log(i);
+        if(i == 0)
+        {
+            NoteSpeed = 7.1f;
+            NoteSpawnX = 2f;
+            NoteSpawnY = -1722f;
+            NoteSpreadY = 2.3f;
+        }
+        else if (i == 1)
+        {
+            NoteSpeed = 7.1f;
+            NoteSpawnX = 2f;
+            NoteSpawnY = -2830f;
+            NoteSpreadY = 3.4f;
+        }
+        else if (i == 2)
+        {
+            NoteSpeed = 7.1f;
+            NoteSpawnX = 2f;
+            NoteSpawnY = -1722f;
+            NoteSpreadY = 2.3f;
+        }
+        else if (i == 3)
+        {
+            NoteSpeed = 7.1f;
+            NoteSpawnX = 2f;
+            NoteSpawnY = -2830f;
+            NoteSpreadY = 3.4f;
+        }
+        else if (i == 4)
+        {
+            NoteSpeed = 7.1f;
+            NoteSpawnX = 2f;
+            NoteSpawnY = -1722f;
+            NoteSpreadY = 2.3f;
+        }
+        SG.GenerateSong();
+    }
     public void P1FlexTrue()
     {
         P1Flex = true;
@@ -207,7 +249,7 @@ public class Manager : MonoBehaviour
 
     //whenever a player or ai takes damage
     public void LowerHP(bool P, float Dmg)
-    {
+    {/*
         if (P)
         {
             if (P1CurrentHP > 0)
@@ -240,6 +282,8 @@ public class Manager : MonoBehaviour
                 GameOver(1);
             }
         }
+       */
+        return;
     }
 
 
@@ -904,19 +948,7 @@ public class Manager : MonoBehaviour
             p2curC.color = Color.Lerp(p2startC, p2nextC, rate);
         }
 
-        if (P1Flex)
-        {
-            Debug.Log(P1Flex);
-        }
 
-        if(Input.GetKeyDown(KeyCode.Space))
-            {
-            Debug.Log("space");
-        }
-        if(P1FlexDur)
-        {
-            Debug.Log("dur");
-        }
     }
 
     private void FixedUpdate()
