@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class CreditsScroll : MonoBehaviour
 {
-    public int height = 3000;
+    public int height = 950;
     public GameObject spawn;
     // Use this for initialization
     void Start()
@@ -20,6 +20,10 @@ public class CreditsScroll : MonoBehaviour
             transform.Translate(0, 1, 0);
         }
         if (Input.GetKeyDown(KeyCode.Return))
+        {
+        
+        }
+        if(transform.position.y >= height)
         {
             SceneManager.LoadScene(0);
         }
