@@ -423,11 +423,11 @@ MonoBehaviour:
   atks:
   - {fileID: 978946180}
   - {fileID: 1442820943}
-  - {fileID: 590592349}
+  - {fileID: 644768769}
   atks2:
   - {fileID: 1097356562}
   - {fileID: 48261474}
-  - {fileID: 644768769}
+  - {fileID: 590592349}
   m_es: {fileID: 750324073}
   GameOverB: {fileID: 927427706}
   P1Flex: 0
