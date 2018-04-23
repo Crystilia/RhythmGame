@@ -554,7 +554,7 @@ ModelImporter:
     bakeSimulation: 0
     resampleCurves: 1
     optimizeGameObjects: 1
-    motionNodeName: 
+    motionNodeName: QuickRigCharacter_Reference
     rigImportErrors: 
     rigImportWarnings: 
     animationImportErrors: 
@@ -968,7 +968,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Fall
       takeName: Take 001
-      firstFrame: 4204
+      firstFrame: 4210
       lastFrame: 4237
       wrapMode: 0
       orientationOffsetY: 0

@@ -3,19 +3,44 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
+
 public class ChooseStage : MonoBehaviour {
 
 	public GameObject pick;
 	public GameObject stage1;
-	public GameObject stage2;
-	public GameObject stage3;
-	public GameObject stage4;
+    public GameObject stage12;
+    public GameObject stage2;
+    public GameObject stage22;
+    public GameObject stage3;
+    public GameObject stage32;
+    public GameObject stage4;
+    public GameObject stage42;
     private AM AudioManager;
     public bool stagesel = true;
     public EventSystem em;
     public GameObject but;
+    public GameObject Arrow1;
+    public GameObject Arrow2;
+    public bool UIT = false;
 
+    
     private bool toggleNoise = true;
+
+
+     void toggleUI()
+    {
+        if(UIT)
+        {
+            Arrow1.GetComponent<Image>().color = new Color(0, 1, 0,1);
+            Arrow2.GetComponent<Image>().color = new Color(1, 0, 0,0);
+        }
+        else
+        {
+            Arrow1.GetComponent<Image>().color = new Color(0, 1, 0, 0);
+            Arrow2.GetComponent<Image>().color = new Color(1, 0, 0, 1);
+        }
+    }
      void Start()
     {
         AudioManager = GameObject.Find("AM").GetComponent<AM>();
@@ -23,7 +48,11 @@ public class ChooseStage : MonoBehaviour {
 		stage2.gameObject.SetActive (false);
 		stage3.gameObject.SetActive (false);
 		stage4.gameObject.SetActive (false);
-	}
+        stage12.gameObject.SetActive(true);
+        stage22.gameObject.SetActive(false);
+        stage32.gameObject.SetActive(false);
+        stage42.gameObject.SetActive(false);
+    }
 
 
     public void UISfx(int i)
@@ -41,6 +70,8 @@ public class ChooseStage : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow) && stagesel)
         {
             pick.transform.Translate(0, 0, 100);
+            UIT = true;
+            toggleUI();
             if (toggleNoise)
             {
                 UISfx(0);
@@ -58,6 +89,8 @@ public class ChooseStage : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow) && stagesel)
         {
             pick.transform.Translate(0, 0, -100);
+            UIT = false;
+            toggleUI();
             if (toggleNoise)
             {
                 UISfx(0);
@@ -72,12 +105,12 @@ public class ChooseStage : MonoBehaviour {
 
 
 		//too far up
-		if(pick.transform.position.x == 659 && pick.transform.position.y > 306)
-			pick.transform.position = new Vector3 (659, 5,1);
+		if(pick.transform.position.x == 693 && pick.transform.position.y > 306)
+			pick.transform.position = new Vector3 (693, 5,1);
 		
 		//too far down
-		if(pick.transform.position.x == 659 && pick.transform.position.y < 4)
-			pick.transform.position = new Vector3 (659, 305,1);
+		if(pick.transform.position.x == 693 && pick.transform.position.y < 4)
+			pick.transform.position = new Vector3 (693, 305,1);
 
 		//stage 1
 		if (pick.transform.position.y >= 300 && pick.transform.position.y <= 310)
@@ -86,7 +119,11 @@ public class ChooseStage : MonoBehaviour {
 			stage2.gameObject.SetActive (false);
 			stage3.gameObject.SetActive (false);
 			stage4.gameObject.SetActive (false);
-		}
+            stage12.gameObject.SetActive(true);
+            stage22.gameObject.SetActive(false);
+            stage32.gameObject.SetActive(false);
+            stage42.gameObject.SetActive(false);
+        }
 		//stage 2
 		if (pick.transform.position.y >= 200 && pick.transform.position.y <= 210) 
 		{
@@ -94,7 +131,11 @@ public class ChooseStage : MonoBehaviour {
 			stage2.gameObject.SetActive (true);
 			stage3.gameObject.SetActive (false);
 			stage4.gameObject.SetActive (false);
-		}
+            stage12.gameObject.SetActive(false);
+            stage22.gameObject.SetActive(true);
+            stage32.gameObject.SetActive(false);
+            stage42.gameObject.SetActive(false);
+        }
 		//stage 3
 		if (pick.transform.position.y >= 100 && pick.transform.position.y <= 110) 
 		{
@@ -102,7 +143,11 @@ public class ChooseStage : MonoBehaviour {
 			stage2.gameObject.SetActive (false);
 			stage3.gameObject.SetActive (true);
 			stage4.gameObject.SetActive (false);
-		}
+            stage12.gameObject.SetActive(false);
+            stage22.gameObject.SetActive(false);
+            stage32.gameObject.SetActive(true);
+            stage42.gameObject.SetActive(false);
+        }
 		//stage 4
 		if (pick.transform.position.y >= 0 && pick.transform.position.y <= 10) 
 		{
@@ -110,7 +155,11 @@ public class ChooseStage : MonoBehaviour {
 			stage2.gameObject.SetActive (false);
 			stage3.gameObject.SetActive (false);
 			stage4.gameObject.SetActive (true);
-		}
+            stage12.gameObject.SetActive(false);
+            stage22.gameObject.SetActive(false);
+            stage32.gameObject.SetActive(false);
+            stage42.gameObject.SetActive(true);
+        }
 
 		//pick a stage
 		if((Input.GetKeyDown(KeyCode.Return)  || Input.GetKeyDown(KeyCode.Space)) && stagesel)

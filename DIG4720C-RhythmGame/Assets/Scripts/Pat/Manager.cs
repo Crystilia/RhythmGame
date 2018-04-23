@@ -121,8 +121,19 @@ public class Manager : MonoBehaviour
         P2PU.fillAmount = P2CurrentPU;
         player1.SetInteger("AnimState", 6);
         player2.SetInteger("AnimState", 6);
-        DoorL = GameObject.Find("DoorL").GetComponent<Animator>();
-        DoorR = GameObject.Find("DoorR").GetComponent<Animator>();
+
+        if (PauseMenu.stage == 3)
+        {
+            DoorL = GameObject.Find("BDoorL").GetComponent<Animator>();
+            DoorR = GameObject.Find("BDoorR").GetComponent<Animator>();
+        }
+        else
+        {
+            Stage[1].SetActive(false);
+            DoorL = GameObject.Find("DoorL").GetComponent<Animator>();
+            DoorR = GameObject.Find("DoorR").GetComponent<Animator>();
+        }
+
         DoorL.SetInteger("AnimState", 0);
         DoorR.SetInteger("AnimState", 0);
         // edit these
@@ -141,9 +152,16 @@ public class Manager : MonoBehaviour
         //change attack color depending on the player
          for (int i = 0; i < atks.Length; i++)
         {
-            atks[i].GetComponent<ParticleSystemRenderer>().material.color = atksC[PlayerPrefs.GetInt("Player1Pref")];
-            atks2[i].GetComponent<ParticleSystemRenderer>().material.color = atksC[PlayerPrefs.GetInt("Player2Pref")];
-
+            if (i != atks.Length - 1)
+            {
+                atks[i].GetComponent<ParticleSystemRenderer>().material.color = atksC[PlayerPrefs.GetInt("Player1Pref")];
+                atks2[i].GetComponent<ParticleSystemRenderer>().material.color = atksC[PlayerPrefs.GetInt("Player2Pref")];
+            }
+            else
+            {
+                atks[i].GetComponent<ParticleSystemRenderer>().material.SetColor("_TintColor", atksC[PlayerPrefs.GetInt("Player1Pref")]);
+                atks2[i].GetComponent<ParticleSystemRenderer>().material.SetColor("_TintColor", atksC[PlayerPrefs.GetInt("Player2Pref")]);
+            }
         }
 
          //song generation settings
