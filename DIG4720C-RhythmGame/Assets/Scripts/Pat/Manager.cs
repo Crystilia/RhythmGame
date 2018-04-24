@@ -93,12 +93,20 @@ public class Manager : MonoBehaviour
     public bool P1Flex = false;
     public bool P1FlexDur = true;
     public GameObject[] Stage;
-    #endregion
-
     public ParticleSystem ps;
     public ParticleSystem ps2;
     public ParticleSystem ps3;
     public ParticleSystem ps4;
+    public Face_anim p1f;
+    public Face_anim p2f;
+
+
+    #endregion
+
+
+
+
+
     void Start()
     {
         #region initialization
@@ -152,6 +160,10 @@ public class Manager : MonoBehaviour
         P2M = GameObject.Find("P2_AtkMiss");
         p1curC = P1PU.GetComponent<Image>().material;
         p2curC = P2PU.GetComponent<Image>().material;
+
+        p1f = player1.gameObject.GetComponentInChildren<Face_anim>();
+        p2f = player2.gameObject.GetComponentInChildren<Face_anim>();
+
         #endregion
 
         //change color of everything depending on the player
@@ -568,6 +580,28 @@ public class Manager : MonoBehaviour
         {
         DanceRand = Random.Range(6, 10);
         player2.SetInteger("AnimState", DanceRand);
+        }
+
+
+        // face changes
+        DanceRand = Random.Range(0, 30);
+
+        if (DanceRand == 10)
+        {
+            DanceRand = Random.Range(0, 7);
+            p1f.p1b = true;
+            p1f.offset = DanceRand;
+        }
+        if (DanceRand == 15 && PauseMenu.stage != 3)
+        {
+            p2f.p1b = false;
+            DanceRand = Random.Range(0, 7);
+            p2f.offset = DanceRand;
+        }
+        else if (PauseMenu.stage != 3)
+        {
+            p2f.p1b = false;
+            p2f.offset = 0;
         }
     }
 
