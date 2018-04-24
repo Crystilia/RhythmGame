@@ -153,10 +153,18 @@ public class Manager : MonoBehaviour
         p1curC = P1PU.GetComponent<Image>().material;
         p2curC = P2PU.GetComponent<Image>().material;
         #endregion
-       
-        //change attack color depending on the player
-         for (int i = 0; i < atks.Length; i++)
+
+        //change color of everything depending on the player
+        if (PauseMenu.stage != 3)
         {
+            Stage[0].GetComponent<MeshRenderer>().material.color = atksC[PlayerPrefs.GetInt("Player2Pref")];
+            DoorR.GetComponentInChildren<MeshRenderer>().sharedMaterial.color = atksC[PlayerPrefs.GetInt("Player2Pref")];
+            DoorR.transform.GetChild(2).GetComponentInChildren<MeshRenderer>().sharedMaterial.color = atksC[PlayerPrefs.GetInt("Player2Pref")];
+            //DoorL.GetComponentsInChildren<MeshRenderer>().material.color = atksC[PlayerPrefs.GetInt("Player2Pref")];
+        }
+        for (int i = 0; i < atks.Length; i++)
+        {
+           
             if (i != atks.Length - 1)
             {
                 atks[i].GetComponent<ParticleSystemRenderer>().material.color = atksC[PlayerPrefs.GetInt("Player1Pref")];
