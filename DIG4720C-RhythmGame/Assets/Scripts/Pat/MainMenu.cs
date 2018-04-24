@@ -48,7 +48,7 @@ public class MainMenu : MonoBehaviour {
         AudioManager = GameObject.Find("AM").GetComponent<AM>();
         if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("MainMenu"))
         {
-            AudioManager.soundSrc[0].clip = AudioManager.sfx[4];
+            AudioManager.soundSrc[0].clip = AudioManager.sfx[15];
             AudioManager.soundSrc[0].Play();
         }
     }
