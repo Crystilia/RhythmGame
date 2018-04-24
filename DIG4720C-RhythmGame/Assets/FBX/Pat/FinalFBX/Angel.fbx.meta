@@ -121,14 +121,17 @@ ModelImporter:
     7400000: Fall
     7400002: Idle
     7400004: Land
-    7400006: Dodge
+    7400006: DodgeL
     7400008: ATKL
     7400010: ATKR
     7400012: D1
     7400014: D2
     7400016: D3
     7400018: D4
-    7400020: Hit
+    7400020: HitL
+    7400022: D5
+    7400024: HitR
+    7400026: DodgeR
     9500000: //RootNode
     13700000: Mouth1
     13700002: AngelBody2
@@ -161,13 +164,15 @@ ModelImporter:
     extraExposedTransformPaths:
     - QuickRigCharacter_Hips/QuickRigCharacter_Spine/QuickRigCharacter_Spine1/QuickRigCharacter_Spine2/QuickRigCharacter_LeftShoulder/QuickRigCharacter_LeftArm/QuickRigCharacter_LeftForeArm/QuickRigCharacter_LeftHand
     - QuickRigCharacter_Hips/QuickRigCharacter_Spine/QuickRigCharacter_Spine1/QuickRigCharacter_Spine2/QuickRigCharacter_RightShoulder/QuickRigCharacter_RightArm/QuickRigCharacter_RightForeArm/QuickRigCharacter_RightHand
+    - AngelBody2
+    - Mouth1
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
       name: Idle
       takeName: Take 001
-      firstFrame: 1
-      lastFrame: 19
+      firstFrame: 318.1
+      lastFrame: 448.12
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -194,8 +199,8 @@ ModelImporter:
     - serializedVersion: 16
       name: Fall
       takeName: Take 001
-      firstFrame: 21
-      lastFrame: 37
+      firstFrame: 3344
+      lastFrame: 3356
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -203,7 +208,7 @@ ModelImporter:
       loop: 0
       hasAdditiveReferencePose: 0
       loopTime: 1
-      loopBlend: 0
+      loopBlend: 1
       loopBlendOrientation: 0
       loopBlendPositionY: 0
       loopBlendPositionXZ: 0
@@ -222,8 +227,8 @@ ModelImporter:
     - serializedVersion: 16
       name: Land
       takeName: Take 001
-      firstFrame: 39
-      lastFrame: 58
+      firstFrame: 2045
+      lastFrame: 2096
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -248,10 +253,10 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Dodge
+      name: DodgeL
       takeName: Take 001
-      firstFrame: 60
-      lastFrame: 87
+      firstFrame: 2404
+      lastFrame: 2496
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -278,8 +283,8 @@ ModelImporter:
     - serializedVersion: 16
       name: ATKL
       takeName: Take 001
-      firstFrame: 89
-      lastFrame: 120
+      firstFrame: 79.4
+      lastFrame: 213.98001
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -306,8 +311,8 @@ ModelImporter:
     - serializedVersion: 16
       name: ATKR
       takeName: Take 001
-      firstFrame: 122
-      lastFrame: 151
+      firstFrame: 2649.2
+      lastFrame: 2761
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -334,8 +339,8 @@ ModelImporter:
     - serializedVersion: 16
       name: D1
       takeName: Take 001
-      firstFrame: 155
-      lastFrame: 173
+      firstFrame: 556.5
+      lastFrame: 700.8
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -343,7 +348,7 @@ ModelImporter:
       loop: 0
       hasAdditiveReferencePose: 0
       loopTime: 1
-      loopBlend: 0
+      loopBlend: 1
       loopBlendOrientation: 0
       loopBlendPositionY: 0
       loopBlendPositionXZ: 0
@@ -362,8 +367,8 @@ ModelImporter:
     - serializedVersion: 16
       name: D2
       takeName: Take 001
-      firstFrame: 208
-      lastFrame: 240
+      firstFrame: 845.5
+      lastFrame: 979
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -371,7 +376,7 @@ ModelImporter:
       loop: 0
       hasAdditiveReferencePose: 0
       loopTime: 1
-      loopBlend: 0
+      loopBlend: 1
       loopBlendOrientation: 0
       loopBlendPositionY: 0
       loopBlendPositionXZ: 0
@@ -390,8 +395,8 @@ ModelImporter:
     - serializedVersion: 16
       name: D3
       takeName: Take 001
-      firstFrame: 241
-      lastFrame: 273
+      firstFrame: 1091
+      lastFrame: 1221
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -399,7 +404,7 @@ ModelImporter:
       loop: 0
       hasAdditiveReferencePose: 0
       loopTime: 1
-      loopBlend: 0
+      loopBlend: 1
       loopBlendOrientation: 0
       loopBlendPositionY: 0
       loopBlendPositionXZ: 0
@@ -418,8 +423,36 @@ ModelImporter:
     - serializedVersion: 16
       name: D4
       takeName: Take 001
-      firstFrame: 175
-      lastFrame: 207
+      firstFrame: 1364.3
+      lastFrame: 1518
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 1
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: HitL
+      takeName: Take 001
+      firstFrame: 2910
+      lastFrame: 2971.1
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -444,10 +477,66 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Hit
+      name: D5
       takeName: Take 001
-      firstFrame: 58
-      lastFrame: 63
+      firstFrame: 1625.6299
+      lastFrame: 1758
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 1
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: HitR
+      takeName: Take 001
+      firstFrame: 1835
+      lastFrame: 1889.75
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: DodgeR
+      takeName: Take 001
+      firstFrame: 3130.2002
+      lastFrame: 3211
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
