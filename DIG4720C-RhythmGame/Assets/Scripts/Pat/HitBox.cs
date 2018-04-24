@@ -11,6 +11,7 @@ public class HitBox : MonoBehaviour
     private GameObject Note = null;
     public int box;
     public ParticleSystem hitImg;
+    public ParticleSystem Stars;
     public Material DisolveNote;
     public Material DisolveBomb;
     public bool IsAI = false;
@@ -20,6 +21,7 @@ public class HitBox : MonoBehaviour
     private int AIHitPercent;
     public bool Song_Gen;
     public GameObject PlaceNote;
+    public bool star = false;
     //[Range(1.7f, 3)]
     //public float Disolver;
     // Use this for initialization
@@ -101,7 +103,6 @@ public class HitBox : MonoBehaviour
         if (Note == note)
         { Note = null; }
         note.GetComponent<MeshRenderer>().material.color = new Color(0, 0, 0);
-
         if (note.gameObject.tag == "Note")
         {
             InHitBox = false;
@@ -123,6 +124,7 @@ public class HitBox : MonoBehaviour
         if (Note != null && InHitBox && !Bomb && !PowerUp)
                 {
                     hitImg.Play();
+            star = true;
             //  DisolveNote = Note.GetComponent<Material>();
               StartCoroutine(MyCorutine(6.87f, Note));
             Note.GetComponent<BoxCollider2D>().enabled = false;
@@ -151,8 +153,9 @@ public class HitBox : MonoBehaviour
         }
          else if (Note != null && InHitBox && !Bomb && PowerUp)
                 {
+            star = true;
             // DisolveNote = Note.GetComponent<Material>();
-               StartCoroutine(MyCorutine(6.87f, Note));
+            StartCoroutine(MyCorutine(6.87f, Note));
             Note.GetComponent<BoxCollider2D>().enabled = false;
             //Note.SetActive(false);
                     hitImg.Play();
@@ -220,8 +223,19 @@ public class HitBox : MonoBehaviour
         }
     }
 
+    void StopPart()
+    {
+        Stars.Stop();
+    }
     void Update()
     {
+        if (star)
+        {
+            Stars.Play();
+            star = false;
+            InvokeRepeating("StopPart", 2.5f, 0);
+            mngr.AudioManager.PlaySfx(1, 4, 1);
+        }
         pressbutton(box);
     }
 

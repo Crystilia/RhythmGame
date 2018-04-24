@@ -212,6 +212,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4773378349648734}
   - component: {fileID: 95909819488792878}
+  - component: {fileID: 114236950154072062}
   m_Layer: 0
   m_Name: Rex
   m_TagString: Untagged
@@ -855,7 +856,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1768856274275050}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.42, y: 684.36, z: 12.74}
+  m_LocalPosition: {x: -0.42, y: 684.36, z: 14.38}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4483401331875602}
@@ -1146,6 +1147,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 15
+--- !u!114 &114236950154072062
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1406812518575380}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a00b01450d477c344a1af37f1da517fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Player:
+  - {fileID: 2100000, guid: 22a16883ccd96184c9f428e858a7da77, type: 2}
+  - {fileID: 2100000, guid: c4f56f9f451d6a64f8156fb620fd8536, type: 2}
+  - {fileID: 2100000, guid: e911543a12aebbf46b63436557b22f65, type: 2}
+  - {fileID: 2100000, guid: dd5260d25cef33642964d62f4feb4728, type: 2}
+  p1b: 1
+  offset: 0
+  _offset: 0.125
 --- !u!114 &114332046909528154
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1160,6 +1180,9 @@ MonoBehaviour:
   Player:
   - {fileID: 2100000, guid: 22a16883ccd96184c9f428e858a7da77, type: 2}
   - {fileID: 2100000, guid: c4f56f9f451d6a64f8156fb620fd8536, type: 2}
+  - {fileID: 2100000, guid: e911543a12aebbf46b63436557b22f65, type: 2}
+  - {fileID: 2100000, guid: dd5260d25cef33642964d62f4feb4728, type: 2}
+  p1b: 1
   offset: 0
   _offset: 0
 --- !u!114 &114424718929255240
@@ -1176,6 +1199,9 @@ MonoBehaviour:
   Player:
   - {fileID: 2100000, guid: 22a16883ccd96184c9f428e858a7da77, type: 2}
   - {fileID: 2100000, guid: c4f56f9f451d6a64f8156fb620fd8536, type: 2}
+  - {fileID: 2100000, guid: e911543a12aebbf46b63436557b22f65, type: 2}
+  - {fileID: 2100000, guid: dd5260d25cef33642964d62f4feb4728, type: 2}
+  p1b: 1
   offset: 0
   _offset: 0
 --- !u!114 &114922704810647786
@@ -1192,6 +1218,9 @@ MonoBehaviour:
   Player:
   - {fileID: 2100000, guid: 22a16883ccd96184c9f428e858a7da77, type: 2}
   - {fileID: 2100000, guid: c4f56f9f451d6a64f8156fb620fd8536, type: 2}
+  - {fileID: 2100000, guid: e911543a12aebbf46b63436557b22f65, type: 2}
+  - {fileID: 2100000, guid: dd5260d25cef33642964d62f4feb4728, type: 2}
+  p1b: 1
   offset: 0
   _offset: 0
 --- !u!114 &114960667933203882
@@ -1208,6 +1237,9 @@ MonoBehaviour:
   Player:
   - {fileID: 2100000, guid: 22a16883ccd96184c9f428e858a7da77, type: 2}
   - {fileID: 2100000, guid: c4f56f9f451d6a64f8156fb620fd8536, type: 2}
+  - {fileID: 2100000, guid: e911543a12aebbf46b63436557b22f65, type: 2}
+  - {fileID: 2100000, guid: dd5260d25cef33642964d62f4feb4728, type: 2}
+  p1b: 1
   offset: 0
   _offset: 0
 --- !u!114 &114974351752690200
@@ -1466,7 +1498,7 @@ SkinnedMeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: c4f56f9f451d6a64f8156fb620fd8536, type: 2}
+  - {fileID: 2100000, guid: dd5260d25cef33642964d62f4feb4728, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
