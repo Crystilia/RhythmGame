@@ -97,6 +97,8 @@ public class Manager : MonoBehaviour
 
     public ParticleSystem ps;
     public ParticleSystem ps2;
+    public ParticleSystem ps3;
+    public ParticleSystem ps4;
     void Start()
     {
         #region initialization
@@ -164,8 +166,12 @@ public class Manager : MonoBehaviour
             {
                 var main = ps.main;
                 var main2 = ps2.main;
+                var main3 = ps3.main;
+                var main4 = ps4.main;
                 main.startColor = atksC[PlayerPrefs.GetInt("Player1Pref")];
                 main2.startColor = atksC[PlayerPrefs.GetInt("Player2Pref")];
+                main3.startColor = atksC[PlayerPrefs.GetInt("Player1Pref")];
+                main4.startColor = atksC[PlayerPrefs.GetInt("Player2Pref")];
                 // atks[i].GetComponent<ParticleSystemRenderer>().material.SetColor("_TintColor", atksC[PlayerPrefs.GetInt("Player1Pref")]);
                 //  atks2[i].GetComponent<ParticleSystemRenderer>().material.SetColor("_TintColor", atksC[PlayerPrefs.GetInt("Player2Pref")]);
             }
@@ -755,7 +761,11 @@ public class Manager : MonoBehaviour
 
 
     }
-
+    void dodgePStop()
+    {
+        ps3.Stop();
+        ps4.Stop();
+    }
     //making the attack stick to a player or ai and chosing the animation
     void AttackAnim(bool P, float DMG)
     {
@@ -814,6 +824,8 @@ public class Manager : MonoBehaviour
                 else if (P2Dodge == true)
                 {
                     player2.SetInteger("AnimState", 16);
+                    ps4.Play();
+                    InvokeRepeating("dodgePStop", 2, 0);
 
                 }
                 if (Vector3.Distance(P1ATK.transform.position, P1.transform.position) < 5f)
@@ -847,8 +859,11 @@ public class Manager : MonoBehaviour
         else if (player == true)
         {
             //StartCoroutine(resetRot(player2.GetComponent<Transform>(), rot));
-           // StartCoroutine(resetPos(player2.GetComponent<Transform>(), pos));
-            P2ATK.transform.parent.DetachChildren();
+            // StartCoroutine(resetPos(player2.GetComponent<Transform>(), pos));
+            if (P2ATK != null)
+            {
+                P2ATK.transform.parent.DetachChildren();
+            }
             AudioManager.soundSrc[3].Stop();
 
             AudioManager.soundSrc[2].PlayOneShot(AudioManager.sfx[11]);
@@ -863,6 +878,8 @@ public class Manager : MonoBehaviour
                 if (P1Dodge == true)
                 {
                     player1.SetInteger("AnimState", 17);
+                    ps3.Play();
+                    InvokeRepeating("dodgePStop", 2, 0);
                 }
                 if (Vector3.Distance(P2ATK.transform.position, P2.transform.position) < 5f)
                 {
