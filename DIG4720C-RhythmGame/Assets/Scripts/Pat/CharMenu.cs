@@ -161,7 +161,7 @@ public class CharMenu : MonoBehaviour {
     public void UISfx(int i)
     {
         if (AM.on)
-            AudioManager.PlaySfx(3, i, 0.5f);
+            AudioManager.PlaySfx(3, i, 1f);
         else
         {
             AM.on = true;

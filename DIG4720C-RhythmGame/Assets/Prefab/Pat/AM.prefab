@@ -137,7 +137,7 @@ AudioSource:
     type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 0.437
+  m_Volume: 1
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -218,7 +218,7 @@ AudioSource:
     type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 0.379
+  m_Volume: 1
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -299,7 +299,7 @@ AudioSource:
     type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 0.437
+  m_Volume: 1
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -380,9 +380,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sfx:
-  - {fileID: 8300000, guid: 3fe04c03b59c53447bfbd71731c6e68c, type: 3}
-  - {fileID: 8300000, guid: c5043ba27a745134494682c96d033d7a, type: 3}
-  - {fileID: 8300000, guid: 289bb1b28c8c0d246a6d0eba2cc7b717, type: 3}
+  - {fileID: 8300000, guid: 729a872f09689394eb5f2a834c7148f5, type: 3}
+  - {fileID: 8300000, guid: df24374690a92aa459cd6bca759695d5, type: 3}
+  - {fileID: 8300000, guid: 1eb19ffb732b74f478167f51e707c424, type: 3}
   - {fileID: 8300000, guid: 67780c46a1b3adc49bcdeac010ed29f0, type: 3}
   - {fileID: 8300000, guid: 6dc9e8a3c35f84c4e9d1de9fb8530ef0, type: 3}
   - {fileID: 8300000, guid: 0385f7994f5494847a81633f2abfd51e, type: 3}
@@ -390,10 +390,11 @@ MonoBehaviour:
   - {fileID: 8300000, guid: fa8f864fa5614954baf02c35fecca115, type: 3}
   - {fileID: 8300000, guid: 756a3f2da4049da438e8ce91c9e75a55, type: 3}
   - {fileID: 8300000, guid: 40a4595357d235f4e92b0bcc1118bacf, type: 3}
-  - {fileID: 8300000, guid: b582a1b7b8826744d9d5352f8e70ecb5, type: 3}
-  - {fileID: 8300000, guid: 8529f4d1c9477fe4dbb927af03e88be2, type: 3}
+  - {fileID: 8300000, guid: d666ac8166fea25448c73cdc189b257d, type: 3}
+  - {fileID: 8300000, guid: d666ac8166fea25448c73cdc189b257d, type: 3}
   - {fileID: 8300000, guid: ca1c553ba7a79d842b33c3560c02e5ab, type: 3}
-  - {fileID: 8300000, guid: 961b6b095be868c429dbe1744868078b, type: 3}
+  - {fileID: 8300000, guid: 44fbfb147b2906d459c2d9b183bc8b4a, type: 3}
+  - {fileID: 8300000, guid: 563601c46bc782147962b2bdaa569e93, type: 3}
   mus:
   - {fileID: 8300000, guid: 6dc9e8a3c35f84c4e9d1de9fb8530ef0, type: 3}
   - {fileID: 8300000, guid: 0385f7994f5494847a81633f2abfd51e, type: 3}

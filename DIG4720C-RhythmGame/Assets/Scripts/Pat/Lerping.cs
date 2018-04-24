@@ -14,7 +14,8 @@ public class Lerping : MonoBehaviour
     public Transform p2Pos;
     public Transform p1Death;
     public Transform p2Death;
-
+    public ParticleSystem[] Stars;
+    public bool star = true;
     void Start()
     {
         p1Death = GameObject.Find("P1_DeathLerp").transform;
@@ -25,6 +26,7 @@ public class Lerping : MonoBehaviour
         startTime = Time.time;
         journeyLength = Vector3.Distance(startMarker.position, endMarker.position);
         StartCoroutine(lerper(startMarker, endMarker));
+        star = true;
     }
 
     public void die(bool player)
@@ -42,7 +44,11 @@ public class Lerping : MonoBehaviour
         }
         }
 
-
+    void StopPart()
+    {
+        Stars[0].Stop();
+        Stars[1].Stop();
+    }
 
     public IEnumerator lerper(Transform start, Transform end)
     {
@@ -59,6 +65,14 @@ public class Lerping : MonoBehaviour
                 mngr.player2.SetInteger("AnimState", 5);
             }
             yield return null;
+        }
+
+        if(star)
+        {
+            Stars[0].Play();
+            Stars[1].Play();
+            star = false;
+            InvokeRepeating("StopPart",2.5f, 0);
         }
         mngr.player1.SetInteger("AnimState", 6);
         mngr.player2.SetInteger("AnimState", 6);

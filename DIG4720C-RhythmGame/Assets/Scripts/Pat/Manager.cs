@@ -95,8 +95,8 @@ public class Manager : MonoBehaviour
     public GameObject[] Stage;
     #endregion
 
-
-
+    public ParticleSystem ps;
+    public ParticleSystem ps2;
     void Start()
     {
         #region initialization
@@ -129,7 +129,10 @@ public class Manager : MonoBehaviour
         }
         else
         {
-            Stage[1].SetActive(false);
+            if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("SinglePlayer"))
+            {
+                Stage[1].SetActive(false);
+            }
             DoorL = GameObject.Find("DoorL").GetComponent<Animator>();
             DoorR = GameObject.Find("DoorR").GetComponent<Animator>();
         }
@@ -159,8 +162,12 @@ public class Manager : MonoBehaviour
             }
             else
             {
-                atks[i].GetComponent<ParticleSystemRenderer>().material.SetColor("_TintColor", atksC[PlayerPrefs.GetInt("Player1Pref")]);
-                atks2[i].GetComponent<ParticleSystemRenderer>().material.SetColor("_TintColor", atksC[PlayerPrefs.GetInt("Player2Pref")]);
+                var main = ps.main;
+                var main2 = ps2.main;
+                main.startColor = atksC[PlayerPrefs.GetInt("Player1Pref")];
+                main2.startColor = atksC[PlayerPrefs.GetInt("Player2Pref")];
+                // atks[i].GetComponent<ParticleSystemRenderer>().material.SetColor("_TintColor", atksC[PlayerPrefs.GetInt("Player1Pref")]);
+                //  atks2[i].GetComponent<ParticleSystemRenderer>().material.SetColor("_TintColor", atksC[PlayerPrefs.GetInt("Player2Pref")]);
             }
         }
 
@@ -194,7 +201,7 @@ public class Manager : MonoBehaviour
             //start playing the song
             AudioManager.soundSrc[0].Play();
         }
-        //button = GameObject.Find("Next Button");
+
         if (gameover != null)
         {
             gameover.transform.parent.gameObject.SetActive(false);
@@ -247,11 +254,12 @@ public class Manager : MonoBehaviour
         }
         SG.GenerateSong();
     }
+
+    #region FlEX
     public void P1FlexTrue()
     {
         P1Flex = true;
         P1FlexDur = false;
-     //   StartCoroutine(flexer());
     }
     public void P1FlexFalse()
     {
@@ -264,6 +272,7 @@ public class Manager : MonoBehaviour
         P1Flex = false;
         P1FlexDur = true;
     }
+    #endregion
 
     //whenever a player or ai takes damage
     public void LowerHP(bool P, float Dmg)
@@ -318,7 +327,12 @@ public class Manager : MonoBehaviour
             else if (P1PU.fillAmount >= .85f)
             {
                 P1CurrentPU = 1f;
-                p1canUseSpecial = true;
+
+                if (!p2activeATK)
+                {
+                    p1canUseSpecial = true;
+                }
+
                 P1PU.fillAmount = P1CurrentPU;
                 P1PU.color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
             }
@@ -333,7 +347,10 @@ public class Manager : MonoBehaviour
             else if (P2PU.fillAmount >= 1f)
             {
                 P2CurrentPU = 1f;
-                p2canUseSpecial = true;
+                if (!p1activeATK)
+                {
+                    p2canUseSpecial = true;
+                }
                 AIHit = true;
                 P2PU.fillAmount = P2CurrentPU;
                 P2PU.color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
@@ -374,6 +391,7 @@ public class Manager : MonoBehaviour
             GameOver(0);
         }
     }
+   
     //all possible endings go here
     public void GameOver(int Condition)
     {
@@ -583,7 +601,8 @@ public class Manager : MonoBehaviour
                     p1canUseSpecial = false;
                     p1curC.color = new Color(0.780f, 0f, 0f);
                     CurrentP1DMG = 0;
-                    //  AudioManager.soundSrc[1].PlayOneShot(AudioManager.sfx[0]);
+                    AudioManager.soundSrc[3].PlayOneShot(AudioManager.sfx[14]);
+           
                 }
             }
         }
@@ -619,7 +638,6 @@ public class Manager : MonoBehaviour
                     CurrentP2DMG = Mathf.Clamp01((P2DMG / 200f));
                     P2PU.fillAmount = CurrentP2DMG;
                     P2CurrentPU = P2PU.fillAmount;
-
                 }
                 //player 2 final attack stats on button up
                 if (p2canUseSpecial && Input.GetKeyUp(KeyCode.RightControl) && isAI == false)
@@ -638,7 +656,7 @@ public class Manager : MonoBehaviour
                     p2canUseSpecial = false;
                     p2curC.color = new Color(0.780f, 0f, 0f);
                     CurrentP2DMG = 0;
-                  //  AudioManager.soundSrc[2].PlayOneShot(AudioManager.sfx[1]);
+                    AudioManager.soundSrc[3].PlayOneShot(AudioManager.sfx[14]);
                 }
             }
 
@@ -707,7 +725,8 @@ public class Manager : MonoBehaviour
                     p2canUseSpecial = false;
                     p2curC.color = new Color(0.780f, 0f, 0f);
                     CurrentP2DMG = 0;
-                   // AudioManager.soundSrc[2].PlayOneShot(AudioManager.sfx[1]);
+                    AudioManager.soundSrc[3].PlayOneShot(AudioManager.sfx[14]);
+
                 }
 
             }
@@ -781,6 +800,8 @@ public class Manager : MonoBehaviour
            // StartCoroutine(resetRot(player1.GetComponent<Transform>(), rot));
            // StartCoroutine(resetPos(player1.GetComponent<Transform>(), pos));
             P1ATK.transform.parent.DetachChildren();
+            AudioManager.soundSrc[3].Stop();
+
             AudioManager.soundSrc[1].PlayOneShot(AudioManager.sfx[11]);
             while (Vector3.Distance(P1ATK.transform.position, P2.transform.position) > 1f)
             {
@@ -808,7 +829,7 @@ public class Manager : MonoBehaviour
                 LowerHP(player, DMG);
                 AudioManager.soundSrc[1].PlayOneShot(AudioManager.sfx[10]);
                 P1ATK.SetActive(false);
-                p1activeATK = false;
+              //  p1activeATK = false;
             }
             else if (P2Dodge == true)
             {
@@ -818,8 +839,8 @@ public class Manager : MonoBehaviour
                 player2.SetInteger("AnimState", 8);
                 P2Dodge = false;
                 //   P1ATK.SetActive(false);
-                StartCoroutine(ATKLerp(P1ATK, P2M, P1AtkSpeed));
-                p1activeATK = false;
+                StartCoroutine(ATKLerp(P1ATK, P2M, P1AtkSpeed,true));
+               // p1activeATK = false;
             }
           
         }
@@ -828,6 +849,8 @@ public class Manager : MonoBehaviour
             //StartCoroutine(resetRot(player2.GetComponent<Transform>(), rot));
            // StartCoroutine(resetPos(player2.GetComponent<Transform>(), pos));
             P2ATK.transform.parent.DetachChildren();
+            AudioManager.soundSrc[3].Stop();
+
             AudioManager.soundSrc[2].PlayOneShot(AudioManager.sfx[11]);
             while (Vector3.Distance(P2ATK.transform.position, P1.transform.position) > 1f)
             {
@@ -854,7 +877,7 @@ public class Manager : MonoBehaviour
                 LowerHP(player, DMG);
                 AudioManager.soundSrc[2].PlayOneShot(AudioManager.sfx[10]);
                 P2ATK.SetActive(false);
-                p2activeATK = false;
+               // p2activeATK = false;
             }
             else if (P1Dodge == true)
             {
@@ -864,16 +887,16 @@ public class Manager : MonoBehaviour
                 //attack miss stuff here
                 player1.SetInteger("AnimState", 8);
               //  P2ATK.SetActive(false);
-                p2activeATK = false;
+               // p2activeATK = false;
                 P1Dodge = false;
-                StartCoroutine(ATKLerp(P2ATK, P1M, P2AtkSpeed));
+                StartCoroutine(ATKLerp(P2ATK, P1M, P2AtkSpeed,false));
             }
 
         }
         
     }
     //if dodge lerp past player
-    IEnumerator ATKLerp(GameObject ATK, GameObject POS, float SPEED)
+    IEnumerator ATKLerp(GameObject ATK, GameObject POS, float SPEED, bool player)
     {
         while (Vector3.Distance(ATK.transform.position, POS.transform.position) > 1f)
         {
@@ -883,6 +906,14 @@ public class Manager : MonoBehaviour
         ATK.SetActive(false);
         P1CanDodge = false;
         P2CanDodge = false;
+        if (player)
+        {
+            p1activeATK = false;
+        }
+        else
+        {
+            p2activeATK = false;
+        }
         yield return null;
     }
     //for root motion / not in use
@@ -950,8 +981,8 @@ public class Manager : MonoBehaviour
         #endregion
     
 
-        // Update is called once per frame
-        void Update()
+    // Update is called once per frame
+    void Update()
     {
         StartATK();
 
@@ -959,11 +990,21 @@ public class Manager : MonoBehaviour
         {
             rate = (Mathf.Sin(Time.time / speed));
             p1curC.color = Color.Lerp(p1startC, p1nextC, rate);
+            if (!p2activeATK)
+            {
+                p1canUseSpecial = true;
+            }
         }
         else if(P2PU.fillAmount == 1)
         {
             rate = (Mathf.Sin(Time.time / speed));
             p2curC.color = Color.Lerp(p2startC, p2nextC, rate);
+
+            if (!p1activeATK)
+            {
+                p2canUseSpecial = true;
+            }
+
         }
 
 
@@ -973,6 +1014,7 @@ public class Manager : MonoBehaviour
     {
       //  Dance();
     }
+    
     // get how long the attack animation is for calculating when the attack detatches
     public void UpdateAnimClipTimes()
     {
