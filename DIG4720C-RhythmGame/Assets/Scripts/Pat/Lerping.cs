@@ -73,6 +73,7 @@ public class Lerping : MonoBehaviour
             Stars[1].Play();
             star = false;
             InvokeRepeating("StopPart",2.5f, 0);
+            mngr.AudioManager.PlaySfx(1,15,1);
         }
         mngr.player1.SetInteger("AnimState", 6);
         mngr.player2.SetInteger("AnimState", 6);

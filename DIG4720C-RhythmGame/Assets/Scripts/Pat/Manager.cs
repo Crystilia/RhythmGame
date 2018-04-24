@@ -717,6 +717,7 @@ public class Manager : MonoBehaviour
                         p2canUseSpecial = false;
                         p2curC.color = new Color(1f, 0.862f, 0.219f);
                         CurrentP2DMG = 0;
+                        p2activeATK = false;
                         //AudioManager.soundSrc[2].PlayOneShot(AudioManager.sfx[1]);
                     }
                     //   Rand = Random.Range(0, 31);
@@ -857,7 +858,7 @@ public class Manager : MonoBehaviour
                 AudioManager.soundSrc[1].PlayOneShot(AudioManager.sfx[13]);
                 //attack miss stuff here
                 player2.SetInteger("AnimState", 8);
-                P2Dodge = false;
+                //P2Dodge = false;
                 //   P1ATK.SetActive(false);
                 StartCoroutine(ATKLerp(P1ATK, P2M, P1AtkSpeed,true));
                // p1activeATK = false;
@@ -913,7 +914,7 @@ public class Manager : MonoBehaviour
                 player1.SetInteger("AnimState", 8);
               //  P2ATK.SetActive(false);
                // p2activeATK = false;
-                P1Dodge = false;
+              //  P1Dodge = false;
                 StartCoroutine(ATKLerp(P2ATK, P1M, P2AtkSpeed,false));
             }
 
@@ -929,6 +930,8 @@ public class Manager : MonoBehaviour
             yield return null;
         }
         ATK.SetActive(false);
+        P2Dodge = false;
+        P1Dodge = false;
         P1CanDodge = false;
         P2CanDodge = false;
         if (player)
